@@ -5,6 +5,7 @@ export const getAllTodos = async (req, res) => {
 };
 
 export const createTodo = async (req, res) => {
+  console.log(req.body);
   res.status(StatusCodes.OK).send("create todo");
 };
 

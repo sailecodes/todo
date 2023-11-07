@@ -10,19 +10,25 @@ import authRouter from "./routers/authRouter.js";
 import todoRouter from "./routers/todoRouter.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 
-// ----- INIT
+// ============================================================================
+// Initialization
+// ============================================================================
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 5100;
 
-// ----- MIDDLEWARE
+// ============================================================================
+// Middleware
+// ============================================================================
 
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 
-// ----- ROUTES
+// ============================================================================
+// Routes
+// ============================================================================
 
 app.get("/", (req, res) => {
   res.status(StatusCodes.OK).send("Home route");
@@ -37,12 +43,12 @@ app.use("*", (req, res) => {
 
 app.use(errorMiddleware);
 
-// TODO: add error handler middleware
-
-// ----- SERVER INIT
+// ============================================================================
+// Server initialization
+// ============================================================================
 
 try {
-  await mongoose.connect(process.env.MONGO_CONNECTION_STRING);
+  await mongoose.connect(process.env.MONGO_CS);
   app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
   });
