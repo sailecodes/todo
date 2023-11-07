@@ -47,6 +47,19 @@
         - Delete a todo (_DELETE_, `/api/v1/todos/:id`)
           - Validate that a todo item with id exists
           - Verify that the requesting user either created the todo item or is an admin
+    - User routes (`/api/v1/users`)
+      - Restricted routes
+      - 1 route
+        - Get user (`/api/v1/users/user`)
+          - Verify that user exists
+          - Only return necessary information
+            - e.g. Don't return database password
+    - Admin routes (`/api/v1/admin`)
+      - Restricted routes
+      - 1 route
+        - Get application stats (`/api/v1/admin/application-stats`)
+          - Validation middleware
+            - Verify that the user has role admin
 - Model structures
   - User schema
     - First name
@@ -57,7 +70,9 @@
   - Todo schema
     - Title
     - Description
+    - Importance
     - Deadline
+    - Progress
     - Created by
 
 ### _Client-side_

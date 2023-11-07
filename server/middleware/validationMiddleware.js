@@ -1,20 +1,23 @@
 import mongoose from "mongoose";
 import date from "date-and-time";
-import { body, param, validationResult } from "express-validator";
+import jwt from "jsonwebtoken";
+import { body, param, cookie, validationResult } from "express-validator";
 
 import userModel from "../models/userModel.js";
-import { BadRequestError } from "../custom-errors/customErrors.js";
+import { BadRequestError, UnauthenticatedError, UnauthorizedError } from "../custom-errors/customErrors.js";
 import { TODO_MODEL_IMPORTANCE, TODO_MODEL_PROGRESS, VALIDATION_DATE_FORMAT } from "../utils/constants.js";
 
 const validate = (validationValues) => {
   return [
     validationValues,
-    (req, _, next) => {
+    (req, res, next) => {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
         const errorMessages = errors.array().map((error) => error.msg);
-        throw new BadRequestError(errorMessages);
+
+        if (errorMessages[0].startsWith("Authentication")) throw new UnauthenticatedError("Authentication invalid.");
+        else throw new BadRequestError(errorMessages);
       }
 
       next();
@@ -25,6 +28,24 @@ const validate = (validationValues) => {
 // ============================================================================
 // General validation
 // ============================================================================
+
+export const validateUser = validate([
+  cookie("token").custom((token, { req, res }) => {
+    if (!token) throw new UnauthenticatedError("Authentication invalid.");
+
+    try {
+      // Verifies the JWT and retrieves the payload embedded in the JWT
+      const { userId, userRole } = jwt.verify(token, process.env.JWT_SECRET);
+
+      // Creates a userInfo property in req.body for use in the restricted routes
+      req.userInfo = { userId, userRole };
+
+      return true;
+    } catch (error) {
+      throw new UnauthenticatedError("Authentication invalid.");
+    }
+  }),
+]);
 
 export const validateIdParam = validate([
   param("id")
@@ -88,4 +109,15 @@ export const validateTodoInput = validate([
     .optional()
     .isIn(Object.values(TODO_MODEL_PROGRESS))
     .withMessage("(from validateTodoInput) Progress level not supported."),
+]);
+
+// ============================================================================
+// Admin routes validation
+// ============================================================================
+
+export const validateAdminRole = validate([
+  cookie("token").custom((_, { req }) => {
+    if (req.userInfo.userRole !== "admin") throw new UnauthorizedError("Not authorized to access this route.");
+    return true;
+  }),
 ]);
