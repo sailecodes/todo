@@ -11,7 +11,7 @@ export const authenticateUser = async (req, res, next) => {
     const { userId, userRole } = jwt.verify(token, process.env.JWT_SECRET);
 
     // Creates a userInfo property in req.body for use in the restricted routes
-    req.body.userInfo = { userId, userRole };
+    req.userInfo = { userId, userRole };
 
     next();
   } catch (error) {
