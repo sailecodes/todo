@@ -11,10 +11,12 @@ const validate = (validationValues) => {
     validationValues,
     (req, _, next) => {
       const errors = validationResult(req);
+
       if (!errors.isEmpty()) {
         const errorMessages = errors.array().map((error) => error.msg);
         throw new BadRequestError(errorMessages);
       }
+
       next();
     },
   ];
