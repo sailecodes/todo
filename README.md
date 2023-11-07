@@ -30,7 +30,7 @@
           - Reset the http-cookie to clear the JWT
     - Todo routes (`/api/v1/todos`)
       - Restricted routes
-        - Must pass an authentication layer that verifies the JWT in the http-cookie
+        - Must pass a validation layer that verifies the JWT in the http-cookie
       - Further validation
         - After passing the authentication layer, the POST and PATCH routes must pass todo and query param validations
       - 5 routes
@@ -56,10 +56,9 @@
             - e.g. Don't return database password
     - Admin routes (`/api/v1/admin`)
       - Restricted routes
+        - Must pass a validation layer that verifies the user has role admin
       - 1 route
         - Get application stats (`/api/v1/admin/application-stats`)
-          - Validation middleware
-            - Verify that the user has role admin
 - Model structures
   - User schema
     - First name
