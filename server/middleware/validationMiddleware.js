@@ -71,10 +71,15 @@ export const validateLoginInput = validate([
 export const validateTodoInput = validate([
   body("title").notEmpty().withMessage("(from validateTodoInput) Please provide a title."),
   body("description")
-    .isLength({ max: 20 })
-    .withMessage("(from validateTodoInput) Please provide a description shorter than 21 characters."),
+    .isLength({ max: 100 })
+    .withMessage("(from validateTodoInput) Please provide a description shorter than 100 characters."),
   body("importance")
     .isIn(Object.values(TODO_MODEL_IMPORTANCE))
     .withMessage("(from validateTodoInput) Importance not supported."),
-  body("deadline").custom((deadline) => date.isValid(deadline, VALIDATION_DATE_FORMAT)),
+  body("deadline")
+    .notEmpty()
+    .withMessage("from validateTodoInput) Please provide a deadline.")
+    .custom((deadline) => {
+      return date.isValid(deadline, VALIDATION_DATE_FORMAT);
+    }),
 ]);
