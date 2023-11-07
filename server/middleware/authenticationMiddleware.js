@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { UnauthenticatedError } from "../custom-errors/customErrors.js";
+import { UnauthenticatedError, UnauthorizedError } from "../custom-errors/customErrors.js";
 
 export const authenticateUser = async (req, res, next) => {
   const { token } = req.cookies;
@@ -17,4 +17,9 @@ export const authenticateUser = async (req, res, next) => {
   } catch (error) {
     throw new UnauthenticatedError("Authentication invalid.");
   }
+};
+
+export const verifyAdminRole = async (req, res, next) => {
+  if (req.userInfo.userRole !== "admin") throw new UnauthorizedError("Not authorized to access this route.");
+  next();
 };

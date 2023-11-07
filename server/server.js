@@ -9,6 +9,7 @@ import * as dotenv from "dotenv";
 import authRouter from "./routers/authRouter.js";
 import todoRouter from "./routers/todoRouter.js";
 import userRouter from "./routers/userRouter.js";
+import adminRouter from "./routers/adminRouter.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import { authenticateUser } from "./middleware/authenticationMiddleware.js";
 
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/todos", authenticateUser, todoRouter);
 app.use("/api/v1/users", authenticateUser, userRouter);
+app.use("/api/v1/admin", authenticateUser, adminRouter);
 
 app.use("*", (req, res) => {
   res.status(StatusCodes.NOT_FOUND).json({ msg: "Route not found." });

@@ -7,3 +7,9 @@ export const TODO_MODEL_IMPORTANCE = {
   MEDIUM: "medium",
   HIGH: "high",
 };
+
+export const TODO_MODEL_PROGRESS = {
+  JUST_STARTED: "just started",
+  HALFWAY_THERE: "halfway there",
+  FINISHED: "finished",
+};

@@ -4,7 +4,7 @@ import { body, param, validationResult } from "express-validator";
 
 import userModel from "../models/userModel.js";
 import { BadRequestError } from "../custom-errors/customErrors.js";
-import { TODO_MODEL_IMPORTANCE, VALIDATION_DATE_FORMAT } from "../utils/constants.js";
+import { TODO_MODEL_IMPORTANCE, TODO_MODEL_PROGRESS, VALIDATION_DATE_FORMAT } from "../utils/constants.js";
 
 const validate = (validationValues) => {
   return [
@@ -71,15 +71,21 @@ export const validateLoginInput = validate([
 export const validateTodoInput = validate([
   body("title").notEmpty().withMessage("(from validateTodoInput) Please provide a title."),
   body("description")
+    .optional()
     .isLength({ max: 100 })
     .withMessage("(from validateTodoInput) Please provide a description shorter than 100 characters."),
   body("importance")
+    .optional()
     .isIn(Object.values(TODO_MODEL_IMPORTANCE))
-    .withMessage("(from validateTodoInput) Importance not supported."),
+    .withMessage("(from validateTodoInput) Importance level not supported."),
   body("deadline")
     .notEmpty()
     .withMessage("from validateTodoInput) Please provide a deadline.")
     .custom((deadline) => {
       return date.isValid(deadline, VALIDATION_DATE_FORMAT);
     }),
+  body("progress")
+    .optional()
+    .isIn(Object.values(TODO_MODEL_PROGRESS))
+    .withMessage("(from validateTodoInput) Progress level not supported."),
 ]);
