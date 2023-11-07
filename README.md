@@ -1,8 +1,8 @@
 # **TODO App**
 
-### _Server-side logic_
+### _Server-side_
 
-- General structure
+- General logic
   - Authentication routes (`/api/v1/auth`)
     - Public routes
     - 3 routes:
@@ -42,20 +42,24 @@
           - Validate that a todo item with id exists
           - Verify that the requesting user either created the todo item or is an admin
         - Update a todo (_PATCH_, `/api/v1/todos/:id`)
+          - Validate that a todo item with id exists
+          - Verify that the requesting user either created the todo item or is an admin
         - Delete a todo (_DELETE_, `/api/v1/todos/:id`)
-- Models
-  - User Schema
+          - Validate that a todo item with id exists
+          - Verify that the requesting user either created the todo item or is an admin
+- Model structures
+  - User schema
     - First name
     - Last name
     - Email
     - Password
     - Role
-  - Todo Schema
+  - Todo schema
     - Title
     - Description
     - Deadline
     - Created by
 
-### _Client-side logic_
+### _Client-side_
 
 - Structure
