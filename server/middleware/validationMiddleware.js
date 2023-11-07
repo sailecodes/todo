@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import date from "date-and-time";
 import { body, param, validationResult } from "express-validator";
 
@@ -18,6 +19,16 @@ const validate = (validationValues) => {
     },
   ];
 };
+
+// ============================================================================
+// General validation
+// ============================================================================
+
+export const validateIdParam = validate([
+  param("id")
+    .custom((id) => mongoose.Types.ObjectId.isValid(id))
+    .withMessage("(from validateIdParam) Please provide a valid MongoDB id in the query parameter."),
+]);
 
 // ============================================================================
 // Authentication routes validation
@@ -63,8 +74,5 @@ export const validateTodoInput = validate([
   body("importance")
     .isIn(Object.values(TODO_MODEL_IMPORTANCE))
     .withMessage("(from validateTodoInput) Importance not supported."),
-  body("deadline").custom((deadline) => {
-    if (date.isValid(deadline, VALIDATION_DATE_FORMAT)) return true;
-    return false;
-  }),
+  body("deadline").custom((deadline) => date.isValid(deadline, VALIDATION_DATE_FORMAT)),
 ]);
