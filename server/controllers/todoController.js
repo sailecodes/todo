@@ -1,12 +1,19 @@
 import { StatusCodes } from "http-status-codes";
 
+import todoModel from "../models/todoModel.js";
+
 export const getAllTodos = async (req, res) => {
-  res.status(StatusCodes.OK).send("get all todos");
+  const userTodos = await todoModel.find({ createdBy: req.body.userInfo.userId });
+
+  res.status(StatusCodes.OK).json({ userTodos });
 };
 
 export const createTodo = async (req, res) => {
-  console.log(req.body);
-  res.status(StatusCodes.OK).send("create todo");
+  req.body.createdBy = req.body.userInfo.userId;
+
+  await todoModel.create(req.body);
+
+  res.status(StatusCodes.OK).json({ msg: "Created todo item." });
 };
 
 export const getTodo = async (req, res) => {
