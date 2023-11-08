@@ -2,6 +2,8 @@ import "express-async-errors";
 import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import helmet from "helmet";
+import mongoSanitize from "express-mongo-sanitize";
 import cookieParser from "cookie-parser";
 import { StatusCodes } from "http-status-codes";
 import * as dotenv from "dotenv";
@@ -28,6 +30,8 @@ const port = process.env.PORT || 5100;
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
+app.use(mongoSanitize());
 
 // ============================================================================
 // Routes
