@@ -44,10 +44,10 @@ const Wrapper = styled.div`
 const Home = () => {
   return (
     <Wrapper>
-      <div className="home--item home--item-productivity">Productivity</div>
-      <div className="home--item home--item-productivity">Productivity</div>
+      <div className="home--item home--item-productivity">Finished</div>
+      <div className="home--item home--item-productivity">Past deadline</div>
       <div className="home--item home--item-coming">Coming</div>
-      <div className="home--item home--item-due-most">Due most</div>
+      <div className="home--item home--item-due-most">Newest</div>
       <div className="home--item home--item-quote">Quote</div>
     </Wrapper>
   );

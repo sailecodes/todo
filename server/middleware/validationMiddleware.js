@@ -103,7 +103,9 @@ export const validateTodoInput = validate([
     .notEmpty()
     .withMessage("from validateTodoInput) Please provide a deadline.")
     .custom((deadline) => {
-      return date.isValid(deadline, VALIDATION_DATE_FORMAT);
+      if (!date.isValid(deadline, VALIDATION_DATE_FORMAT))
+        throw new BadRequestError("(from validateTodoInput) Invalid deadline format.");
+      return true;
     }),
   body("progress")
     .optional()
@@ -117,7 +119,8 @@ export const validateTodoInput = validate([
 
 export const validateAdminRole = validate([
   cookie("token").custom((_, { req }) => {
-    if (req.userInfo.userRole !== "admin") throw new UnauthorizedError("Not authorized to access this route.");
+    if (req.userInfo.userRole !== "admin")
+      throw new UnauthorizedError("(from validateAdminRole) Not authorized to access this route.");
     return true;
   }),
 ]);

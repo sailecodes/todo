@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import userModel from "../models/userModel.js";
 import todoModel from "../models/todoModel.js";
 import { NotFoundError } from "../custom-errors/customErrors.js";
+import { getCurrentDateAndTime } from "../utils/helpers.js";
 
 export const getUser = async (req, res) => {
   const user = await userModel.findById(req.userInfo.userId).select("-_id -password -__v");
@@ -21,19 +22,7 @@ export const getUserTodosFinished = async (req, res) => {
 };
 
 export const getUserTodosPastDeadline = async (req, res) => {
-  const date = new Date();
-  const todayUnformatted = {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    hour: date.getHours(),
-    minute: date.getMinutes(),
-  };
-  const todayFormatted = `${todayUnformatted.month < 10 ? `0` + todayUnformatted.month : todayUnformatted.month}/${
-    todayUnformatted.day < 10 ? `0` + todayUnformatted.day : todayUnformatted.day
-  }/${todayUnformatted.year} ${todayUnformatted.hour < 10 ? `0` + todayUnformatted.hour : todayUnformatted.hour}:${
-    todayUnformatted.minute < 10 ? `0` + todayUnformatted.minute : todayUnformatted.minute
-  }`;
+  const todayFormatted = getCurrentDateAndTime();
 
   const todosPastDeadline = await todoModel.find({
     createdBy: req.userInfo.userId,
@@ -46,11 +35,20 @@ export const getUserTodosPastDeadline = async (req, res) => {
     .json({ msg: "Retrieved todos past deadline.", data: todosPastDeadline, count: todosPastDeadline.length });
 };
 
-export const getUserTodoDueMostSoon = async (req, res) => {
-  const todosDueMostSoon = await todoModel.find({
-    createdBy: req.userInfo.userId,
-    progress: { $in: ["just started", "halfway there"] },
-  });
+export const getUserTodoNewest = async (req, res) => {
+  const todayFormatted = getCurrentDateAndTime();
+
+  const todoNewest = await todoModel
+    .find({
+      createdBy: req.userInfo.userId,
+      progress: { $in: ["just started", "halfway there"] },
+    })
+    .sort({ createdAt: -1 });
+
+  res.status(StatusCodes.OK).json({ msg: "Retrieved newest todo.", data: todoNewest[0] });
 };
 
-export const getUserTodosComing = async (req, res) => {};
+// TODO:
+export const getUserTodosComing = async (req, res) => {
+  res.status(StatusCodes.OK).json({ msg: "Not yet implemented." });
+};
