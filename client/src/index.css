@@ -1,5 +1,5 @@
 :root {
-  --color-primary: #3085C3;
+  --color-primary: #186297;
   --color-primary-light: #f1a0a0;
   --color-primary-lighter: #f2aaaa;
   --color-primary-dark: #d78686;
@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-color: var(--color-white);
+  background-color:#d78686;
 
   font-family: "Poppins", sans-serif;
 }

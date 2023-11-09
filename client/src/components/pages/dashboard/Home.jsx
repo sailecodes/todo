@@ -5,43 +5,108 @@ import axiosFetch from "../../../utilities/axiosFetch";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 2rem;
+  grid-template-rows: 20rem 1fr 1fr;
+  gap: 3.5rem;
 
   padding: 2rem 0 0 2rem;
 
-  .home--item {
+  .home--card {
+    background-color: var(--color-white);
+
+    padding: 2rem;
     border-radius: 12px;
   }
 
-  .home--item-productivity {
-    background-color: lightcoral;
+  .home--card-heading-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
-  .home--item-productivity:nth-child(2) {
-    background-color: lightpink;
+  .home--card-marker {
+    background-color: var(--color-primary);
+
+    height: 3.3rem;
+    width: 3.3rem;
+
+    border-radius: 6px;
   }
 
-  .home--item-coming {
-    background-color: lightcyan;
+  .home--card-title {
+    font-size: 3rem;
+    font-weight: 600;
+  }
 
+  // Home card FINISHED and PAST DEADLINE
+
+  .home--card-productivity {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home--card-productivity-count {
+    font-size: 6.5rem;
+
+    margin-top: auto;
+  }
+
+  .home--card-productivity-count span {
+    font-size: 4.3rem;
+  }
+
+  .home--card-coming {
     grid-row: 1 / 3;
     grid-column: 3;
   }
 
-  .home--item-due-most {
-    background-color: lightseagreen;
+  // Home card NEWEST
 
+  .home--card-newest {
     grid-column: 1 / 3;
   }
 
-  .home--item-quote {
-    background-color: lightgoldenrodyellow;
+  .home--card-newest-todo-title {
+    font-size: 6.5rem;
+  }
 
-    grid-row-start: 3;
-    grid-column: 1 / -1;
+  .home--card-newest-todo-description {
+    font-size: 3rem;
   }
 `;
+
+const HomeProductivityItem = ({ cardTitle, todosCount }) => {
+  return (
+    <>
+      <div className="home--card-heading-container">
+        <div className="home--card-marker" />
+        <p className="home--card-title">{cardTitle}</p>
+      </div>
+      <p className="home--card-productivity-count">
+        {todosCount} <span>items</span>
+      </p>
+    </>
+  );
+};
+
+const HomeNewestItem = ({ cardTitle, todoTitle, todoDescription, todoImportance, todoDeadline, todoProgress }) => {
+  return (
+    <>
+      <div className="home--card-heading-container">
+        <div className="home--card-marker" />
+        <p className="home--card-title">{cardTitle}</p>
+      </div>
+      <div className="home--card-newest-data-container">
+        <p className="home--card-newest-todo-title">{todoTitle}</p>
+        <p className="home--card-newest-todo-description">
+          {todoDescription ? todoDescription : "An important todo item...do it."}
+        </p>
+        <p className="home--card-newest-todo-importance">{todoImportance}</p>
+        <p className="home--card-newest-todo-deadline">{todoDeadline}</p>
+        <p className="home--card-newest-todo-progress">{todoProgress}</p>
+      </div>
+    </>
+  );
+};
 
 const Home = () => {
   const resultsArr = useQueries({
@@ -91,20 +156,39 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <div className="home--item home--item-productivity">
-        {resultsArr[0].isLoading ? "Loading..." : `Finished todos: ${resultsArr[0].data}`}
+      <div className="home--card home--card-productivity">
+        {resultsArr[0].isLoading ? (
+          "Loading..."
+        ) : (
+          <HomeProductivityItem cardTitle="Finished Todos" todosCount={resultsArr[0].data} />
+        )}
       </div>
-      <div className="home--item home--item-productivity">
-        {resultsArr[1].isLoading ? "Loading..." : `Missed todos: ${resultsArr[1].data}`}
+      <div className="home--card home--card-productivity">
+        {resultsArr[1].isLoading ? (
+          "Loading..."
+        ) : (
+          <HomeProductivityItem cardTitle="Missed Todos" todosCount={resultsArr[1].data} />
+        )}
       </div>
-      <div className="home--item home--item-coming">
+      <div className="home--card home--card-coming">
         {resultsArr[2].isLoading ? "Loading..." : `Coming todos: ${resultsArr[2].data}`}
       </div>
-      <div className="home--item home--item-due-most">
-        {resultsArr[3].isLoading ? "Loading..." : `Newest todo: ${resultsArr[3].data.title}`}
+      <div className="home--card home--card-newest">
+        {resultsArr[3].isLoading ? (
+          "Loading..."
+        ) : (
+          <HomeNewestItem
+            cardTitle="Newest Todo"
+            todoTitle={resultsArr[3].data.title}
+            todoDescription={resultsArr[3].data.description}
+            todoImportance={resultsArr[3].data.importance}
+            todoDeadline={resultsArr[3].data.deadline}
+            todoProgress={resultsArr[3].data.progress}
+          />
+        )}
       </div>
-      <div className="home--item home--item-quote">Quote</div>
     </Wrapper>
   );
 };
+
 export default Home;

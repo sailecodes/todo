@@ -90,7 +90,11 @@ export const validateLoginInput = validate([
 // ============================================================================
 
 export const validateTodoInput = validate([
-  body("title").notEmpty().withMessage("(from validateTodoInput) Please provide a title."),
+  body("title")
+    .notEmpty()
+    .withMessage("(from validateTodoInput) Please provide a title.")
+    .isLength({ max: 50 })
+    .withMessage("(from validateTodoInput) Please provide a title shorter than 50 characters."),
   body("description")
     .optional()
     .isLength({ max: 100 })
