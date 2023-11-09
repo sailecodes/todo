@@ -1,5 +1,5 @@
 :root {
-  --color-primary: #ef9595;
+  --color-primary: #3085C3;
   --color-primary-light: #f1a0a0;
   --color-primary-lighter: #f2aaaa;
   --color-primary-dark: #d78686;
@@ -22,7 +22,8 @@ html {
 }
 
 body {
-  background-color: black;
+  background: rgb(178,225,228);
+  background: linear-gradient(292deg, rgba(178,225,228,1) 0%, rgba(104,230,255,1) 100%);
   
   font-family: "Poppins", sans-serif;
 }

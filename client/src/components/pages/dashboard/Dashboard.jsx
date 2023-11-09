@@ -7,7 +7,7 @@ import profile from "../../../imgs/profile.svg";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: gray;
+  background-color: var(--color-white);
 
   display: grid;
   grid-template-columns: 10rem 1fr;
@@ -19,15 +19,16 @@ const Wrapper = styled.div`
   padding: 2rem;
 
   .dashboard--side-nav {
-    background-color: lightblue;
+    background-color: #a084e8;
 
     grid-row: 1 / -1;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 2.5rem;
 
+    padding: 0.3rem;
     border-radius: 12px;
   }
 
@@ -46,25 +47,35 @@ const Wrapper = styled.div`
   }
 
   .dashboard--side-nav-link > img,
-  .dashboard--top-nav > img {
+  .dashboard--top-nav-profile-link > img {
     width: 4rem;
   }
 
   .dashboard--top-nav {
-    background-color: lightgreen;
-
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
 
-    padding-right: 2.7rem;
+    padding: 2rem;
+    padding-right: 0;
+  }
+
+  .dashboard--top-nav div:nth-child(1) {
+    font-size: 3rem;
+  }
+
+  .dashboard--top-nav div:nth-child(2) {
+    display: flex;
+    gap: 1rem;
   }
 
   .dashboard--top-nav-profile-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     font-size: 2.5rem;
     text-decoration: none;
-
-    margin-left: 0.8rem;
   }
 `;
 
@@ -74,26 +85,38 @@ const Dashboard = () => {
       <nav className="dashboard--side-nav">
         <p className="dashboard--side-nav-logo">IV</p>
         <div className="dashboard--side-nav-item">
-          <Link to="/dashboard" className="dashboard--side-nav-link">
+          <Link
+            to="/dashboard"
+            className="dashboard--side-nav-link">
             <img src={home} />
           </Link>
         </div>
         <div className="dashboard--side-nav-item">
-          <Link to="/dashboard/todos" className="dashboard--side-nav-link">
+          <Link
+            to="/dashboard/todos"
+            className="dashboard--side-nav-link">
             <img src={todo} />
           </Link>
         </div>
         <div className="dashboard--side-nav-item">
-          <Link to="/dashboard/profile" className="dashboard--side-nav-link">
+          <Link
+            to="/dashboard/profile"
+            className="dashboard--side-nav-link">
             <img src={profile} />
           </Link>
         </div>
       </nav>
       <nav className="dashboard--top-nav">
-        <img src={profile} />
-        <Link to="/dashboard/profile" className="dashboard--top-nav-profile-link">
-          Elias
-        </Link>
+        <div>
+          <p>Procrastinating...what&apos;s that?</p>
+        </div>
+        <div>
+          <Link
+            to="/dashboard/profile"
+            className="dashboard--top-nav-profile-link">
+            <img src={profile} />
+          </Link>
+        </div>
       </nav>
       <Outlet />
     </Wrapper>
