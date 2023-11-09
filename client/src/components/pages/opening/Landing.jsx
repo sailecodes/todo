@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import Wrapper from "../../styles/LandingStyle.js";
+
+import Wrapper from "../../../styles/LandingStyle.js";
+import landing from "../../../imgs/landing.svg";
 
 const Landing = () => {
   return (
     <Wrapper>
+      <img src={landing} alt="TodoIV" className="landing--img" />
       <div className="landing--element-container">
         <p>TodoIV</p>
         <p>A todo list application for us procrastinators.</p>

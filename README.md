@@ -59,21 +59,24 @@
         - Must pass a validation layer that verifies the user has role admin
       - 1 route
         - Get application stats (`/api/v1/admin/application-stats`)
-- Model structures
-  - User schema
-    - First name
-    - Last name
-    - Email
-    - Password
-    - Role
-  - Todo schema
-    - Title
-    - Description
-    - Importance
-    - Deadline
-    - Progress
-    - Created by
 
 ### _Client-side_
 
-- Structure
+- General structure
+  - Landing (`/`)
+    - Can direct user to login or register
+  - Login (`/login`)
+    - Redirects user to dashboard
+  - Register (`/register`)
+    - Redirects user to login
+  - Dashboard (`/dashboard`)
+    - Children pages
+      - Home (`/dashboard`)
+        - Index page
+        - Displays relevant data
+      - TODOs (`/dashboard/todos`)
+        - Daily (`/dashboard/todos/daily`)
+        - Weekly (`/dashboard/todos/weekly`)
+        - Monthly (`/dashboard/todos/monthly`)
+        - Coming (`/dashboard/todos/coming`)
+      - Profile (`/dashboard/todos/profile`)

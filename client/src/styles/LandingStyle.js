@@ -13,14 +13,18 @@ const Wrapper = styled.div`
     position: relative;
     bottom: 8rem;
 
-    background-color: brown;
-
     display: flex;
     flex-direction: column;
     align-items: center;
 
     height: 30rem;
     width: 100%;
+  }
+
+  .landing--img {
+    width: 80rem;
+
+    margin-bottom: 8rem;
   }
 
   .landing--element-container p:nth-child(1) {

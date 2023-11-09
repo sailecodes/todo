@@ -1,23 +1,26 @@
-import styled from "styled-components";
-import Wrapper from "../../styles/RegisterLoginStyle";
-import FormLabeledInput from "../helpers/FormLabeledInput";
 import { Form, Link } from "react-router-dom";
 
-const Login = () => {
+import Wrapper from "../../../styles/RegisterLoginStyle";
+import FormLabeledInput from "../../helpers/FormLabeledInput";
+
+const Register = () => {
   return (
     <Wrapper>
       <Form className="auth--form" method="post">
         <p className="auth--logo">TodoIV</p>
+        <FormLabeledInput type="text" name="firstName" labelName="First Name" defaultValue="Elias" />
+        <FormLabeledInput type="text" name="lastName" labelName="Last Name" defaultValue="Roman" />
         <FormLabeledInput type="email" name="email" labelName="Email" defaultValue="elias@gmail.com" />
         <FormLabeledInput type="password" name="password" labelName="Password" defaultValue="0123456789" />
         <button className="auth--btn" type="submit">
-          Login
+          Register
         </button>
         <p className="auth--login-redirect">
-          Not yet a member? <Link to="/register">Register</Link>
+          Already part of the productive team? <Link to="/login">Login</Link>
         </p>
       </Form>
     </Wrapper>
   );
 };
-export default Login;
+
+export default Register;

@@ -2,10 +2,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import Landing from "./components/pages/Landing";
-import Register from "./components/pages/Register";
-import Login from "./components/pages/Login";
-import Dashboard from "./components/pages/Dashboard";
+import Landing from "./components/pages/opening/Landing";
+import Register from "./components/pages/opening/Register";
+import Login from "./components/pages/opening/Login";
+import Dashboard from "./components/pages/dashboard/Dashboard";
+import Home from "./components/pages/dashboard/Home";
+import Todo from "./components/pages/dashboard/Todo";
+import Profile from "./components/pages/dashboard/Profile";
 
 import registerAction from "./actions/RegisterAction";
 import loginAction from "./actions/LoginAction";
@@ -30,7 +33,18 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children: [{}],
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        element: <Todo />,
+      },
+      {
+        element: <Profile />,
+      },
+    ],
   },
 ]);
 
