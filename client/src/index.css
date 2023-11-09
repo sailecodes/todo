@@ -22,14 +22,17 @@ html {
 }
 
 body {
+  background-color: black;
+  
   font-family: "Poppins", sans-serif;
 }
 
 #root {
-  background-color: var(--color-temporary-white);
+  background-color: black;
 
   max-width: 180rem;
   height: 100vh;
 
   margin: 0 auto;
 }
+

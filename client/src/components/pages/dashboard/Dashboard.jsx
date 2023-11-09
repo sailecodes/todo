@@ -16,6 +16,8 @@ const Wrapper = styled.div`
   height: 100%;
   width: 100%;
 
+  padding: 2rem;
+
   .dashboard--side-nav {
     background-color: lightblue;
 
@@ -25,12 +27,12 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 3rem;
+
+    border-radius: 12px;
   }
 
   .dashboard--side-nav-logo {
     font-size: 6rem;
-
-    margin-bottom: 3.5rem;
   }
 
   .dashboard--side-nav-item {
@@ -58,8 +60,9 @@ const Wrapper = styled.div`
     padding-right: 2.7rem;
   }
 
-  .dashboard--top-nav-user-name {
+  .dashboard--top-nav-profile-link {
     font-size: 2.5rem;
+    text-decoration: none;
 
     margin-left: 0.8rem;
   }
@@ -88,7 +91,9 @@ const Dashboard = () => {
       </nav>
       <nav className="dashboard--top-nav">
         <img src={profile} />
-        <p className="dashboard--top-nav-user-name">Elias</p>
+        <Link to="/dashboard/profile" className="dashboard--top-nav-profile-link">
+          Elias
+        </Link>
       </nav>
       <Outlet />
     </Wrapper>

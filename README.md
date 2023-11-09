@@ -73,7 +73,12 @@
     - Children pages
       - Home (`/dashboard`)
         - Index page
-        - Displays relevant data
+        - Displays visual data
+          - TODOs finished
+          - TODOs past deadline
+          - TODO due most soon
+          - TODOs coming
+          - Quote of the day
       - TODOs (`/dashboard/todos`)
         - Daily (`/dashboard/todos/daily`)
         - Weekly (`/dashboard/todos/weekly`)
