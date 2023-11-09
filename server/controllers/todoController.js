@@ -55,6 +55,7 @@ export const getFinishedTodos = async (req, res) => {
     .json({ msg: "Retrieved finished todos.", data: finishedTodos, count: finishedTodos.length });
 };
 
+// FIXME: Buggy
 export const getPastDeadlineTodos = async (req, res) => {
   const date = new Date();
 
@@ -74,8 +75,10 @@ export const getPastDeadlineTodos = async (req, res) => {
   const pastDeadlineTodos = await todoModel.find({
     createdBy: req.userInfo.userId,
     progress: { $in: ["just started", "halfway there"] },
-    deadline: { $gte: todayFormatted },
+    deadline: { $lte: todayFormatted },
   });
+
+  console.log(todayFormatted);
 
   res
     .status(StatusCodes.OK)
