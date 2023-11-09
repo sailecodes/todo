@@ -10,23 +10,27 @@ const Wrapper = styled.div`
   height: 100%;
 
   form {
+    position: relative;
+
     display: flex;
     flex-direction: column;
 
     margin-bottom: 12rem;
   }
 
-  .register--logo {
+  .auth--logo {
+    position: relative;
+
     font-size: 11rem;
     font-weight: 600;
     letter-spacing: -7px;
   }
 
-  .register--input-label {
+  .auth--input-label {
     font-size: 2.2rem;
   }
 
-  .register--input {
+  .auth--input {
     height: 3rem;
 
     font-size: 1.8rem;
@@ -44,6 +48,7 @@ const Wrapper = styled.div`
     height: 5rem;
 
     font-size: 2rem;
+    font-weight: 600;
     text-decoration: none;
 
     border: none;
@@ -56,7 +61,7 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
 
-  .register--login-redirect {
+  .auth--login-redirect {
     width: max-content;
 
     font-size: 1.5rem;

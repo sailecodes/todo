@@ -6,14 +6,17 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "install-dep": "npm i && cd ../client && npm i",
+    "client": "cd ../client && npm run dev",
     "server": "nodemon server.js",
-    "install-dep": "npm i && cd ../client && npm i"
+    "conc": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^8.2.2",
     "cookie-parser": "^1.4.6",
     "date-and-time": "^3.0.3",
     "dotenv": "^16.3.1",

@@ -8,6 +8,7 @@ import Login from "./components/pages/Login";
 import Dashboard from "./components/pages/Dashboard";
 
 import registerAction from "./actions/RegisterAction";
+import loginAction from "./actions/LoginAction";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+    action: loginAction,
   },
   {
     path: "/dashboard",

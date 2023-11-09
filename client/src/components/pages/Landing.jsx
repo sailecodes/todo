@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Wrapper from "../../styles/Landing.js";
+import Wrapper from "../../styles/LandingStyle.js";
 
 const Landing = () => {
   return (

@@ -41,6 +41,10 @@ app.get("/", (req, res) => {
   res.status(StatusCodes.OK).send("Home route");
 });
 
+app.get("/api/v1/test", (req, res) => {
+  res.status(StatusCodes.OK).json({ msg: "Test route" });
+});
+
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/todos", validateUser, todoRouter);
 app.use("/api/v1/users", validateUser, userRouter);
