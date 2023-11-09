@@ -7,7 +7,7 @@
 
   --color-temporary-white: antiquewhite;
 
-  --color-white: #fffdfa;
+  --color-white: #FAF9F6;
   --color-black: #222;
 }
 
@@ -22,8 +22,8 @@ html {
 }
 
 body {
-  background-color: black;
-  
+  background-color: var(--color-white);
+
   font-family: "Poppins", sans-serif;
 }
 

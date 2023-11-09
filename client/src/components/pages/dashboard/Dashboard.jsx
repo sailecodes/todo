@@ -10,16 +10,14 @@ const Wrapper = styled.div`
   background-color: gray;
 
   display: grid;
-  grid-template-columns: 10rem 1fr;
+  grid-template-columns: 18rem 1fr;
   grid-template-rows: 10rem 1fr;
 
   height: 100%;
   width: 100%;
 
-  padding: 2rem;
-
   .dashboard--side-nav {
-    background-color: lightblue;
+    background-color: var(--color-white);
 
     grid-row: 1 / -1;
 
@@ -27,32 +25,22 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 3rem;
+  }
 
-    border-radius: 12px;
+  .dashboard--side-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    font-size: 1.8rem;
+    text-decoration: none;
   }
 
   .dashboard--side-nav-logo {
     font-size: 6rem;
   }
 
-  .dashboard--side-nav-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .dashboard--side-nav-link {
-    font-size: 1.5rem;
-  }
-
-  .dashboard--side-nav-link > img,
-  .dashboard--top-nav > img {
-    width: 4rem;
-  }
-
   .dashboard--top-nav {
-    background-color: lightgreen;
-
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -66,6 +54,11 @@ const Wrapper = styled.div`
 
     margin-left: 0.8rem;
   }
+
+  .dashboard--side-nav-link > img,
+  .dashboard--top-nav > img {
+    width: 4rem;
+  }
 `;
 
 const Dashboard = () => {
@@ -73,19 +66,22 @@ const Dashboard = () => {
     <Wrapper>
       <nav className="dashboard--side-nav">
         <p className="dashboard--side-nav-logo">IV</p>
-        <div className="dashboard--side-nav-item">
+        <div>
           <Link to="/dashboard" className="dashboard--side-nav-link">
             <img src={home} />
+            <p>Home</p>
           </Link>
         </div>
-        <div className="dashboard--side-nav-item">
+        <div>
           <Link to="/dashboard/todos" className="dashboard--side-nav-link">
             <img src={todo} />
+            <p>Todos</p>
           </Link>
         </div>
-        <div className="dashboard--side-nav-item">
+        <div>
           <Link to="/dashboard/profile" className="dashboard--side-nav-link">
             <img src={profile} />
+            <p>Profile</p>
           </Link>
         </div>
       </nav>
