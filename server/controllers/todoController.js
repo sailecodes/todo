@@ -86,7 +86,7 @@ export const getPastDeadlineTodos = async (req, res) => {
 //  - Might potentially have a bug where if the user creates a todo item with a deadline of `right now`, what to do?
 //    - Potential fixes:
 //      - createdAt < deadline
-//      - do something similar as the one above
+//      - Do something similar to the one above
 export const getNewestTodo = async (req, res) => {
   const newestTodo = await todoModel
     .find({

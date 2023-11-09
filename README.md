@@ -1,4 +1,4 @@
-# **TODO App**
+# **TodoIV App**
 
 ### _Server-side_
 
@@ -32,8 +32,8 @@
       - Restricted routes
         - Must pass a validation layer that verifies the JWT in the http-cookie
       - Further validation
-        - After passing the authentication layer, the POST and PATCH routes must pass todo and query param validations
-      - 5 routes
+        - After passing the authentication layer, the POST and PATCH routes must pass additional validations
+      - 9 routes
         - Get all todos (_GET_, `/api/v1/todos`)
           - Retrieve only the todo items that the user has created
         - Create a todo (_POST_, `/api/v1/todos`)
@@ -47,10 +47,14 @@
         - Delete a todo (_DELETE_, `/api/v1/todos/:id`)
           - Validate that a todo item with id exists
           - Verify that the requesting user either created the todo item or is an admin
+        - Get finished todos (_GET_ `/api/v1/todos/finished`)
+        - Get past deadline todos (_GET_ `/api/v1/todos/past-deadline`)
+        - Get newest todo (_GET_ `/api/v1/todos/newest`)
+        - Get coming todos (_GET_ `/api/v1/todos/coming`)
     - User routes (`/api/v1/users`)
       - Restricted routes
       - 1 route
-        - Get user (`/api/v1/users/user`)
+        - Get user (_GET_, `/api/v1/users/user`)
           - Verify that user exists
           - Only return necessary information
             - e.g. Don't return database password
@@ -58,7 +62,7 @@
       - Restricted routes
         - Must pass a validation layer that verifies the user has role admin
       - 1 route
-        - Get application stats (`/api/v1/admin/application-stats`)
+        - Get application stats (_GET_, `/api/v1/admin/application-stats`)
 
 ### _Client-side_
 
@@ -73,15 +77,17 @@
     - Children pages
       - Home (`/dashboard`)
         - Index page
-        - Displays visual data
-          - TODOs finished
-          - TODOs past deadline
-          - TODO due most soon
-          - TODOs coming
-          - Quote of the day
-      - TODOs (`/dashboard/todos`)
+        - Displays visual data (See **Todo routes** above)
+          - Finished todos
+          - Past deadline todos
+          - Newest todo
+          - Coming todos
+          - Quote of the day (?)
+            - _**Might exclude**_
+      - Todos (`/dashboard/todos`)
         - Daily (`/dashboard/todos/daily`)
         - Weekly (`/dashboard/todos/weekly`)
         - Monthly (`/dashboard/todos/monthly`)
-        - Coming (`/dashboard/todos/coming`)
+        - All (`/dashboard/todos/all`)
+          - _**Will add functionality at a later time**_
       - Profile (`/dashboard/todos/profile`)
