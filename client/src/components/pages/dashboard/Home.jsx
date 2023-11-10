@@ -10,6 +10,7 @@ import DeadlineIcon from "../../helpers/icons/DeadlineIcon";
 import CreateIcon from "../../helpers/icons/CreateIcon";
 import SeeIcon from "../../helpers/icons/SeeIcon";
 import CardHeading from "../../helpers/dashboard/CardHeading";
+import Loading from "../../helpers/dashboard/Loading";
 
 import styled from "styled-components";
 const Wrapper = styled.div`
@@ -193,74 +194,89 @@ const Wrapper = styled.div`
   }
 `;
 
-const HomeComingCard = ({ cardTitle, comingTodos }) => {
+const HomeComingCard = ({ cardTitle, comingTodos, isLoading }) => {
   return (
     <div className="home--card home--card-coming">
-      <CardHeading cardTitle={cardTitle} />
-      <div className="home--card-coming-data-container">
-        {comingTodos.map((todo) => {
-          return (
-            <div key={todo._id}>
-              <p className="home--card-coming-todo-title">{todo.title}</p>
-              <div className="home--card-coming-todo-meta-container">
-                <div>
-                  <ImportanceIcon fill="yellow" />
-                  <p>{todo.importance} priority</p>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          <CardHeading cardTitle={cardTitle} />
+          <div className="home--card-coming-data-container">
+            {comingTodos.map((todo) => {
+              return (
+                <div key={todo._id}>
+                  <p className="home--card-coming-todo-title">{todo.title}</p>
+                  <div className="home--card-coming-todo-meta-container">
+                    <div>
+                      <ImportanceIcon fill="yellow" />
+                      <p>{todo.importance} priority</p>
+                    </div>
+                    <div>
+                      <ProgressIcon fill="azure" />
+                      <p>{todo.progress}</p>
+                    </div>
+                    <div>
+                      <DeadlineIcon fill="tomato" />
+                      <p>{format(new Date(todo.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <ProgressIcon fill="azure" />
-                  <p>{todo.progress}</p>
-                </div>
-                <div>
-                  <DeadlineIcon fill="tomato" />
-                  <p>{format(new Date(todo.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };
 
-const HomeProductivityCard = ({ cardTitle, todosCount }) => {
+const HomeProductivityCard = ({ cardTitle, todosCount, isLoading }) => {
   return (
     <div className="home--card home--card-productivity">
-      <CardHeading cardTitle={cardTitle} />
-      <div>
-        <p className="home--card-productivity-count">
-          {todosCount} <span>items</span>
-        </p>
-      </div>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          <CardHeading cardTitle={cardTitle} />
+          <div>
+            <p className="home--card-productivity-count">
+              {todosCount} <span>items</span>
+            </p>
+          </div>
+        </>
+      )}
     </div>
   );
 };
 
-const HomeNewestCard = ({ cardTitle, todoTitle, todoDescription, todoImportance, todoDeadline, todoProgress }) => {
+const HomeNewestCard = ({ cardTitle, data, isLoading }) => {
   return (
     <div className="home--card home--card-newest">
-      <CardHeading cardTitle={cardTitle} />
-      <div className="home--card-newest-data-container">
-        <p className="home--card-newest-todo-title">{todoTitle}</p>
-        <p className="home--card-newest-todo-description">
-          {todoDescription ? todoDescription : "An important todo item...do it."}
-        </p>
-        <div className="home--card-newest-todo-meta-container">
-          <div>
-            <ImportanceIcon fill="yellow" />
-            <p>{todoImportance} priority</p>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          <CardHeading cardTitle={cardTitle} />
+          <div className="home--card-newest-data-container">
+            <p className="home--card-newest-todo-title">{data.title}</p>
+            <p className="home--card-newest-todo-description">
+              {data.description ? data.description : "An important todo item...do it."}
+            </p>
+            <div className="home--card-newest-todo-meta-container">
+              <div>
+                <ImportanceIcon fill="yellow" />
+                <p>{data.importance} priority</p>
+              </div>
+              <div>
+                <ProgressIcon fill="azure" />
+                <p>{data.progress}</p>
+              </div>
+              <div>
+                <DeadlineIcon fill="tomato" />
+                <p>{format(new Date(data.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <ProgressIcon fill="azure" />
-            <p>{todoProgress}</p>
-          </div>
-          <div>
-            <DeadlineIcon fill="tomato" />
-            <p>{todoDeadline}</p>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };
@@ -319,33 +335,22 @@ const Home = () => {
 
   return (
     <Wrapper>
-      {resultsArr[0].isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <HomeProductivityCard cardTitle="Finished todos" todosCount={resultsArr[0].data} />
-      )}
-      {resultsArr[1].isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <HomeProductivityCard cardTitle="Missed todos" todosCount={resultsArr[1].data} />
-      )}
-      {resultsArr[2].isLoading || resultsArr[3].isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <HomeComingCard cardTitle="Coming todos" comingTodos={[resultsArr[3].data]} />
-      )}
-      {resultsArr[3].isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <HomeNewestCard
-          cardTitle="Newest todo"
-          todoTitle={resultsArr[3].data.title}
-          todoDescription={resultsArr[3].data.description}
-          todoImportance={resultsArr[3].data.importance}
-          todoDeadline={format(new Date(resultsArr[3]?.data?.deadline), "MMM d, yyyy @ h:mmaaa")}
-          todoProgress={resultsArr[3].data.progress}
-        />
-      )}
+      <HomeProductivityCard
+        cardTitle="Finished todos"
+        todosCount={resultsArr[0].data}
+        isLoading={resultsArr[0].isLoading}
+      />
+      <HomeProductivityCard
+        cardTitle="Missed todos"
+        todosCount={resultsArr[1].data}
+        isLoading={resultsArr[1].isLoading}
+      />
+      <HomeComingCard
+        cardTitle="Coming todos"
+        comingTodos={[resultsArr[3].data]}
+        isLoading={resultsArr[2].isLoading || resultsArr[3].isLoading}
+      />
+      <HomeNewestCard cardTitle="Newest todo" data={resultsArr[3].data} isLoading={resultsArr[3].isLoading} />
       <HomeNonDataCard cardTitle="Create todo" />
       <HomeNonDataCard cardTitle="See daily todos" />
       <HomeNonDataCard cardTitle="See all todos" />
