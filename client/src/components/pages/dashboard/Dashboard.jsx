@@ -129,7 +129,7 @@ const Dashboard = () => {
           <p>Procrastinating...what&apos;s that?</p>
         </div>
         <div>
-          <input type="text" className="dashboard--top-nav-search-bar" placeholder="Search..." />
+          <input type="text" className="dashboard--top-nav-search-bar" placeholder="Search a todo..." />
           <Link to="/dashboard/profile" className="dashboard--top-nav-profile-link">
             <img src={profile} />
           </Link>

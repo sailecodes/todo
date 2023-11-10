@@ -3,9 +3,9 @@ import { useQueries } from "@tanstack/react-query";
 
 import axiosFetch from "../../../utilities/axiosFetch";
 
-import ImportanceIcon from "../../helpers/icons/ImportanceIcon.jsx";
-import ProgressIcon from "../../helpers/icons/ProgressIcon.jsx";
-import DeadlineIcon from "../../helpers/icons/DeadlineIcon.jsx";
+import ImportanceIcon from "../../helpers/icons/ImportanceIcon";
+import ProgressIcon from "../../helpers/icons/ProgressIcon";
+import DeadlineIcon from "../../helpers/icons/DeadlineIcon";
 
 import styled from "styled-components";
 const Wrapper = styled.div`
@@ -45,12 +45,18 @@ const Wrapper = styled.div`
     font-weight: 600;
   }
 
-  // Home card FINISHED and PAST DEADLINE
+  // Home card FINISHED and PAST DEADLINE (productivity)
 
   .home--card-productivity {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+  }
+
+  .home--card-productivity > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 8rem;
   }
 
   .home--card-productivity-count {
@@ -59,6 +65,11 @@ const Wrapper = styled.div`
 
   .home--card-productivity-count span {
     font-size: 4.3rem;
+  }
+
+  .home--card-productivity-icon {
+    width: 12rem;
+    height: 12rem;
   }
 
   .home--card-coming {
@@ -97,7 +108,7 @@ const Wrapper = styled.div`
   }
 
   .home--card-coming-todo-meta-container p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   // Home card NEWEST
@@ -164,16 +175,16 @@ const HomeComingItem = ({ cardTitle, comingTodos }) => {
               <p className="home--card-coming-todo-title">{todo.title}</p>
               <div className="home--card-coming-todo-meta-container">
                 <div>
-                  <ImportanceIcon />
+                  <ImportanceIcon fill="yellow" />
                   <p>{todo.importance} priority</p>
                 </div>
                 <div>
-                  <ProgressIcon />
+                  <ProgressIcon fill="azure" />
                   <p>{todo.progress}</p>
                 </div>
                 <div>
-                  <DeadlineIcon />
-                  <p>{format(new Date(todo.deadline), "MM/dd/yyyy, hh:mm")}</p>
+                  <DeadlineIcon fill="tomato" />
+                  <p>{format(new Date(todo.deadline), "MMM d, yyyy @ h:mma")}</p>
                 </div>
               </div>
             </div>
@@ -191,9 +202,11 @@ const HomeProductivityItem = ({ cardTitle, todosCount }) => {
         <div className="home--card-marker" />
         <p className="home--card-title">{cardTitle}</p>
       </div>
-      <p className="home--card-productivity-count">
-        {todosCount} <span>items</span>
-      </p>
+      <div>
+        <p className="home--card-productivity-count">
+          {todosCount} <span>items</span>
+        </p>
+      </div>
     </>
   );
 };
@@ -216,11 +229,11 @@ const HomeNewestItem = ({ cardTitle, todoTitle, todoDescription, todoImportance,
             <p>{todoImportance} priority</p>
           </div>
           <div>
-            <ProgressIcon fill="red" />
+            <ProgressIcon fill="azure" />
             <p>{todoProgress}</p>
           </div>
           <div>
-            <DeadlineIcon />
+            <DeadlineIcon fill="tomato" />
             <p>{todoDeadline}</p>
           </div>
         </div>
@@ -302,7 +315,7 @@ const Home = () => {
             todoTitle={resultsArr[3].data.title}
             todoDescription={resultsArr[3].data.description}
             todoImportance={resultsArr[3].data.importance}
-            todoDeadline={format(new Date(resultsArr[3]?.data?.deadline), "MM/dd/yyyy, hh:mm")}
+            todoDeadline={format(new Date(resultsArr[3]?.data?.deadline), "MMM d, yyyy @ h:mmaaa")}
             todoProgress={resultsArr[3].data.progress}
           />
         )}
