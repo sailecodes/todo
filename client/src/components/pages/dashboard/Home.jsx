@@ -1,17 +1,20 @@
 import { format } from "date-fns";
 import { useQueries } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 import axiosFetch from "../../../utilities/axiosFetch";
 
 import ImportanceIcon from "../../helpers/icons/ImportanceIcon";
 import ProgressIcon from "../../helpers/icons/ProgressIcon";
 import DeadlineIcon from "../../helpers/icons/DeadlineIcon";
+import CreateIcon from "../../helpers/icons/CreateIcon";
+import SeeIcon from "../../helpers/icons/SeeIcon";
 
 import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 19rem 33rem 1fr;
+  grid-template-rows: 19rem 33rem 10rem 1fr;
   gap: 3.5rem;
 
   padding: 2rem 0 0 2rem;
@@ -159,11 +162,29 @@ const Wrapper = styled.div`
   .home--card-coming-todo-meta-container p::first-letter {
     text-transform: uppercase;
   }
+
+  // Home card CREATE
+
+  .home--card-non-data {
+    display: flex;
+    align-items: center;
+  }
+
+  .home--card-non-data-link {
+    color: var(--color-black);
+
+    margin-left: auto;
+  }
+
+  .home--card-non-data-icon {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
-const HomeComingItem = ({ cardTitle, comingTodos }) => {
+const HomeComingCard = ({ cardTitle, comingTodos }) => {
   return (
-    <>
+    <div className="home--card home--card-coming">
       <div className="home--card-heading-container">
         <div className="home--card-marker" />
         <p className="home--card-title">{cardTitle}</p>
@@ -191,13 +212,13 @@ const HomeComingItem = ({ cardTitle, comingTodos }) => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
-const HomeProductivityItem = ({ cardTitle, todosCount }) => {
+const HomeProductivityCard = ({ cardTitle, todosCount }) => {
   return (
-    <>
+    <div className="home--card home--card-productivity">
       <div className="home--card-heading-container">
         <div className="home--card-marker" />
         <p className="home--card-title">{cardTitle}</p>
@@ -207,13 +228,13 @@ const HomeProductivityItem = ({ cardTitle, todosCount }) => {
           {todosCount} <span>items</span>
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
-const HomeNewestItem = ({ cardTitle, todoTitle, todoDescription, todoImportance, todoDeadline, todoProgress }) => {
+const HomeNewestCard = ({ cardTitle, todoTitle, todoDescription, todoImportance, todoDeadline, todoProgress }) => {
   return (
-    <>
+    <div className="home--card home--card-newest">
       <div className="home--card-heading-container">
         <div className="home--card-marker" />
         <p className="home--card-title">{cardTitle}</p>
@@ -238,7 +259,21 @@ const HomeNewestItem = ({ cardTitle, todoTitle, todoDescription, todoImportance,
           </div>
         </div>
       </div>
-    </>
+    </div>
+  );
+};
+
+const HomeNonDataCard = ({ cardTitle }) => {
+  return (
+    <div className="home--card home--card-non-data">
+      <div className="home--card-heading-container">
+        <div className="home--card-marker" />
+        <p className="home--card-title">{cardTitle}</p>
+      </div>
+      <Link className="home--card-non-data-link" to={`/dashboard/todos/`}>
+        {cardTitle === "Create todo" ? <CreateIcon /> : <SeeIcon />}
+      </Link>
+    </div>
   );
 };
 
@@ -285,41 +320,36 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <div className="home--card home--card-productivity">
-        {resultsArr[0].isLoading ? (
-          "Loading..."
-        ) : (
-          <HomeProductivityItem cardTitle="Finished Todos" todosCount={resultsArr[0].data} />
-        )}
-      </div>
-      <div className="home--card home--card-productivity">
-        {resultsArr[1].isLoading ? (
-          "Loading..."
-        ) : (
-          <HomeProductivityItem cardTitle="Missed Todos" todosCount={resultsArr[1].data} />
-        )}
-      </div>
-      <div className="home--card home--card-coming">
-        {resultsArr[2].isLoading || resultsArr[3].isLoading ? (
-          "Loading..."
-        ) : (
-          <HomeComingItem cardTitle="Coming todos" comingTodos={[resultsArr[3].data]} />
-        )}
-      </div>
-      <div className="home--card home--card-newest">
-        {resultsArr[3].isLoading ? (
-          "Loading..."
-        ) : (
-          <HomeNewestItem
-            cardTitle="Newest Todo"
-            todoTitle={resultsArr[3].data.title}
-            todoDescription={resultsArr[3].data.description}
-            todoImportance={resultsArr[3].data.importance}
-            todoDeadline={format(new Date(resultsArr[3]?.data?.deadline), "MMM d, yyyy @ h:mmaaa")}
-            todoProgress={resultsArr[3].data.progress}
-          />
-        )}
-      </div>
+      {resultsArr[0].isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <HomeProductivityCard cardTitle="Finished todos" todosCount={resultsArr[0].data} />
+      )}
+      {resultsArr[1].isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <HomeProductivityCard cardTitle="Missed todos" todosCount={resultsArr[1].data} />
+      )}
+      {resultsArr[2].isLoading || resultsArr[3].isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <HomeComingCard cardTitle="Coming todos" comingTodos={[resultsArr[3].data]} />
+      )}
+      {resultsArr[3].isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <HomeNewestCard
+          cardTitle="Newest todo"
+          todoTitle={resultsArr[3].data.title}
+          todoDescription={resultsArr[3].data.description}
+          todoImportance={resultsArr[3].data.importance}
+          todoDeadline={format(new Date(resultsArr[3]?.data?.deadline), "MMM d, yyyy @ h:mmaaa")}
+          todoProgress={resultsArr[3].data.progress}
+        />
+      )}
+      <HomeNonDataCard cardTitle="Create todo" />
+      <HomeNonDataCard cardTitle="See daily todos" />
+      <HomeNonDataCard cardTitle="See all todos" />
     </Wrapper>
   );
 };

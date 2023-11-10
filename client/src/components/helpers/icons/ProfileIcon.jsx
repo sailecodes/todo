@@ -6,7 +6,7 @@ const ProfileIcon = ({ fill, stroke }) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke={stroke ? stroke : "currentColor"}
-      className="w-6 h-6">
+      className="dashboard--nav-icon">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

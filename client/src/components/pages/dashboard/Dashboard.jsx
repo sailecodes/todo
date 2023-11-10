@@ -1,8 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
 
-import home from "../../../imgs/home.svg";
-import todo from "../../../imgs/todo.svg";
-import profile from "../../../imgs/profile.svg";
+import HomeIcon from "../../helpers/icons/HomeIcon";
+import TodoIcon from "../../helpers/icons/TodoIcon";
+import ProfileIcon from "../../helpers/icons/ProfileIcon";
 
 import styled from "styled-components";
 
@@ -17,6 +17,11 @@ const Wrapper = styled.div`
   width: 100%;
 
   padding: 2rem;
+
+  .dashboard--nav-icon {
+    width: 4rem;
+    height: 4rem;
+  }
 
   .dashboard--side-nav {
     background-color: var(--color-primary);
@@ -106,19 +111,19 @@ const Dashboard = () => {
         <div>
           <div className="dashboard--side-nav-item-container">
             <Link to="/dashboard" className="dashboard--side-nav-link">
-              <img src={home} />
+              <HomeIcon stroke="white" />
               <p>Home</p>
             </Link>
           </div>
           <div>
             <Link to="/dashboard/todos" className="dashboard--side-nav-link">
-              <img src={todo} />
+              <TodoIcon stroke="white" />
               <p>Todos</p>
             </Link>
           </div>
           <div>
             <Link to="/dashboard/profile" className="dashboard--side-nav-link">
-              <img src={profile} />
+              <ProfileIcon stroke="white" />
               <p>Profile</p>
             </Link>
           </div>
@@ -131,7 +136,7 @@ const Dashboard = () => {
         <div>
           <input type="text" className="dashboard--top-nav-search-bar" placeholder="Search a todo..." />
           <Link to="/dashboard/profile" className="dashboard--top-nav-profile-link">
-            <img src={profile} />
+            <ProfileIcon stroke="black" />
           </Link>
         </div>
       </nav>

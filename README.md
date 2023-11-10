@@ -77,17 +77,22 @@
     - Children pages
       - Home (`/dashboard`)
         - Index page
-        - Displays visual data (See **Todo routes** above)
+        - Displays visual cards (see **Todo routes** above)
           - Finished todos
-          - Past deadline todos
+          - Past deadline (missed) todos
           - Newest todo
           - Coming todos
-          - Quote of the day (?)
-            - _**Might exclude**_
+        - Displays interactive cards
+          - Newest todo (see **visual cards**)
+          - Coming todos (see **visual cards**)
+          - Create todo
+          - See daily todos
+          - See all todos
       - Todos (`/dashboard/todos`)
+        - All (`/dashboard/todos/all`)
         - Daily (`/dashboard/todos/daily`)
         - Weekly (`/dashboard/todos/weekly`)
+          - _**Will add in a later version**_
         - Monthly (`/dashboard/todos/monthly`)
-        - All (`/dashboard/todos/all`)
-          - _**Will add functionality at a later time**_
+          - _**Will add in a later version**_
       - Profile (`/dashboard/todos/profile`)
