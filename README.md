@@ -89,10 +89,11 @@
           - See daily todos
           - See all todos
       - Todos (`/dashboard/todos`)
+        - Daily (`/dashboard/todos`)
+          - Index page
         - All (`/dashboard/todos/all`)
-        - Daily (`/dashboard/todos/daily`)
-        - Weekly (`/dashboard/todos/weekly`)
-          - _**Will add in a later version**_
-        - Monthly (`/dashboard/todos/monthly`)
-          - _**Will add in a later version**_
+        - Create (`/dashboard/todos/create`)
+        - _**Add in a later version**_
+          - Weekly (`/dashboard/todos/weekly`)
+          - Monthly (`/dashboard/todos/monthly`)
       - Profile (`/dashboard/todos/profile`)

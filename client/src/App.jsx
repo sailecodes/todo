@@ -8,10 +8,13 @@ import Login from "./components/pages/welcome/Login";
 import Dashboard from "./components/pages/dashboard/Dashboard";
 import Home from "./components/pages/dashboard/Home";
 import Todo from "./components/pages/dashboard/Todo";
+import DailyTodos from "./components/pages/dashboard/DailyTodos";
+import AllTodos from "./components/pages/dashboard/AllTodos";
 import Profile from "./components/pages/dashboard/Profile";
 
 import registerAction from "./actions/RegisterAction";
 import loginAction from "./actions/LoginAction";
+import CreateTodo from "./components/pages/dashboard/CreateTodo";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +44,20 @@ const router = createBrowserRouter([
       {
         path: "todos",
         element: <Todo />,
+        children: [
+          {
+            index: true,
+            element: <DailyTodos />,
+          },
+          {
+            path: "all",
+            element: <AllTodos />,
+          },
+          {
+            path: "create",
+            element: <CreateTodo />,
+          },
+        ],
       },
       {
         path: "profile",

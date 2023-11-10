@@ -30,28 +30,6 @@ const Wrapper = styled.div`
     border-radius: 12px;
   }
 
-  .home--card-heading-container {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .home--card-marker {
-    background-color: var(--color-primary);
-
-    height: 3.3rem;
-    width: 3.3rem;
-
-    border-radius: 6px;
-  }
-
-  .home--card-title {
-    color: var(--color-black);
-
-    font-size: 3rem;
-    font-weight: 600;
-  }
-
   // Home card FINISHED and PAST DEADLINE (productivity)
 
   .home--card-productivity {
@@ -81,15 +59,13 @@ const Wrapper = styled.div`
     height: 12rem;
   }
 
-  .home--card-coming {
-    grid-row: 1 / 3;
-    grid-column: 3;
-  }
-
   // Home card COMING
 
   .home--card-coming {
     color: var(--color-black);
+
+    grid-row: 1 / 3;
+    grid-column: 3;
 
     display: flex;
     flex-direction: column;
@@ -285,7 +261,9 @@ const HomeNonDataCard = ({ cardTitle }) => {
   return (
     <div className="home--card home--card-non-data">
       <CardHeading cardTitle={cardTitle} />
-      <Link className="home--card-non-data-link" to={`/dashboard/todos/`}>
+      <Link
+        className="home--card-non-data-link"
+        to={`/dashboard/todos${cardTitle === "See all todos" ? "/all" : cardTitle === "Create todo" ? "/create" : ""}`}>
         {cardTitle === "Create todo" ? <CreateIcon /> : <SeeIcon />}
       </Link>
     </div>
