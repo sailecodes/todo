@@ -4,7 +4,13 @@ import { NavLink, Outlet } from "react-router-dom";
 import CardHeading from "../../helpers/dashboard/CardHeading";
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+
   padding: 2rem 0 0 2rem;
+
+  // Todo GENERAL
 
   nav {
     display: grid;
@@ -26,6 +32,8 @@ const Wrapper = styled.div`
     padding: 2rem;
     border-radius: 12px;
   }
+
+  // Todo Link ACTIVE
 
   .card-marker,
   .todo--nav-card {

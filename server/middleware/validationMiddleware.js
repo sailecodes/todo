@@ -5,7 +5,12 @@ import { body, param, cookie, validationResult } from "express-validator";
 
 import userModel from "../models/userModel.js";
 import { BadRequestError, UnauthenticatedError, UnauthorizedError } from "../custom-errors/customErrors.js";
-import { TODO_MODEL_IMPORTANCE, TODO_MODEL_PROGRESS, VALIDATION_DATE_FORMAT } from "../utils/constants.js";
+import {
+  TODO_MODEL_IMPORTANCE,
+  TODO_MODEL_PROGRESS,
+  TODO_MODEL_TYPE,
+  VALIDATION_DATE_FORMAT,
+} from "../utils/constants.js";
 
 const validate = (validationValues) => {
   return [
@@ -99,6 +104,10 @@ export const validateTodoInput = validate([
     .optional()
     .isLength({ max: 100 })
     .withMessage("(from validateTodoInput) Please provide a description shorter than 100 characters."),
+  body("type")
+    .optional()
+    .isIn(Object.values(TODO_MODEL_TYPE))
+    .withMessage("(from validateTodoInput) Type not supported."),
   body("importance")
     .optional()
     .isIn(Object.values(TODO_MODEL_IMPORTANCE))

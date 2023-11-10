@@ -44,15 +44,13 @@ export const deleteTodo = async (req, res) => {
 };
 
 // ============================================================================
-// Additional functionality
+// Home page functionality
 // ============================================================================
 
 export const getFinishedTodos = async (req, res) => {
   const finishedTodos = await todoModel.find({ createdBy: req.userInfo.userId, progress: "finished" });
 
-  res
-    .status(StatusCodes.OK)
-    .json({ msg: "Retrieved finished todos.", data: finishedTodos, count: finishedTodos.length });
+  res.status(StatusCodes.OK).json({ msg: "Retrieved finished todos.", count: finishedTodos.length });
 };
 
 // FIXME: Buggy
@@ -78,11 +76,7 @@ export const getPastDeadlineTodos = async (req, res) => {
     deadline: { $lte: todayFormatted },
   });
 
-  console.log(todayFormatted);
-
-  res
-    .status(StatusCodes.OK)
-    .json({ msg: "Retrieved todos past deadline.", data: pastDeadlineTodos, count: pastDeadlineTodos.length });
+  res.status(StatusCodes.OK).json({ msg: "Retrieved todos past deadline.", count: pastDeadlineTodos.length });
 };
 
 // FIXME:
@@ -106,4 +100,24 @@ export const getNewestTodo = async (req, res) => {
 // TODO:
 export const getComingTodos = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Not yet implemented." });
+};
+
+// ============================================================================
+// Todo page functionality
+// ============================================================================
+
+// TODO:
+//  - Don't get daily todos that are unfinished and passed the deadline (if not 'none')
+export const getDailyTodos = async (req, res) => {
+  const dailyTodos = await todoModel.find({ createdBy: req.userInfo.userId, type: "daily" });
+
+  res.status(StatusCodes.OK).json({ msg: "Retrieved daily todos.", data: dailyTodos, count: dailyTodos.length });
+};
+
+// TODO:
+//  - Don't get weekly todos that are unfinished and passed the deadline (if not 'none')
+export const getWeeklyTodos = async (req, res) => {
+  const weeklyTodos = await todoModel.find({ createdBy: req.userInfo.userId, type: "weekly" });
+
+  res.status(StatusCodes.OK).json({ msg: "Retrieved weekly todos.", data: weeklyTodos, count: weeklyTodos.length });
 };

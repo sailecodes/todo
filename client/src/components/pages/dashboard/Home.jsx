@@ -72,6 +72,10 @@ const Wrapper = styled.div`
     gap: 2.8rem;
   }
 
+  .home--card-coming-reminder {
+    font-size: 2rem;
+  }
+
   .home--card-coming-todo-title {
     font-size: 3.5rem;
   }
@@ -116,6 +120,10 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .home--card-newest-reminder {
+    font-size: 4rem;
   }
 
   .home--card-newest-todo-title {
@@ -180,23 +188,30 @@ const HomeComingCard = ({ cardTitle, comingTodos, isLoading }) => {
           <div className="home--card-coming-data-container">
             {comingTodos.map((todo) => {
               return (
-                <div key={todo._id}>
-                  <p className="home--card-coming-todo-title">{todo.title}</p>
-                  <div className="home--card-coming-todo-meta-container">
-                    <div>
-                      <ImportanceIcon fill="yellow" />
-                      <p>{todo.importance} priority</p>
-                    </div>
-                    <div>
-                      <ProgressIcon fill="azure" />
-                      <p>{todo.progress}</p>
-                    </div>
-                    <div>
-                      <DeadlineIcon fill="tomato" />
-                      <p>{format(new Date(todo.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
+                (todo.reminder && (
+                  <p key={todo.reminder} className="home--card-coming-reminder">
+                    {todo.reminder}
+                  </p>
+                )) ||
+                (!todo.reminder && (
+                  <div key={todo._id}>
+                    <p className="home--card-coming-todo-title">{todo.title}</p>
+                    <div className="home--card-coming-todo-meta-container">
+                      <div>
+                        <ImportanceIcon fill="yellow" />
+                        <p>{todo.importance} priority</p>
+                      </div>
+                      <div>
+                        <ProgressIcon fill="azure" />
+                        <p>{todo.progress}</p>
+                      </div>
+                      <div>
+                        <DeadlineIcon fill="tomato" />
+                        <p>{format(new Date(todo.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))
               );
             })}
           </div>
@@ -232,24 +247,29 @@ const HomeNewestCard = ({ cardTitle, data, isLoading }) => {
         <>
           <CardHeading cardTitle={cardTitle} />
           <div className="home--card-newest-data-container">
-            <p className="home--card-newest-todo-title">{data.title}</p>
-            <p className="home--card-newest-todo-description">
-              {data.description ? data.description : "An important todo item...do it."}
-            </p>
-            <div className="home--card-newest-todo-meta-container">
-              <div>
-                <ImportanceIcon fill="yellow" />
-                <p>{data.importance} priority</p>
-              </div>
-              <div>
-                <ProgressIcon fill="azure" />
-                <p>{data.progress}</p>
-              </div>
-              <div>
-                <DeadlineIcon fill="tomato" />
-                <p>{format(new Date(data.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
-              </div>
-            </div>
+            {data.reminder && <p className="home--card-newest-reminder">{data.reminder}</p>}
+            {!data.reminder && (
+              <>
+                <p className="home--card-newest-todo-title">{data.title}</p>
+                <p className="home--card-newest-todo-description">
+                  {data.description ? data.description : "An important todo item...do it."}
+                </p>
+                <div className="home--card-newest-todo-meta-container">
+                  <div>
+                    <ImportanceIcon fill="yellow" />
+                    <p>{data.importance} priority</p>
+                  </div>
+                  <div>
+                    <ProgressIcon fill="azure" />
+                    <p>{data.progress}</p>
+                  </div>
+                  <div>
+                    <DeadlineIcon fill="tomato" />
+                    <p>{format(new Date(data.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </>
       )}
@@ -277,8 +297,7 @@ const Home = () => {
         queryKey: ["todos", "finished"],
         queryFn: async () => {
           const {
-            // FIXME: Might not need data (fix server-side also if data not needed)
-            data: { msg, data, count },
+            data: { count },
           } = await axiosFetch.get("/todos/finished");
           return count;
         },
@@ -287,7 +306,7 @@ const Home = () => {
         queryKey: ["todos", "past-deadline"],
         queryFn: async () => {
           const {
-            data: { msg, data, count },
+            data: { count },
           } = await axiosFetch.get("/todos/past-deadline");
           return count;
         },
@@ -305,7 +324,7 @@ const Home = () => {
           const {
             data: { data },
           } = await axiosFetch.get("/todos/newest");
-          return data;
+          return data ? data : { reminder: "No todos yet. Stop procrastinating and create one! ...please?" };
         },
       },
     ],

@@ -51,6 +51,8 @@
         - Get past deadline todos (_GET_ `/api/v1/todos/past-deadline`)
         - Get newest todo (_GET_ `/api/v1/todos/newest`)
         - Get coming todos (_GET_ `/api/v1/todos/coming`)
+        - Get daily todos (_GET_ `/api/v1/todos/daily`)
+        - Get weekly todos (_GET_ `/api/v1/todos/weekly`)
     - User routes (`/api/v1/users`)
       - Restricted routes
       - 1 route
@@ -83,8 +85,8 @@
           - Newest todo
           - Coming todos
         - Displays interactive cards
-          - Newest todo (see **visual cards**)
-          - Coming todos (see **visual cards**)
+          - Newest todo (see **visual cards** in **Home** page)
+          - Coming todos (see **visual cards** in **Home** page)
           - Create todo
           - See daily todos
           - See all todos

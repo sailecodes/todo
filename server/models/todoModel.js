@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { TODO_MODEL_IMPORTANCE, TODO_MODEL_PROGRESS } from "../utils/constants.js";
+import { TODO_MODEL_IMPORTANCE, TODO_MODEL_PROGRESS, TODO_MODEL_TYPE } from "../utils/constants.js";
 
 const todoSchema = mongoose.Schema(
   {
@@ -10,6 +10,11 @@ const todoSchema = mongoose.Schema(
     description: {
       type: String,
       default: "Easy peasy.",
+    },
+    type: {
+      type: String,
+      enum: Object.values(TODO_MODEL_TYPE),
+      default: TODO_MODEL_TYPE.NOTHING,
     },
     importance: {
       type: String,

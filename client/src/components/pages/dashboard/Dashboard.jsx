@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   background-color: #e8e8e8;
 
   display: grid;
-  grid-template-columns: 18rem 1fr;
+  grid-template-columns: 24rem 1fr;
   grid-template-rows: 10rem 1fr;
 
   height: 100%;
@@ -46,7 +46,7 @@ const Wrapper = styled.div`
   .dashboard--side-nav-link {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2.5rem;
 
     font-size: 1.8rem;
     text-decoration: none;
