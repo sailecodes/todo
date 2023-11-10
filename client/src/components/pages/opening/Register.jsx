@@ -1,7 +1,7 @@
 import { Form, Link } from "react-router-dom";
 
 import Wrapper from "../../../styles/RegisterLoginStyle";
-import FormLabeledInput from "../../helpers/FormLabeledInput";
+import FormLabeledInput from "../../helpers/opening/FormLabeledInput";
 
 const Register = () => {
   return (

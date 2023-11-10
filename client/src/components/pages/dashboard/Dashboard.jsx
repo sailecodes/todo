@@ -7,7 +7,7 @@ import profile from "../../../imgs/profile.svg";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: #e1e0dd;
+  background-color: #e8e8e8;
 
   display: grid;
   grid-template-columns: 18rem 1fr;

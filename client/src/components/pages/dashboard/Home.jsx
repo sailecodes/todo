@@ -1,14 +1,22 @@
+import { format } from "date-fns";
 import { useQueries } from "@tanstack/react-query";
-import styled from "styled-components";
+
 import axiosFetch from "../../../utilities/axiosFetch";
 
+import ImportanceIcon from "../../helpers/icons/ImportanceIcon.jsx";
+import ProgressIcon from "../../helpers/icons/ProgressIcon.jsx";
+import DeadlineIcon from "../../helpers/icons/DeadlineIcon.jsx";
+
+import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 20rem 1fr 1fr;
+  grid-template-rows: 19rem 33rem 1fr;
   gap: 3.5rem;
 
   padding: 2rem 0 0 2rem;
+
+  // Home card GENERAL
 
   .home--card {
     background-color: var(--color-white);
@@ -42,12 +50,11 @@ const Wrapper = styled.div`
   .home--card-productivity {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
   }
 
   .home--card-productivity-count {
     font-size: 6.5rem;
-
-    margin-top: auto;
   }
 
   .home--card-productivity-count span {
@@ -59,10 +66,56 @@ const Wrapper = styled.div`
     grid-column: 3;
   }
 
+  // Home card COMING
+
+  .home--card-coming {
+    display: flex;
+    flex-direction: column;
+    gap: 2.8rem;
+  }
+
+  .home--card-coming-todo-title {
+    font-size: 3.5rem;
+  }
+
+  .home--card-coming-todo-meta-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .home--card-coming-todo-meta-container div,
+  .home--card-newest-todo-meta-container div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .home--card-coming-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .home--card-coming-todo-meta-container p {
+    font-size: 1.5rem;
+  }
+
   // Home card NEWEST
 
   .home--card-newest {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
     grid-column: 1 / 3;
+  }
+
+  .home--card-newest-data-container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .home--card-newest-todo-title {
@@ -70,9 +123,66 @@ const Wrapper = styled.div`
   }
 
   .home--card-newest-todo-description {
-    font-size: 3rem;
+    position: relative;
+    bottom: 7.5%;
+
+    font-size: 2.5rem;
+  }
+
+  .home--card-newest-todo-meta-container {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .home--card-newest-todo-meta-container img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .home--card-newest-todo-meta-container p {
+    font-size: 2rem;
+  }
+
+  .home--card-newest-todo-meta-container p::first-letter,
+  .home--card-coming-todo-meta-container p::first-letter {
+    text-transform: uppercase;
   }
 `;
+
+const HomeComingItem = ({ cardTitle, comingTodos }) => {
+  return (
+    <>
+      <div className="home--card-heading-container">
+        <div className="home--card-marker" />
+        <p className="home--card-title">{cardTitle}</p>
+      </div>
+      <div className="home--card-coming-data-container">
+        {comingTodos.map((todo) => {
+          return (
+            <div key={todo._id}>
+              <p className="home--card-coming-todo-title">{todo.title}</p>
+              <div className="home--card-coming-todo-meta-container">
+                <div>
+                  <ImportanceIcon />
+                  <p>{todo.importance} priority</p>
+                </div>
+                <div>
+                  <ProgressIcon />
+                  <p>{todo.progress}</p>
+                </div>
+                <div>
+                  <DeadlineIcon />
+                  <p>{format(new Date(todo.deadline), "MM/dd/yyyy, hh:mm")}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+};
 
 const HomeProductivityItem = ({ cardTitle, todosCount }) => {
   return (
@@ -100,9 +210,20 @@ const HomeNewestItem = ({ cardTitle, todoTitle, todoDescription, todoImportance,
         <p className="home--card-newest-todo-description">
           {todoDescription ? todoDescription : "An important todo item...do it."}
         </p>
-        <p className="home--card-newest-todo-importance">{todoImportance}</p>
-        <p className="home--card-newest-todo-deadline">{todoDeadline}</p>
-        <p className="home--card-newest-todo-progress">{todoProgress}</p>
+        <div className="home--card-newest-todo-meta-container">
+          <div>
+            <ImportanceIcon fill="yellow" />
+            <p>{todoImportance} priority</p>
+          </div>
+          <div>
+            <ProgressIcon fill="red" />
+            <p>{todoProgress}</p>
+          </div>
+          <div>
+            <DeadlineIcon />
+            <p>{todoDeadline}</p>
+          </div>
+        </div>
       </div>
     </>
   );
@@ -149,11 +270,6 @@ const Home = () => {
     ],
   });
 
-  console.log(resultsArr[0].data);
-  console.log(resultsArr[1].data);
-  console.log(resultsArr[2].data);
-  console.log(resultsArr[3].data);
-
   return (
     <Wrapper>
       <div className="home--card home--card-productivity">
@@ -171,7 +287,11 @@ const Home = () => {
         )}
       </div>
       <div className="home--card home--card-coming">
-        {resultsArr[2].isLoading ? "Loading..." : `Coming todos: ${resultsArr[2].data}`}
+        {resultsArr[2].isLoading || resultsArr[3].isLoading ? (
+          "Loading..."
+        ) : (
+          <HomeComingItem cardTitle="Coming todos" comingTodos={[resultsArr[3].data]} />
+        )}
       </div>
       <div className="home--card home--card-newest">
         {resultsArr[3].isLoading ? (
@@ -182,7 +302,7 @@ const Home = () => {
             todoTitle={resultsArr[3].data.title}
             todoDescription={resultsArr[3].data.description}
             todoImportance={resultsArr[3].data.importance}
-            todoDeadline={resultsArr[3].data.deadline}
+            todoDeadline={format(new Date(resultsArr[3]?.data?.deadline), "MM/dd/yyyy, hh:mm")}
             todoProgress={resultsArr[3].data.progress}
           />
         )}
