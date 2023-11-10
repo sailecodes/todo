@@ -9,6 +9,7 @@ import ProgressIcon from "../../helpers/icons/ProgressIcon";
 import DeadlineIcon from "../../helpers/icons/DeadlineIcon";
 import CreateIcon from "../../helpers/icons/CreateIcon";
 import SeeIcon from "../../helpers/icons/SeeIcon";
+import CardHeading from "../../helpers/dashboard/CardHeading";
 
 import styled from "styled-components";
 const Wrapper = styled.div`
@@ -44,6 +45,8 @@ const Wrapper = styled.div`
   }
 
   .home--card-title {
+    color: var(--color-black);
+
     font-size: 3rem;
     font-weight: 600;
   }
@@ -51,6 +54,8 @@ const Wrapper = styled.div`
   // Home card FINISHED and PAST DEADLINE (productivity)
 
   .home--card-productivity {
+    color: var(--color-black);
+
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -83,6 +88,8 @@ const Wrapper = styled.div`
   // Home card COMING
 
   .home--card-coming {
+    color: var(--color-black);
+
     display: flex;
     flex-direction: column;
     gap: 2.8rem;
@@ -117,6 +124,8 @@ const Wrapper = styled.div`
   // Home card NEWEST
 
   .home--card-newest {
+    color: var(--color-black);
+
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -166,6 +175,8 @@ const Wrapper = styled.div`
   // Home card CREATE
 
   .home--card-non-data {
+    color: var(--color-black);
+
     display: flex;
     align-items: center;
   }
@@ -185,10 +196,7 @@ const Wrapper = styled.div`
 const HomeComingCard = ({ cardTitle, comingTodos }) => {
   return (
     <div className="home--card home--card-coming">
-      <div className="home--card-heading-container">
-        <div className="home--card-marker" />
-        <p className="home--card-title">{cardTitle}</p>
-      </div>
+      <CardHeading cardTitle={cardTitle} />
       <div className="home--card-coming-data-container">
         {comingTodos.map((todo) => {
           return (
@@ -205,7 +213,7 @@ const HomeComingCard = ({ cardTitle, comingTodos }) => {
                 </div>
                 <div>
                   <DeadlineIcon fill="tomato" />
-                  <p>{format(new Date(todo.deadline), "MMM d, yyyy @ h:mma")}</p>
+                  <p>{format(new Date(todo.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
                 </div>
               </div>
             </div>
@@ -219,10 +227,7 @@ const HomeComingCard = ({ cardTitle, comingTodos }) => {
 const HomeProductivityCard = ({ cardTitle, todosCount }) => {
   return (
     <div className="home--card home--card-productivity">
-      <div className="home--card-heading-container">
-        <div className="home--card-marker" />
-        <p className="home--card-title">{cardTitle}</p>
-      </div>
+      <CardHeading cardTitle={cardTitle} />
       <div>
         <p className="home--card-productivity-count">
           {todosCount} <span>items</span>
@@ -235,10 +240,7 @@ const HomeProductivityCard = ({ cardTitle, todosCount }) => {
 const HomeNewestCard = ({ cardTitle, todoTitle, todoDescription, todoImportance, todoDeadline, todoProgress }) => {
   return (
     <div className="home--card home--card-newest">
-      <div className="home--card-heading-container">
-        <div className="home--card-marker" />
-        <p className="home--card-title">{cardTitle}</p>
-      </div>
+      <CardHeading cardTitle={cardTitle} />
       <div className="home--card-newest-data-container">
         <p className="home--card-newest-todo-title">{todoTitle}</p>
         <p className="home--card-newest-todo-description">
@@ -266,10 +268,7 @@ const HomeNewestCard = ({ cardTitle, todoTitle, todoDescription, todoImportance,
 const HomeNonDataCard = ({ cardTitle }) => {
   return (
     <div className="home--card home--card-non-data">
-      <div className="home--card-heading-container">
-        <div className="home--card-marker" />
-        <p className="home--card-title">{cardTitle}</p>
-      </div>
+      <CardHeading cardTitle={cardTitle} />
       <Link className="home--card-non-data-link" to={`/dashboard/todos/`}>
         {cardTitle === "Create todo" ? <CreateIcon /> : <SeeIcon />}
       </Link>

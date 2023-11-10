@@ -71,8 +71,10 @@ const Wrapper = styled.div`
     padding-right: 0rem;
   }
 
-  .dashboard--top-nav div:nth-child(1) {
-    font-size: 3rem;
+  .dashboard--top-nav > p {
+    color: var(--color-black);
+
+    font-size: 4rem;
   }
 
   .dashboard--top-nav div:nth-child(2) {
@@ -130,9 +132,7 @@ const Dashboard = () => {
         </div>
       </nav>
       <nav className="dashboard--top-nav">
-        <div>
-          <p>Procrastinating...what&apos;s that?</p>
-        </div>
+        <p>Procrastinating...what&apos;s that?</p>
         <div>
           <input type="text" className="dashboard--top-nav-search-bar" placeholder="Search a todo..." />
           <Link to="/dashboard/profile" className="dashboard--top-nav-profile-link">

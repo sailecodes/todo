@@ -90,6 +90,8 @@ export const getPastDeadlineTodos = async (req, res) => {
 //    - Potential fixes:
 //      - createdAt < deadline
 //      - Do something similar to the one above
+//  - Most likely a similar bug, but there's a bug where if the user creates a todo item, but it's deadline already
+//    passed and it hasn't been finished, it will technically be the newest item
 export const getNewestTodo = async (req, res) => {
   const newestTodo = await todoModel
     .find({
