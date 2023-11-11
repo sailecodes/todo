@@ -1,4 +1,4 @@
-import Wrapper from "../../../styles/CardHeading";
+import Wrapper from "../../../styles/dashboard/CardHeading";
 
 const CardHeading = ({ cardTitle }) => {
   return (

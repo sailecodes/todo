@@ -3,7 +3,6 @@ import { useQueries } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 import axiosFetch from "../../../utilities/axiosFetch";
-
 import ImportanceIcon from "../../helpers/icons/ImportanceIcon";
 import ProgressIcon from "../../helpers/icons/ProgressIcon";
 import DeadlineIcon from "../../helpers/icons/DeadlineIcon";
@@ -11,6 +10,7 @@ import CreateIcon from "../../helpers/icons/CreateIcon";
 import SeeIcon from "../../helpers/icons/SeeIcon";
 import CardHeading from "../../helpers/dashboard/CardHeading";
 import Loading from "../../helpers/dashboard/Loading";
+import TodoCard from "../../helpers/dashboard/TodoCard";
 
 import styled from "styled-components";
 const Wrapper = styled.div`
@@ -93,12 +93,8 @@ const Wrapper = styled.div`
     gap: 0.5rem;
   }
 
-  .home--card-coming-icon {
-    width: 2rem;
-    height: 2rem;
-  }
-
   .home--card-coming-todo-meta-container p {
+    // TODO: transfer to more general style
     font-size: 1.3rem;
   }
 
@@ -143,11 +139,6 @@ const Wrapper = styled.div`
     gap: 2.5rem;
   }
 
-  .home--card-newest-todo-meta-container img {
-    width: 3rem;
-    height: 3rem;
-  }
-
   .home--card-newest-todo-meta-container p {
     font-size: 2rem;
   }
@@ -178,7 +169,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const HomeComingCard = ({ cardTitle, comingTodos, isLoading }) => {
+const ComingCard = ({ cardTitle, comingTodos, isLoading }) => {
   return (
     <div className="home--card home--card-coming">
       {isLoading && <Loading />}
@@ -221,7 +212,7 @@ const HomeComingCard = ({ cardTitle, comingTodos, isLoading }) => {
   );
 };
 
-const HomeProductivityCard = ({ cardTitle, todosCount, isLoading }) => {
+const ProductivityCard = ({ cardTitle, todosCount, isLoading }) => {
   return (
     <div className="home--card home--card-productivity">
       {isLoading && <Loading />}
@@ -239,7 +230,7 @@ const HomeProductivityCard = ({ cardTitle, todosCount, isLoading }) => {
   );
 };
 
-const HomeNewestCard = ({ cardTitle, data, isLoading }) => {
+const NewestCard = ({ cardTitle, data, isLoading }) => {
   return (
     <div className="home--card home--card-newest">
       {isLoading && <Loading />}
@@ -256,15 +247,15 @@ const HomeNewestCard = ({ cardTitle, data, isLoading }) => {
                 </p>
                 <div className="home--card-newest-todo-meta-container">
                   <div>
-                    <ImportanceIcon fill="yellow" />
+                    <ImportanceIcon fill="yellow" isInTodoCard={true} />
                     <p>{data.importance} priority</p>
                   </div>
                   <div>
-                    <ProgressIcon fill="azure" />
+                    <ProgressIcon fill="azure" isInTodoCard={true} />
                     <p>{data.progress}</p>
                   </div>
                   <div>
-                    <DeadlineIcon fill="tomato" />
+                    <DeadlineIcon fill="tomato" isInTodoCard={true} />
                     <p>{format(new Date(data.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
                   </div>
                 </div>
@@ -277,7 +268,7 @@ const HomeNewestCard = ({ cardTitle, data, isLoading }) => {
   );
 };
 
-const HomeNonDataCard = ({ cardTitle }) => {
+const NonDataCard = ({ cardTitle }) => {
   return (
     <div className="home--card home--card-non-data">
       <CardHeading cardTitle={cardTitle} />
@@ -332,25 +323,30 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <HomeProductivityCard
+      <ProductivityCard
         cardTitle="Finished todos"
         todosCount={resultsArr[0].data}
-        isLoading={resultsArr[0].isLoading}
+        isLoading={resultsArr[0].isPending}
       />
-      <HomeProductivityCard
-        cardTitle="Missed todos"
-        todosCount={resultsArr[1].data}
-        isLoading={resultsArr[1].isLoading}
-      />
-      <HomeComingCard
+      <ProductivityCard cardTitle="Missed todos" todosCount={resultsArr[1].data} isLoading={resultsArr[1].isLoading} />
+      <ComingCard
         cardTitle="Coming todos"
         comingTodos={[resultsArr[3].data]}
-        isLoading={resultsArr[2].isLoading || resultsArr[3].isLoading}
+        isLoading={resultsArr[2].isPending || resultsArr[3].isPending}
       />
-      <HomeNewestCard cardTitle="Newest todo" data={resultsArr[3].data} isLoading={resultsArr[3].isLoading} />
-      <HomeNonDataCard cardTitle="Create todo" />
-      <HomeNonDataCard cardTitle="See daily todos" />
-      <HomeNonDataCard cardTitle="See all todos" />
+      <TodoCard
+        cardTitle="Newest todo"
+        reminder={resultsArr[3].data?.reminder}
+        title={resultsArr[3].data?.title}
+        description={resultsArr[3].data?.description}
+        importance={resultsArr[3].data?.importance}
+        progress={resultsArr[3].data?.progress}
+        deadline={resultsArr[3].data?.deadline}
+        isPending={resultsArr[3].isPending}
+      />
+      <NonDataCard cardTitle="Create todo" />
+      <NonDataCard cardTitle="See daily todos" />
+      <NonDataCard cardTitle="See all todos" />
     </Wrapper>
   );
 };

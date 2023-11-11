@@ -1,4 +1,4 @@
-const DeadlineIcon = ({ fill, stroke }) => {
+const DeadlineIcon = ({ fill, stroke, isInTodoCard }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ const DeadlineIcon = ({ fill, stroke }) => {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke={stroke ? stroke : "currentColor"}
-      className="home--card-coming-icon">
+      style={{ width: isInTodoCard ? "2rem" : "1.8rem", height: isInTodoCard ? "2rem" : "1.8rem" }}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

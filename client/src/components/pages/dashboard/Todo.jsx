@@ -55,14 +55,6 @@ const Wrapper = styled.div`
   .active .card-title {
     color: var(--color-white);
   }
-
-  // Todo CONTENT
-
-  .todo--content-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 33rem;
-  }
 `;
 
 const TodoNavCard = ({ cardTitle }) => {
@@ -87,9 +79,7 @@ const Todo = () => {
           <TodoNavCard cardTitle="Create todo" />
         </NavLink>
       </nav>
-      <div className="todo--content-container">
-        <Outlet />
-      </div>
+      <Outlet />
     </Wrapper>
   );
 };
