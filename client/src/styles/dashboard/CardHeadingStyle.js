@@ -14,6 +14,8 @@ const Wrapper = styled.div`
     width: 3.3rem;
 
     border-radius: 6px;
+
+    transition: background-color 0.25s;
   }
 
   .card-title {
@@ -21,6 +23,8 @@ const Wrapper = styled.div`
 
     font-size: 3rem;
     font-weight: 600;
+
+    transition: color 0.25s;
   }
 
   .card-heading--links-container {

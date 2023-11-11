@@ -99,3 +99,17 @@
           - Weekly (`/dashboard/todos/weekly`)
           - Monthly (`/dashboard/todos/monthly`)
       - Profile (`/dashboard/todos/profile`)
+
+### TODOs
+
+- Client-side
+  - `High`
+    - Implement _delete_ functionality
+    - Implement _edit_ functionality
+  - `Medium`
+    - Refactor _deadline_ functionality
+    - Redesign _Welcome_ pages, i.e. Landing, Login, and Register
+    - Implement _search_ functionality
+  - `Low`
+    - Redesign _Create todo_ page
+    - Redesign _Dashboard_ side and top navigation bars

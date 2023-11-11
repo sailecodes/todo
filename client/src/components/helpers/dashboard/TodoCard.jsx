@@ -1,4 +1,4 @@
-import Wrapper from "../../../styles/dashboard/TodoCard";
+import Wrapper from "../../../styles/dashboard/TodoCardStyle";
 import CardHeading from "./CardHeading";
 import Loading from "./Loading";
 import TodoInformation from "./TodoInformation";

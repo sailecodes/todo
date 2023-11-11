@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import Wrapper from "../../../styles/dashboard/TodoPageContent";
+import Wrapper from "../../../styles/dashboard/TodoPageContentStyle";
 import axiosFetch from "../../../utilities/axiosFetch";
 import Loading from "../../helpers/dashboard/Loading";
 import TodoCard from "../../helpers/dashboard/TodoCard";

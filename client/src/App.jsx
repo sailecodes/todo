@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Landing from "./components/pages/welcome/Landing";
 import Register from "./components/pages/welcome/Register";
 import Login from "./components/pages/welcome/Login";
+import Error from "./components/pages/Error";
 import Dashboard from "./components/pages/dashboard/Dashboard";
 import Home from "./components/pages/dashboard/Home";
 import Todo from "./components/pages/dashboard/Todo";

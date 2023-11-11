@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import Wrapper from "../../../styles/dashboard/TodoPageContent";
+
+import Wrapper from "../../../styles/dashboard/TodoPageContentStyle";
 import axiosFetch from "../../../utilities/axiosFetch";
 import Loading from "../../helpers/dashboard/Loading";
 import TodoCard from "../../helpers/dashboard/TodoCard";
@@ -11,7 +12,7 @@ const AllTodos = () => {
       const {
         data: { data },
       } = await axiosFetch.get("/todos");
-      return data;
+      return data ? data : [{ reminder: "*Robot noises* No todos found beep boop. Make one!" }];
     },
   });
 

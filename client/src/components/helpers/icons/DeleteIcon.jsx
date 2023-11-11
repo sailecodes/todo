@@ -5,7 +5,7 @@ const DeleteIcon = () => {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1.5}
-      stroke="var(--color-black)"
+      stroke="darkred"
       style={{ width: "3.2rem" }}>
       <path
         strokeLinecap="round"

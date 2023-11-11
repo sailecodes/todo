@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import Wrapper from "../../../styles/dashboard/CardHeading";
+
+import Wrapper from "../../../styles/dashboard/CardHeadingStyle";
 import EditIcon from "../icons/EditIcon";
 import DeleteIcon from "../icons/DeleteIcon";
 
