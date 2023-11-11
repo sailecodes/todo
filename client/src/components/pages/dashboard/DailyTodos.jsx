@@ -44,6 +44,7 @@ const DailyTodos = () => {
             progress={todo.progress}
             deadline={todo.deadline}
             isPending={false}
+            isModifiable={true}
           />
         );
       })}

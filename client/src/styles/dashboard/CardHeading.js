@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  .card-heading-container {
+  .card-heading--container {
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -21,6 +21,14 @@ const Wrapper = styled.div`
 
     font-size: 3rem;
     font-weight: 600;
+  }
+
+  .card-heading--links-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    margin-left: auto;
   }
 `;
 

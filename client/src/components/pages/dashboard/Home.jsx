@@ -98,56 +98,6 @@ const Wrapper = styled.div`
     font-size: 1.3rem;
   }
 
-  // Home card NEWEST
-
-  .home--card-newest {
-    color: var(--color-black);
-
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    grid-column: 1 / 3;
-  }
-
-  .home--card-newest-data-container {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .home--card-newest-reminder {
-    font-size: 4rem;
-  }
-
-  .home--card-newest-todo-title {
-    font-size: 6.5rem;
-  }
-
-  .home--card-newest-todo-description {
-    position: relative;
-    bottom: 7.5%;
-
-    font-size: 2.5rem;
-  }
-
-  .home--card-newest-todo-meta-container {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-  }
-
-  .home--card-newest-todo-meta-container p {
-    font-size: 2rem;
-  }
-
-  .home--card-newest-todo-meta-container p::first-letter,
-  .home--card-coming-todo-meta-container p::first-letter {
-    text-transform: uppercase;
-  }
-
   // Home card CREATE
 
   .home--card-non-data {
@@ -230,44 +180,6 @@ const ProductivityCard = ({ cardTitle, todosCount, isLoading }) => {
   );
 };
 
-const NewestCard = ({ cardTitle, data, isLoading }) => {
-  return (
-    <div className="home--card home--card-newest">
-      {isLoading && <Loading />}
-      {!isLoading && (
-        <>
-          <CardHeading cardTitle={cardTitle} />
-          <div className="home--card-newest-data-container">
-            {data.reminder && <p className="home--card-newest-reminder">{data.reminder}</p>}
-            {!data.reminder && (
-              <>
-                <p className="home--card-newest-todo-title">{data.title}</p>
-                <p className="home--card-newest-todo-description">
-                  {data.description ? data.description : "An important todo item...do it."}
-                </p>
-                <div className="home--card-newest-todo-meta-container">
-                  <div>
-                    <ImportanceIcon fill="yellow" isInTodoCard={true} />
-                    <p>{data.importance} priority</p>
-                  </div>
-                  <div>
-                    <ProgressIcon fill="azure" isInTodoCard={true} />
-                    <p>{data.progress}</p>
-                  </div>
-                  <div>
-                    <DeadlineIcon fill="tomato" isInTodoCard={true} />
-                    <p>{format(new Date(data.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
-
 const NonDataCard = ({ cardTitle }) => {
   return (
     <div className="home--card home--card-non-data">
@@ -343,6 +255,7 @@ const Home = () => {
         progress={resultsArr[3].data?.progress}
         deadline={resultsArr[3].data?.deadline}
         isPending={resultsArr[3].isPending}
+        isModifiable={false}
       />
       <NonDataCard cardTitle="Create todo" />
       <NonDataCard cardTitle="See daily todos" />

@@ -3,13 +3,23 @@ import CardHeading from "./CardHeading";
 import Loading from "./Loading";
 import TodoInformation from "./TodoInformation";
 
-const TodoCard = ({ cardTitle, reminder, title, description, importance, progress, deadline, isPending }) => {
+const TodoCard = ({
+  cardTitle,
+  reminder,
+  title,
+  description,
+  importance,
+  progress,
+  deadline,
+  isPending,
+  isModifiable,
+}) => {
   return (
     <Wrapper>
       {isPending && <Loading />}
       {!isPending && (
         <>
-          <CardHeading cardTitle={cardTitle} />
+          <CardHeading cardTitle={cardTitle} isModifiable={isModifiable} />
           <TodoInformation
             reminder={reminder}
             title={title}
