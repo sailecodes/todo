@@ -6,6 +6,7 @@ import TodoInformation from "./TodoInformation";
 const TodoCard = ({
   cardTitle,
   reminder,
+  todoId,
   title,
   description,
   importance,
@@ -19,7 +20,7 @@ const TodoCard = ({
       {isPending && <Loading />}
       {!isPending && (
         <>
-          <CardHeading cardTitle={cardTitle} isModifiable={isModifiable} />
+          <CardHeading cardTitle={cardTitle} todoId={todoId} isModifiable={isModifiable} />
           <TodoInformation
             reminder={reminder}
             title={title}

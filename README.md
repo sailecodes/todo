@@ -104,12 +104,17 @@
 
 - Client-side
   - `High`
-    - Implement _delete_ functionality
+    - Implement _delete_ functionality [x]
+      - Refactor to use _React Router_ and _React Query_
+        - _React Router_ for loader functionality and _React Query_ for caching
     - Implement _edit_ functionality
   - `Medium`
     - Refactor _deadline_ functionality
-    - Redesign _Welcome_ pages, i.e. Landing, Login, and Register
-    - Implement _search_ functionality
+    - Show number of todos on _Daily todos_ and _All todos_ pages
+    - Implement _search_ functionality in _Daily todos_ and _All todos_
   - `Low`
-    - Redesign _Create todo_ page
     - Redesign _Dashboard_ side and top navigation bars
+    - Redesign _Welcome_ pages, i.e. Landing, Login, and Register
+    - Redesign _Create todo_ page
+    - Implement error behavior where depending on the error a message is shown on the screen next to a label in a form
+      - e.g. 'Password must be x characters long'

@@ -118,7 +118,7 @@ const CreateTodo = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
-      navigate("/dashboard/todos/all");
+      navigate("/dashboard/todos/all"); // TODO: Should the user be redirected even?
     },
   });
 

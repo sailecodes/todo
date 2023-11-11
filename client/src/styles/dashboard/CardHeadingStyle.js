@@ -34,6 +34,15 @@ const Wrapper = styled.div`
 
     margin-left: auto;
   }
+
+  .card-heading--links-container > button {
+    background: none;
+    border: none;
+  }
+
+  .card-heading--links-container > button:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Wrapper;

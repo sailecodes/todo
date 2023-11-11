@@ -17,6 +17,7 @@ import Profile from "./components/pages/dashboard/Profile";
 
 import registerAction from "./actions/RegisterAction";
 import loginAction from "./actions/LoginAction";
+import deleteTodoAction from "./actions/dashboard/DeleteTodoAction";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
           {
             path: "edit",
             element: <EditTodo />,
+          },
+          {
+            path: "delete/:id",
+            action: deleteTodoAction,
           },
         ],
       },

@@ -28,6 +28,7 @@ const AllTodos = () => {
             key={todo._id}
             cardTitle="Todo"
             reminder={todo.reminder}
+            todoId={todo._id}
             title={todo.title}
             description={todo.description}
             importance={todo.importance}
