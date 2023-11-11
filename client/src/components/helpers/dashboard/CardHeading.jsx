@@ -11,10 +11,10 @@ const CardHeading = ({ cardTitle, isModifiable }) => {
         <p className="card-title">{cardTitle}</p>
         {isModifiable && (
           <div className="card-heading--links-container">
-            <Link>
+            <Link to="/dashboard/todos/edit">
               <EditIcon />
             </Link>
-            <Link>
+            <Link to="/dashboard/todos/edit">
               <DeleteIcon />
             </Link>
           </div>

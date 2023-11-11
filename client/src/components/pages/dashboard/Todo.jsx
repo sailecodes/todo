@@ -60,7 +60,7 @@ const Wrapper = styled.div`
 const TodoNavCard = ({ cardTitle }) => {
   return (
     <div className="todo--nav-card">
-      <CardHeading cardTitle={cardTitle} />
+      <CardHeading cardTitle={cardTitle} isModifiable={false} />
     </div>
   );
 };

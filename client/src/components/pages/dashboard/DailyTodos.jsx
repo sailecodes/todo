@@ -1,17 +1,9 @@
-import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 
+import Wrapper from "../../../styles/dashboard/TodoPageContent";
 import axiosFetch from "../../../utilities/axiosFetch";
 import Loading from "../../helpers/dashboard/Loading";
 import TodoCard from "../../helpers/dashboard/TodoCard";
-import { Link } from "react-router-dom";
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 33rem;
-  gap: 3.5rem;
-`;
 
 const DailyTodos = () => {
   const { data, isPending, isError } = useQuery({
@@ -27,8 +19,6 @@ const DailyTodos = () => {
   if (isPending) return <Loading />;
 
   if (isError) return <div>error...</div>;
-
-  console.log(data);
 
   return (
     <Wrapper>

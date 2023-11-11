@@ -33,6 +33,8 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 2.9rem;
 
+    height: 125.1rem;
+
     border-radius: 12px;
   }
 
