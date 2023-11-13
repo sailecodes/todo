@@ -113,8 +113,7 @@ export const validateTodoInput = validate([
     .isIn(Object.values(TODO_MODEL_IMPORTANCE))
     .withMessage("(from validateTodoInput) Importance level not supported."),
   body("deadline")
-    .notEmpty()
-    .withMessage("from validateTodoInput) Please provide a deadline.")
+    .optional()
     .custom((deadline) => {
       if (!date.isValid(deadline, VALIDATION_DATE_FORMAT))
         throw new BadRequestError("(from validateTodoInput) Invalid deadline format.");

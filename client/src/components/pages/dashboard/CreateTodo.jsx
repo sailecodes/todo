@@ -114,6 +114,7 @@ const CreateTodo = () => {
 
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (createData) => {
+      console.log(createData);
       return axiosFetch.post("/todos", createData);
     },
     onSuccess: () => {

@@ -15,10 +15,12 @@ const TodoMeta = ({ isInTodoCard, importance, progress, deadline }) => {
         <ProgressIcon fill="azure" isInTodoCard={isInTodoCard} />
         <p>{progress}</p>
       </div>
-      <div>
-        <DeadlineIcon fill="tomato" isInTodoCard={isInTodoCard} />
-        <p>{format(new Date(deadline), "MMM d, yyyy @ h:mmaaa")}</p>
-      </div>
+      {deadline && (
+        <div>
+          <DeadlineIcon fill="tomato" isInTodoCard={isInTodoCard} />
+          <p>{format(new Date(deadline), "MMM d, yyyy @ h:mmaaa")}</p>
+        </div>
+      )}
     </div>
   );
 };

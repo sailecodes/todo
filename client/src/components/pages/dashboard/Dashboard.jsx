@@ -1,7 +1,6 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
-import HomeIcon from "../../helpers/icons/HomeIcon";
-import TodoIcon from "../../helpers/icons/TodoIcon";
+import DashboardSideNavLink from "../../helpers/dashboard/DashboardSideNavLink";
 import ProfileIcon from "../../helpers/icons/ProfileIcon";
 
 import styled from "styled-components";
@@ -42,7 +41,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3.5rem;
+    gap: 2rem;
   }
 
   .dashboard--side-nav-logo {
@@ -87,69 +86,7 @@ const Wrapper = styled.div`
     font-size: 2.5rem;
     text-decoration: none;
   }
-
-  ////////////////
-
-  .dashboard--side-nav-item-container {
-    display: grid;
-    place-items: center;
-
-    height: 6rem;
-    width: 21rem;
-
-    border-radius: 10px;
-  }
-
-  .dashboard--side-nav-item-container:has(.dashboard--side-nav-link.active) {
-    background-color: var(--color-white);
-  }
-
-  .dashboard--side-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-
-    font-size: 1.8rem;
-    text-decoration: none;
-  }
-
-  .dashboard--side-nav-link > p {
-    color: var(--color-white);
-  }
-
-  .dashboard--side-nav-link.active > p {
-    color: var(--color-primary);
-  }
-
-  .dashboard--side-nav-link.active svg {
-    stroke: var(--color-primary);
-  }
 `;
-
-const HomeSideNavLink = ({ path, end }) => {
-  return (
-    <div className="dashboard--side-nav-item-container">
-      <NavLink to={`/dashboard${path}`} end={end} className="dashboard--side-nav-link">
-        {path === "/todos" ? (
-          <>
-            <TodoIcon stroke="white" />
-            <p>Todos</p>
-          </>
-        ) : path === "/profile" ? (
-          <>
-            <ProfileIcon stroke="white" />
-            <p>Profile</p>
-          </>
-        ) : (
-          <>
-            <HomeIcon stroke="white" />
-            <p>Home</p>
-          </>
-        )}
-      </NavLink>
-    </div>
-  );
-};
 
 const Dashboard = () => {
   return (
@@ -157,9 +94,9 @@ const Dashboard = () => {
       <nav className="dashboard--side-nav">
         <p className="dashboard--side-nav-logo">IV</p>
         <div>
-          <HomeSideNavLink path="" end={true} />
-          <HomeSideNavLink path="/todos" end={false} />
-          <HomeSideNavLink path="/profile" end={false} />
+          <DashboardSideNavLink path="" end={true} linkName="Home" />
+          <DashboardSideNavLink path="/todos" end={false} linkName="Todos" />
+          <DashboardSideNavLink path="/profile" end={false} linkName="Profile" />
         </div>
       </nav>
       <nav className="dashboard--top-nav">
