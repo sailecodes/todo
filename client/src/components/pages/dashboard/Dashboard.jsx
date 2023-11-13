@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 import HomeIcon from "../../helpers/icons/HomeIcon";
 import TodoIcon from "../../helpers/icons/TodoIcon";
@@ -45,19 +45,6 @@ const Wrapper = styled.div`
     gap: 3.5rem;
   }
 
-  .dashboard--side-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-
-    font-size: 1.8rem;
-    text-decoration: none;
-  }
-
-  .dashboard--side-nav-link p {
-    color: var(--color-white);
-  }
-
   .dashboard--side-nav-logo {
     color: var(--color-white);
 
@@ -101,11 +88,68 @@ const Wrapper = styled.div`
     text-decoration: none;
   }
 
-  .dashboard--side-nav-link > img,
-  .dashboard--top-nav-profile-link > img {
-    width: 4rem;
+  ////////////////
+
+  .dashboard--side-nav-item-container {
+    display: grid;
+    place-items: center;
+
+    height: 6rem;
+    width: 21rem;
+
+    border-radius: 10px;
+  }
+
+  .dashboard--side-nav-item-container:has(.dashboard--side-nav-link.active) {
+    background-color: var(--color-white);
+  }
+
+  .dashboard--side-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    font-size: 1.8rem;
+    text-decoration: none;
+  }
+
+  .dashboard--side-nav-link > p {
+    color: var(--color-white);
+  }
+
+  .dashboard--side-nav-link.active > p {
+    color: var(--color-primary);
+  }
+
+  .dashboard--side-nav-link.active svg {
+    stroke: var(--color-primary);
   }
 `;
+
+const HomeSideNavLink = ({ path, end }) => {
+  return (
+    <div className="dashboard--side-nav-item-container">
+      <NavLink to={`/dashboard${path}`} end={end} className="dashboard--side-nav-link">
+        {path === "/todos" ? (
+          <>
+            <TodoIcon stroke="white" />
+            <p>Todos</p>
+          </>
+        ) : path === "/profile" ? (
+          <>
+            <ProfileIcon stroke="white" />
+            <p>Profile</p>
+          </>
+        ) : (
+          <>
+            <HomeIcon stroke="white" />
+            <p>Home</p>
+          </>
+        )}
+      </NavLink>
+    </div>
+  );
+};
 
 const Dashboard = () => {
   return (
@@ -113,30 +157,14 @@ const Dashboard = () => {
       <nav className="dashboard--side-nav">
         <p className="dashboard--side-nav-logo">IV</p>
         <div>
-          <div className="dashboard--side-nav-item-container">
-            <Link to="/dashboard" className="dashboard--side-nav-link">
-              <HomeIcon stroke="white" />
-              <p>Home</p>
-            </Link>
-          </div>
-          <div>
-            <Link to="/dashboard/todos" className="dashboard--side-nav-link">
-              <TodoIcon stroke="white" />
-              <p>Todos</p>
-            </Link>
-          </div>
-          <div>
-            <Link to="/dashboard/profile" className="dashboard--side-nav-link">
-              <ProfileIcon stroke="white" />
-              <p>Profile</p>
-            </Link>
-          </div>
+          <HomeSideNavLink path="" end={true} />
+          <HomeSideNavLink path="/todos" end={false} />
+          <HomeSideNavLink path="/profile" end={false} />
         </div>
       </nav>
       <nav className="dashboard--top-nav">
         <p>Procrastinating...what&apos;s that?</p>
         <div>
-          <input type="text" className="dashboard--top-nav-search-bar" placeholder="Search a todo..." />
           <Link to="/dashboard/profile" className="dashboard--top-nav-profile-link">
             <ProfileIcon stroke="black" />
           </Link>
