@@ -5,7 +5,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Landing from "./components/pages/welcome/Landing";
 import Register from "./components/pages/welcome/Register";
 import Login from "./components/pages/welcome/Login";
-import Error from "./components/pages/Error";
 import Dashboard from "./components/pages/dashboard/Dashboard";
 import Home from "./components/pages/dashboard/Home";
 import Todo from "./components/pages/dashboard/Todo";
@@ -13,7 +12,6 @@ import DailyTodos from "./components/pages/dashboard/DailyTodos";
 import AllTodos from "./components/pages/dashboard/AllTodos";
 import CreateTodo from "./components/pages/dashboard/CreateTodo";
 import EditTodo from "./components/pages/dashboard/EditTodo";
-import Profile from "./components/pages/dashboard/Profile";
 
 import editTodoLoader from "./loaders/dashboard/EditTodoLoader";
 import registerAction from "./actions/RegisterAction";

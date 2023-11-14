@@ -19,3 +19,21 @@ export const isValidResourceAndAccessible = async (queryId, userId, userRole) =>
 
   return userTodo;
 };
+
+export const getCurrentDateAndTime = () => {
+  const date = new Date();
+
+  const todayUnformatted = {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    hour: date.getHours(),
+    minute: date.getMinutes(),
+  };
+
+  return `${todayUnformatted.month < 10 ? `0` + todayUnformatted.month : todayUnformatted.month}/${
+    todayUnformatted.day < 10 ? `0` + todayUnformatted.day : todayUnformatted.day
+  }/${todayUnformatted.year} ${todayUnformatted.hour < 10 ? `0` + todayUnformatted.hour : todayUnformatted.hour}:${
+    todayUnformatted.minute < 10 ? `0` + todayUnformatted.minute : todayUnformatted.minute
+  }`;
+};

@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 
   .todo--title {
     font-size: 6.5rem;
+    line-height: 1;
   }
 
   .todo--title.not-todo {
@@ -29,7 +30,7 @@ const Wrapper = styled.div`
     display: inline-block;
 
     position: relative;
-    bottom: 1.5rem;
+    bottom: 0.4rem;
 
     font-size: 2.5rem;
   }

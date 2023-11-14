@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Wrapper from "../../../styles/dashboard/CardHeadingStyle";
 import axiosFetch from "../../../utilities/axiosFetch";
-import Error from "../../pages/Error";
+import Error from "../../pages/error/Error";
 import EditIcon from "../icons/EditIcon";
 import DeleteIcon from "../icons/DeleteIcon";
 

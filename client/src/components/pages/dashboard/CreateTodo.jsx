@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Wrapper from "../../../styles/dashboard/MutateTodoStyle";
 import axiosFetch from "../../../utilities/axiosFetch";
-import Error from "../Error";
+import Error from "../error/Error";
 import FormInput from "../../helpers/dashboard/FormInput";
 import FormSelect from "../../helpers/dashboard/FormSelect";
 import CardHeading from "../../helpers/dashboard/CardHeading";

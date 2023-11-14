@@ -6,7 +6,7 @@ import axiosFetch from "../../../utilities/axiosFetch";
 import FormInput from "../../helpers/dashboard/FormInput";
 import FormSelect from "../../helpers/dashboard/FormSelect";
 import Loading from "../../helpers/dashboard/Loading";
-import Error from "../Error";
+import Error from "../error/Error";
 import { TODO_MODEL_IMPORTANCE, TODO_MODEL_PROGRESS, TODO_MODEL_TYPE } from "../../../../../server/utils/constants";
 import CardHeading from "../../helpers/dashboard/CardHeading";
 
@@ -75,11 +75,7 @@ const EditTodo = () => {
         <div className="form-select--container">
           <FormSelect name="type" values={Object.values(TODO_MODEL_TYPE)} defaultValue={data.type} />
           <FormSelect name="importance" values={Object.values(TODO_MODEL_IMPORTANCE)} defaultValue={data.importance} />
-          <FormSelect
-            name="progress"
-            values={[TODO_MODEL_PROGRESS.JUST_STARTED, TODO_MODEL_PROGRESS.HALFWAY_THERE]}
-            defaultValue={data.progress}
-          />
+          <FormSelect name="progress" values={Object.values(TODO_MODEL_PROGRESS)} defaultValue={data.progress} />
         </div>
         <FormInput
           type="datetime-local"

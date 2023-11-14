@@ -5,7 +5,7 @@ const Wrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.7rem;
 
   grid-column: 1 / 3;
 

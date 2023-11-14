@@ -98,7 +98,6 @@
         - _**Add in a later version**_
           - Weekly (`/dashboard/todos/weekly`)
           - Monthly (`/dashboard/todos/monthly`)
-      - Profile (`/dashboard/todos/profile`)
 
 ### TODOs
 

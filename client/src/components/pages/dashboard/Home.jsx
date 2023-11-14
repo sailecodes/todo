@@ -1,15 +1,14 @@
 import { useQueries } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 
 import axiosFetch from "../../../utilities/axiosFetch";
-import CreateIcon from "../../helpers/icons/CreateIcon";
-import SeeIcon from "../../helpers/icons/SeeIcon";
 import CardHeading from "../../helpers/dashboard/CardHeading";
 import Loading from "../../helpers/dashboard/Loading";
 import TodoCard from "../../helpers/dashboard/TodoCard";
+import TodoInformation from "../../helpers/dashboard/TodoInformation";
+import NonDataCard from "../../helpers/dashboard/NonDataCard";
 
 import styled from "styled-components";
-import TodoInformation from "../../helpers/dashboard/TodoInformation";
+import ProductivityCard from "../../helpers/dashboard/ProductivityCard";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -18,42 +17,11 @@ const Wrapper = styled.div`
 
   padding: 2rem 0 0 2rem;
 
-  // Home card GENERAL
-
   .home--card {
     background-color: var(--color-white);
 
     padding: 2rem;
     border-radius: 12px;
-  }
-
-  // Home card FINISHED and PAST DEADLINE (productivity)
-
-  .home--card-productivity {
-    color: var(--color-black);
-
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .home--card-productivity > div:nth-child(2) {
-    display: flex;
-    align-items: center;
-    gap: 8rem;
-  }
-
-  .home--card-productivity-count {
-    font-size: 6.5rem;
-  }
-
-  .home--card-productivity-count span {
-    font-size: 4.3rem;
-  }
-
-  .home--card-productivity-icon {
-    width: 12rem;
-    height: 12rem;
   }
 
   // Home card COMING
@@ -68,29 +36,11 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 2.8rem;
   }
-
-  // Home card CREATE
-
-  .home--card-non-data {
-    color: var(--color-black);
-
-    display: flex;
-    align-items: center;
-  }
-
-  .home--card-non-data-link {
-    color: var(--color-black);
-
-    margin-left: auto;
-  }
-
-  .home--card-non-data-icon {
-    width: 3rem;
-    height: 3rem;
-  }
 `;
 
 const ComingCard = ({ cardTitle, comingTodos, isLoading }) => {
+  console.log(comingTodos);
+
   return (
     <div className="home--card home--card-coming">
       {isLoading && <Loading />}
@@ -101,8 +51,9 @@ const ComingCard = ({ cardTitle, comingTodos, isLoading }) => {
             {comingTodos.map((todo) => {
               return (
                 <TodoInformation
-                  key={todo._id}
+                  key={todo?.reminder ? todo.reminder : todo._id}
                   isInTodoCard={false}
+                  reminder={todo?.reminder}
                   title={todo.title}
                   description={todo.description}
                   importance={todo.importance}
@@ -114,37 +65,6 @@ const ComingCard = ({ cardTitle, comingTodos, isLoading }) => {
           </div>
         </>
       )}
-    </div>
-  );
-};
-
-const ProductivityCard = ({ cardTitle, todosCount, isLoading }) => {
-  return (
-    <div className="home--card home--card-productivity">
-      {isLoading && <Loading />}
-      {!isLoading && (
-        <>
-          <CardHeading cardTitle={cardTitle} />
-          <div>
-            <p className="home--card-productivity-count">
-              {todosCount} <span>items</span>
-            </p>
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
-
-const NonDataCard = ({ cardTitle }) => {
-  return (
-    <div className="home--card home--card-non-data">
-      <CardHeading cardTitle={cardTitle} />
-      <Link
-        className="home--card-non-data-link"
-        to={`/dashboard/todos${cardTitle === "See all todos" ? "/all" : cardTitle === "Create todo" ? "/create" : ""}`}>
-        {cardTitle === "Create todo" ? <CreateIcon /> : <SeeIcon />}
-      </Link>
     </div>
   );
 };
@@ -171,10 +91,13 @@ const Home = () => {
         },
       },
       {
-        // TODO: Implement coming todos on server-side
         queryKey: ["todos", "coming"],
         queryFn: async () => {
-          return ["to be implemented"];
+          const {
+            data: { data },
+          } = await axiosFetch.get("/todos/coming");
+          console.log(data);
+          return data ? data : { reminder: "None coming yet!" };
         },
       },
       {
@@ -183,7 +106,7 @@ const Home = () => {
           const {
             data: { data },
           } = await axiosFetch.get("/todos/newest");
-          return data ? data : { reminder: "No todos yet. Stop procrastinating and create one! ...please?" };
+          return data ? data : { reminder: "Either everything is finished or you haven't made one yet!" };
         },
       },
     ],
