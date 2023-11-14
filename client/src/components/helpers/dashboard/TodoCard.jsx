@@ -22,6 +22,7 @@ const TodoCard = ({
         <>
           <CardHeading cardTitle={cardTitle} todoId={todoId} isModifiable={isModifiable} />
           <TodoInformation
+            isInTodoCard={true}
             reminder={reminder}
             title={title}
             description={description}

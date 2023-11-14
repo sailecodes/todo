@@ -1,9 +1,10 @@
-import { Link, Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
 import DashboardSideNavLink from "../../helpers/dashboard/DashboardSideNavLink";
-import ProfileIcon from "../../helpers/icons/ProfileIcon";
 
 import styled from "styled-components";
+import { useMutation } from "@tanstack/react-query";
+import axiosFetch from "../../../utilities/axiosFetch";
 
 const Wrapper = styled.div`
   background-color: #e8e8e8;
@@ -86,9 +87,37 @@ const Wrapper = styled.div`
     font-size: 2.5rem;
     text-decoration: none;
   }
+
+  .dashboard--logout-btn {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    width: 10rem;
+    height: 4rem;
+
+    font-size: 1.8rem;
+
+    border: 1px solid var(--color-black);
+    border-radius: 8px;
+  }
+
+  .dashboard--logout-btn:hover {
+    cursor: pointer;
+  }
 `;
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationFn: () => {
+      return axiosFetch.get("/auth/logout");
+    },
+    onSuccess: () => {
+      navigate("/login");
+    },
+  });
+
   return (
     <Wrapper>
       <nav className="dashboard--side-nav">
@@ -96,15 +125,14 @@ const Dashboard = () => {
         <div>
           <DashboardSideNavLink path="" end={true} linkName="Home" />
           <DashboardSideNavLink path="/todos" end={false} linkName="Todos" />
-          <DashboardSideNavLink path="/profile" end={false} linkName="Profile" />
         </div>
       </nav>
       <nav className="dashboard--top-nav">
         <p>Procrastinating...what&apos;s that?</p>
         <div>
-          <Link to="/dashboard/profile" className="dashboard--top-nav-profile-link">
-            <ProfileIcon stroke="black" />
-          </Link>
+          <button className="dashboard--logout-btn" onClick={mutate}>
+            Logout
+          </button>
         </div>
       </nav>
       <Outlet />

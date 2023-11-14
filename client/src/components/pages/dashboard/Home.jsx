@@ -1,11 +1,7 @@
-import { format } from "date-fns";
 import { useQueries } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 import axiosFetch from "../../../utilities/axiosFetch";
-import ImportanceIcon from "../../helpers/icons/ImportanceIcon";
-import ProgressIcon from "../../helpers/icons/ProgressIcon";
-import DeadlineIcon from "../../helpers/icons/DeadlineIcon";
 import CreateIcon from "../../helpers/icons/CreateIcon";
 import SeeIcon from "../../helpers/icons/SeeIcon";
 import CardHeading from "../../helpers/dashboard/CardHeading";
@@ -13,6 +9,7 @@ import Loading from "../../helpers/dashboard/Loading";
 import TodoCard from "../../helpers/dashboard/TodoCard";
 
 import styled from "styled-components";
+import TodoInformation from "../../helpers/dashboard/TodoInformation";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -72,32 +69,6 @@ const Wrapper = styled.div`
     gap: 2.8rem;
   }
 
-  .home--card-coming-reminder {
-    font-size: 2rem;
-  }
-
-  .home--card-coming-todo-title {
-    font-size: 3.5rem;
-  }
-
-  .home--card-coming-todo-meta-container {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .home--card-coming-todo-meta-container div,
-  .home--card-newest-todo-meta-container div {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .home--card-coming-todo-meta-container p {
-    // TODO: transfer to more general style
-    font-size: 1.3rem;
-  }
-
   // Home card CREATE
 
   .home--card-non-data {
@@ -129,30 +100,15 @@ const ComingCard = ({ cardTitle, comingTodos, isLoading }) => {
           <div className="home--card-coming-data-container">
             {comingTodos.map((todo) => {
               return (
-                (todo.reminder && (
-                  <p key={todo.reminder} className="home--card-coming-reminder">
-                    {todo.reminder}
-                  </p>
-                )) ||
-                (!todo.reminder && (
-                  <div key={todo._id}>
-                    <p className="home--card-coming-todo-title">{todo.title}</p>
-                    <div className="home--card-coming-todo-meta-container">
-                      <div>
-                        <ImportanceIcon fill="yellow" />
-                        <p>{todo.importance} priority</p>
-                      </div>
-                      <div>
-                        <ProgressIcon fill="azure" />
-                        <p>{todo.progress}</p>
-                      </div>
-                      <div>
-                        <DeadlineIcon fill="tomato" />
-                        <p>{format(new Date(todo.deadline), "MMM d, yyyy @ h:mmaaa")}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))
+                <TodoInformation
+                  key={todo._id}
+                  isInTodoCard={false}
+                  title={todo.title}
+                  description={todo.description}
+                  importance={todo.importance}
+                  progress={todo.progress}
+                  deadline={todo?.deadline}
+                />
               );
             })}
           </div>

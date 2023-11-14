@@ -15,9 +15,9 @@ import CreateTodo from "./components/pages/dashboard/CreateTodo";
 import EditTodo from "./components/pages/dashboard/EditTodo";
 import Profile from "./components/pages/dashboard/Profile";
 
+import editTodoLoader from "./loaders/dashboard/EditTodoLoader";
 import registerAction from "./actions/RegisterAction";
 import loginAction from "./actions/LoginAction";
-import deleteTodoAction from "./actions/dashboard/DeleteTodoAction";
 
 const queryClient = new QueryClient();
 
@@ -61,18 +61,11 @@ const router = createBrowserRouter([
             element: <CreateTodo />,
           },
           {
-            path: "edit",
+            path: "edit/:id",
             element: <EditTodo />,
-          },
-          {
-            path: "delete/:id",
-            action: deleteTodoAction,
+            loader: editTodoLoader,
           },
         ],
-      },
-      {
-        path: "profile",
-        element: <Profile />,
       },
     ],
   },

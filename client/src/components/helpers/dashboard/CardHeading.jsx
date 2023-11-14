@@ -28,7 +28,7 @@ const CardHeading = ({ cardTitle, todoId, isModifiable }) => {
         <p className="card-title">{cardTitle}</p>
         {isModifiable && (
           <div className="card-heading--links-container">
-            <Link to="/dashboard/todos/edit">
+            <Link to={`/dashboard/todos/edit/${todoId}`}>
               <EditIcon />
             </Link>
             <button onClick={mutate}>

@@ -30,6 +30,10 @@ export const getTodo = async (req, res) => {
 export const updateTodo = async (req, res) => {
   await isValidResourceAndAccessible(req.params.id, req.userInfo.userId, req.userInfo.userRole);
 
+  if (!req.body.deadline) {
+    req.body = { ...req.body, $unset: { deadline: "" } };
+  }
+
   const userTodoUpdated = await todoModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
   res.status(StatusCodes.OK).json({ msg: "Updated todo item.", data: userTodoUpdated });
