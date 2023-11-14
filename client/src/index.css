@@ -1,8 +1,12 @@
 :root {
   --color-primary: #186297;
+
   --color-white: #faf9f6;
   --color-white-drk: #e1e0dd;
   --color-black: #222;
+
+  --color-deadline-soon: #ffbf00;
+  --color-deadline-passed: #ee4b2b;
 }
 
 * {

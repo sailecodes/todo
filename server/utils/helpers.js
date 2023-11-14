@@ -20,8 +20,12 @@ export const isValidResourceAndAccessible = async (queryId, userId, userRole) =>
   return userTodo;
 };
 
-export const getCurrentDateAndTime = () => {
-  const date = new Date();
+export const getCurrentDateAndTime = (dayOffset) => {
+  let date = new Date();
+
+  if (dayOffset) {
+    date = new Date(date.setDate(date.getDate() + dayOffset));
+  }
 
   const todayUnformatted = {
     year: date.getFullYear(),

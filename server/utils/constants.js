@@ -1,6 +1,7 @@
 export const COOKIE_EXPIRATION = 1000 * 60 * 60 * 24;
 
 export const VALIDATION_DATE_FORMAT = "YYYY-MM-DDTHH:mm";
+export const COMING_TODOS_OFFSET = 7;
 
 export const TODO_MODEL_TYPE = {
   NOTHING: "nothing",

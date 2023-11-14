@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes";
 
 import todoModel from "../models/todoModel.js";
 import { getCurrentDateAndTime, isValidResourceAndAccessible } from "../utils/helpers.js";
-import { TODO_MODEL_PROGRESS } from "../utils/constants.js";
+import { COMING_TODOS_OFFSET, TODO_MODEL_PROGRESS } from "../utils/constants.js";
 
 // ============================================================================
 // CRUD Operations
@@ -84,7 +84,7 @@ export const getComingTodos = async (req, res) => {
   const comingTodos = await todoModel.find({
     createdBy: req.userInfo.userId,
     progress: { $in: [TODO_MODEL_PROGRESS.JUST_STARTED, TODO_MODEL_PROGRESS.HALFWAY_THERE] },
-    deadline: { $gte: getCurrentDateAndTime() },
+    deadline: { $gte: getCurrentDateAndTime(), $lte: getCurrentDateAndTime(COMING_TODOS_OFFSET) },
   });
 
   res.status(StatusCodes.OK).json({ msg: "Retrieved coming todos.", data: comingTodos.slice(0, 4) });

@@ -1,79 +1,11 @@
 import { useQueries } from "@tanstack/react-query";
 
+import Wrapper from "../../../styles/dashboard/HomeStyle";
 import axiosFetch from "../../../utilities/axiosFetch";
-import CardHeading from "../../helpers/dashboard/CardHeading";
-import Loading from "../../helpers/dashboard/Loading";
 import TodoCard from "../../helpers/dashboard/TodoCard";
-import TodoInformation from "../../helpers/dashboard/TodoInformation";
 import NonDataCard from "../../helpers/dashboard/NonDataCard";
-
-import styled from "styled-components";
 import ProductivityCard from "../../helpers/dashboard/ProductivityCard";
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 19rem 33rem 10rem 1fr;
-  gap: 3.5rem;
-
-  padding: 2rem 0 0 2rem;
-
-  .home--card {
-    background-color: var(--color-white);
-
-    padding: 2rem;
-    border-radius: 12px;
-  }
-
-  // Home card COMING
-
-  .home--card-coming {
-    color: var(--color-black);
-
-    grid-row: 1 / 3;
-    grid-column: 3;
-
-    display: flex;
-    flex-direction: column;
-    gap: 2.8rem;
-  }
-
-  .home--card-coming-data-container {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-  }
-`;
-
-const ComingCard = ({ cardTitle, comingTodos, isLoading }) => {
-  console.log(comingTodos);
-
-  return (
-    <div className="home--card home--card-coming">
-      {isLoading && <Loading />}
-      {!isLoading && (
-        <>
-          <CardHeading cardTitle={cardTitle} />
-          <div className="home--card-coming-data-container">
-            {comingTodos.map((todo) => {
-              return (
-                <TodoInformation
-                  key={todo?.reminder ? todo.reminder : todo._id}
-                  isInTodoCard={false}
-                  reminder={todo?.reminder}
-                  title={todo.title}
-                  description={todo.description}
-                  importance={todo.importance}
-                  progress={todo.progress}
-                  deadline={todo?.deadline}
-                />
-              );
-            })}
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
+import ComingCard from "../../helpers/dashboard/ComingCard";
 
 const Home = () => {
   const resultsArr = useQueries({
@@ -102,7 +34,6 @@ const Home = () => {
           const {
             data: { data },
           } = await axiosFetch.get("/todos/coming");
-          console.log(data);
           return data ? data : { reminder: "None coming yet!" };
         },
       },
