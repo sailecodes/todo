@@ -80,7 +80,6 @@ export const getNewestTodo = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Retrieved newest todo.", data: newestTodo[0] });
 };
 
-// TODO:
 export const getComingTodos = async (req, res) => {
   const comingTodos = await todoModel.find({
     createdBy: req.userInfo.userId,
@@ -88,7 +87,7 @@ export const getComingTodos = async (req, res) => {
     deadline: { $gte: getCurrentDateAndTime() },
   });
 
-  res.status(StatusCodes.OK).json({ msg: "Retrieved coming todos.", data: comingTodos.slice(0, 5) });
+  res.status(StatusCodes.OK).json({ msg: "Retrieved coming todos.", data: comingTodos.slice(0, 4) });
 };
 
 // ============================================================================

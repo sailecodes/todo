@@ -36,6 +36,12 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 2.8rem;
   }
+
+  .home--card-coming-data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
 `;
 
 const ComingCard = ({ cardTitle, comingTodos, isLoading }) => {
@@ -119,12 +125,8 @@ const Home = () => {
         todosCount={resultsArr[0].data}
         isLoading={resultsArr[0].isPending}
       />
-      <ProductivityCard cardTitle="Missed todos" todosCount={resultsArr[1].data} isLoading={resultsArr[1].isLoading} />
-      <ComingCard
-        cardTitle="Coming todos"
-        comingTodos={[resultsArr[3].data]}
-        isLoading={resultsArr[2].isPending || resultsArr[3].isPending}
-      />
+      <ProductivityCard cardTitle="Missed todos" todosCount={resultsArr[1].data} isLoading={resultsArr[1].isPending} />
+      <ComingCard cardTitle="Coming todos" comingTodos={resultsArr[2].data} isLoading={resultsArr[2].isPending} />
       <TodoCard
         cardTitle="Newest todo"
         reminder={resultsArr[3].data?.reminder}
