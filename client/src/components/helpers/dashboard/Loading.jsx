@@ -1,4 +1,6 @@
+import ClipLoader from "react-spinners/ClipLoader";
+
 const Loading = () => {
-  return <div>Loading...</div>;
+  return <ClipLoader color="var(--color-primary)" size={50} />;
 };
 export default Loading;
