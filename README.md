@@ -102,11 +102,7 @@
 ### TODOs
 
 - Client-side
-  - `High`
-    - Implement _delete_ functionality [x]
-    - Implement _edit_ functionality [x]
   - `Medium`
-    - Refactor _deadline_ functionality [x]
     - Show number of todos on _Daily todos_ and _All todos_ pages
     - Implement _search_ functionality in _Daily todos_ and _All todos_
   - `Low`
