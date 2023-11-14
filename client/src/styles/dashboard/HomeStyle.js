@@ -15,8 +15,6 @@ const Wrapper = styled.div`
     border-radius: 12px;
   }
 
-  // Home card COMING
-
   .home--card-coming {
     color: var(--color-black);
 

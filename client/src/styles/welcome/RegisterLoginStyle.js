@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: azure;
+  background-color: var(--color-white-drk);
 
   display: flex;
   align-items: center;
@@ -41,6 +41,9 @@ const Wrapper = styled.div`
   }
 
   button {
+    background-color: var(--color-primary-400);
+    color: var(--color-black);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,10 +57,14 @@ const Wrapper = styled.div`
     border: none;
     border-radius: 18px;
 
-    margin-top: 1.6rem;
+    margin-top: 2rem;
+
+    transition: background-color 0.3s;
   }
 
   button:hover {
+    background-color: var(--color-primary-300);
+
     cursor: pointer;
   }
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import Wrapper from "../../../styles/LandingStyle.js";
+import Wrapper from "../../../styles/welcome/LandingStyle.js";
 import landing from "../../../imgs/landing.svg";
 
 const Landing = () => {
@@ -9,12 +9,14 @@ const Landing = () => {
       <img src={landing} alt="TodoIV" className="landing--img" />
       <div className="landing--element-container">
         <p>TodoIV</p>
-        <p>A todo list application for us procrastinators.</p>
+        <p>
+          A <span>todo</span> list application for us procrastinators.
+        </p>
         <div className="landing--btn-container">
-          <Link to="/login" className="landing--btn">
+          <Link to="/login" className="landing--btn landing--btn-login">
             Login
           </Link>
-          <Link to="/register" className="landing--btn">
+          <Link to="/register" className="landing--btn landing--btn-register">
             Register
           </Link>
         </div>

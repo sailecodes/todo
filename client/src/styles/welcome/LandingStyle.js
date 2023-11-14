@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: azure;
+  background-color: var(--color-white-drk);
 
   height: 100%;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  span {
+    color: var(--color-primary);
+  }
 
   .landing--element-container {
     position: relative;
@@ -51,6 +55,8 @@ const Wrapper = styled.div`
   }
 
   .landing--btn {
+    color: var(--color-black);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +65,7 @@ const Wrapper = styled.div`
     height: 5rem;
 
     font-size: 2rem;
+    font-weight: 500;
     text-decoration: none;
 
     border-radius: 18px;
@@ -66,8 +73,20 @@ const Wrapper = styled.div`
     transition: background-color 0.3s ease-out;
   }
 
-  .landing--btn:hover {
-    background-color: #efb495;
+  .landing--btn-login {
+    border: 2.5px solid var(--color-primary-400);
+  }
+
+  .landing--btn-login:hover {
+    background-color: var(--color-primary-400);
+  }
+
+  .landing--btn-register {
+    background-color: var(--color-primary-400);
+  }
+
+  .landing--btn-register:hover {
+    background-color: var(--color-primary-300);
   }
 `;
 

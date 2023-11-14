@@ -15,7 +15,6 @@ import EditTodo from "./components/pages/dashboard/EditTodo";
 
 import editTodoLoader from "./loaders/dashboard/EditTodoLoader";
 import registerAction from "./actions/RegisterAction";
-import loginAction from "./actions/LoginAction";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-    action: loginAction,
   },
   {
     path: "/dashboard",
