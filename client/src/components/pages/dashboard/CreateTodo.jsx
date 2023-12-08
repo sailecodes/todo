@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Wrapper from "../../../styles/dashboard/MutateTodoStyle";
-import axiosFetch from "../../../utilities/axiosFetch";
+import axiosFetch from "../../../utils/axiosFetch";
 import Error from "../error/Error";
 import FormInput from "../../helpers/dashboard/FormInput";
 import FormSelect from "../../helpers/dashboard/FormSelect";
@@ -37,16 +37,40 @@ const CreateTodo = () => {
 
   return (
     <Wrapper>
-      <CardHeading cardTitle="Create" isModifiable={false} />
+      <CardHeading
+        cardTitle="Create"
+        isModifiable={false}
+      />
       <form onSubmit={handleSubmit}>
-        <FormInput type="text" name="title" isTodoModifyInput={true} />
-        <FormInput type="text" name="description" isTodoModifyInput={true} />
+        <FormInput
+          type="text"
+          name="title"
+          isTodoModifyInput={true}
+        />
+        <FormInput
+          type="text"
+          name="description"
+          isTodoModifyInput={true}
+        />
         <div className="form-select--container">
-          <FormSelect name="type" values={Object.values(TODO_MODEL_TYPE)} />
-          <FormSelect name="importance" values={Object.values(TODO_MODEL_IMPORTANCE)} />
-          <FormSelect name="progress" values={[TODO_MODEL_PROGRESS.JUST_STARTED, TODO_MODEL_PROGRESS.HALFWAY_THERE]} />
+          <FormSelect
+            name="type"
+            values={Object.values(TODO_MODEL_TYPE)}
+          />
+          <FormSelect
+            name="importance"
+            values={Object.values(TODO_MODEL_IMPORTANCE)}
+          />
+          <FormSelect
+            name="progress"
+            values={[TODO_MODEL_PROGRESS.JUST_STARTED, TODO_MODEL_PROGRESS.HALFWAY_THERE]}
+          />
         </div>
-        <FormInput type="datetime-local" name="deadline" isTodoModifyInput={true} />
+        <FormInput
+          type="datetime-local"
+          name="deadline"
+          isTodoModifyInput={true}
+        />
         <button type="submit">{isPending ? "Submitting..." : "Submit"}</button>
       </form>
     </Wrapper>

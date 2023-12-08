@@ -2,11 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
-import axiosFetch from "../../../utilities/axiosFetch";
+import axiosFetch from "../../../utils/axiosFetch";
 import AuthWrapper from "../../../assets/wrappers/auth/AuthWrapper";
-import AuthInput from "../../utilities/auth/AuthInput";
-import SubmitBtn from "../../utilities/general/SubmitBtn";
-import AuthErrors from "../../utilities/auth/AuthErrors";
+import AuthInput from "../../custom/auth/AuthInput";
+import SubmitBtn from "../../custom/general/SubmitBtn";
+import AuthErrors from "../../custom/auth/AuthErrors";
 
 const Login = () => {
   const [errorMsgs, setErrorMsgs] = useState(null);

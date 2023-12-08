@@ -3,7 +3,6 @@
 /* ============================================== */
 
 :root {
-  --color-primary: #186297;
   --color-primary-200: #4681ac;
   --color-primary-300: #74a1c1;
   --color-primary-400: #8cb1cb;
@@ -16,24 +15,32 @@
 
   /* PRIMARY */
   /*
-      [<  425px] SMALL (SMS)
-           Heading: var(--font-subheading-4);
-        Subheading: var(--font-md-2);
-         Font size: var(--font-sm-2);
-      [>= 425px] MEDIUM (MDS)
-           Heading: ;
-        Subheading: ;
-         Font size: ;
-      [>= 768px] LARGE (LGS)
-           Heading: var(--font-heading-4);
-        Subheading: var(--font-md-4);
-         Font size: var(--font-sm-3);
-      
+    [<  425px] SMALL (SMS)
+      Heading: var(--font-subheading-3);
+      Subheading: var(--font-md-1);
+      Font size: var(--font-sm-1);
+    [>= 425px] MEDIUM (MDS)
+      Heading: ;
+      Subheading: ;
+      Font size: ;
+    [>= 768px] LARGE (LGS)
+      Heading: var(--font-heading-4);
+      Subheading: var(--font-md-4);
+      Font size: var(--font-sm-3);
+    [>= 1268px] X-LARGE
   */
 
-  --font-heading-lgs: var(--font-heading-4);
-  --font-heading-mds: var(--font-heading-2);
-  --font-heading-sms: var(--font-subheading-3);
+  --color-primary: #186297;
+  --color-bg: var(--color-white);
+  --color-border-outline: #e1e0dd;
+
+  --font-heading-auth-lgs: var(--font-heading-4);
+  --font-heading-auth-mds: var(--font-heading-2);
+  --font-heading-auth-sms: var(--font-subheading-3);
+
+  --font-heading-main-lgs: var(--font-lg-1);
+  --font-heading-main-mds: 0;
+  --font-heading-main-sms: var(--font-md-3);
 
   --font-subheading-lgs: var(--font-md-4);
   --font-subheading-mds: var(--font-md-2);
@@ -44,19 +51,17 @@
   --font-text-sms: var(--font-sm-1);
   --font-text-xsms: var(--font-sm-0);
 
-  --font-error-lgs: var(--font-md-4);
-  --font-error-mds: 1;
-  --font-error-sms: var(--font-subheading-sms);
-
-  --color-border-outline: #e1e0dd;
-
   --button-height-lgs: 3.7rem;
   --button-height-mds: 3.5rem;
   --button-height-sms: 3.3rem;
 
+  --svg-dim-lgs: 3rem;
+  --svg-dim-mds: 0;
+  --svg-dim-sms: 2.5rem;
+
   /* DEFAULT */
 
-  --color-shaded-bg: #000000b3;
+  --color-popup-bg: #000000b3;
   --color-error: #ec5e63;
 
   --color-black: #222;
@@ -103,7 +108,7 @@ html {
 }
 
 body {
-  background-color: var(--color-white-drk);
+  background-color: var(--color-white);
 
   font-family: "Poppins", sans-serif;
 }
@@ -143,10 +148,6 @@ button {
   font-weight: 500;
   background: none;
   border: none;
-}
-
-button:hover {
-  cursor: pointer;
 }
 
 ::file-selector-button {

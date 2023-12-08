@@ -15,7 +15,7 @@ const LandingWrapper = styled.section`
   }
 
   .landing--title {
-    font-size: var(--font-heading-sms);
+    font-size: var(--font-heading-auth-sms);
     font-weight: 600;
     text-align: center;
     letter-spacing: -2px;
@@ -44,7 +44,7 @@ const LandingWrapper = styled.section`
     place-items: center;
 
     height: var(--button-height-sms);
-    width: 9rem;
+    width: 8rem;
 
     font-size: var(--font-text-sms);
     font-weight: 500;
@@ -65,7 +65,7 @@ const LandingWrapper = styled.section`
 
   @media (min-width: 570px) {
     .landing--title {
-      font-size: var(--font-heading-lgs);
+      font-size: var(--font-heading-auth-lgs);
     }
 
     .landing--tag {
@@ -74,7 +74,7 @@ const LandingWrapper = styled.section`
 
     .landing--link-container a {
       height: var(--button-height-lgs);
-      width: 10rem;
+      width: 11rem;
 
       font-size: var(--font-text-lgs);
     }

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 import Wrapper from "../../../styles/dashboard/CardHeadingStyle";
-import axiosFetch from "../../../utilities/axiosFetch";
+import axiosFetch from "../../../utils/axiosFetch";
 import Error from "../../pages/error/Error";
 import EditIcon from "../icons/EditIcon";
 import DeleteIcon from "../icons/DeleteIcon";

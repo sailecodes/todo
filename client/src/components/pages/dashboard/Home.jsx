@@ -1,7 +1,7 @@
 import { useQueries } from "@tanstack/react-query";
 
 import Wrapper from "../../../styles/dashboard/HomeStyle";
-import axiosFetch from "../../../utilities/axiosFetch";
+import axiosFetch from "../../../utils/axiosFetch";
 import TodoCard from "../../helpers/dashboard/TodoCard";
 import NonDataCard from "../../helpers/dashboard/NonDataCard";
 import ProductivityCard from "../../helpers/dashboard/ProductivityCard";
@@ -56,8 +56,16 @@ const Home = () => {
         todosCount={resultsArr[0].data}
         isLoading={resultsArr[0].isPending}
       />
-      <ProductivityCard cardTitle="Missed todos" todosCount={resultsArr[1].data} isLoading={resultsArr[1].isPending} />
-      <ComingCard cardTitle="Coming todos" comingTodos={resultsArr[2].data} isLoading={resultsArr[2].isPending} />
+      <ProductivityCard
+        cardTitle="Missed todos"
+        todosCount={resultsArr[1].data}
+        isLoading={resultsArr[1].isPending}
+      />
+      <ComingCard
+        cardTitle="Coming todos"
+        comingTodos={resultsArr[2].data}
+        isLoading={resultsArr[2].isPending}
+      />
       <TodoCard
         cardTitle="Newest todo"
         reminder={resultsArr[3].data?.reminder}

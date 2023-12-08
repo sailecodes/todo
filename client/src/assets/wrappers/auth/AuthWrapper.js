@@ -22,7 +22,7 @@ const AuthWrapper = styled.section`
   }
 
   .auth--logo {
-    font-size: var(--font-heading-sms);
+    font-size: var(--font-heading-auth-sms);
     font-weight: 600;
     text-align: center;
     letter-spacing: -2px;
@@ -45,7 +45,7 @@ const AuthWrapper = styled.section`
 
   @media (min-width: 425px) {
     .auth--logo {
-      font-size: var(--font-heading-lgs);
+      font-size: var(--font-heading-auth-lgs);
       letter-spacing: -2px;
     }
 

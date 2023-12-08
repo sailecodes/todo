@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 import Wrapper from "../../../styles/dashboard/MutateTodoStyle";
-import axiosFetch from "../../../utilities/axiosFetch";
+import axiosFetch from "../../../utils/axiosFetch";
 import FormInput from "../../helpers/dashboard/FormInput";
 import FormSelect from "../../helpers/dashboard/FormSelect";
 import Loading from "../../helpers/dashboard/Loading";
@@ -68,14 +68,39 @@ const EditTodo = () => {
 
   return (
     <Wrapper>
-      <CardHeading cardTitle="Edit" isModifiable={false} />
+      <CardHeading
+        cardTitle="Edit"
+        isModifiable={false}
+      />
       <form onSubmit={handleSubmit}>
-        <FormInput type="text" name="title" defaultValue={data.title} isTodoModifyInput={true} />
-        <FormInput type="text" name="description" defaultValue={data.description} isTodoModifyInput={true} />
+        <FormInput
+          type="text"
+          name="title"
+          defaultValue={data.title}
+          isTodoModifyInput={true}
+        />
+        <FormInput
+          type="text"
+          name="description"
+          defaultValue={data.description}
+          isTodoModifyInput={true}
+        />
         <div className="form-select--container">
-          <FormSelect name="type" values={Object.values(TODO_MODEL_TYPE)} defaultValue={data.type} />
-          <FormSelect name="importance" values={Object.values(TODO_MODEL_IMPORTANCE)} defaultValue={data.importance} />
-          <FormSelect name="progress" values={Object.values(TODO_MODEL_PROGRESS)} defaultValue={data.progress} />
+          <FormSelect
+            name="type"
+            values={Object.values(TODO_MODEL_TYPE)}
+            defaultValue={data.type}
+          />
+          <FormSelect
+            name="importance"
+            values={Object.values(TODO_MODEL_IMPORTANCE)}
+            defaultValue={data.importance}
+          />
+          <FormSelect
+            name="progress"
+            values={Object.values(TODO_MODEL_PROGRESS)}
+            defaultValue={data.progress}
+          />
         </div>
         <FormInput
           type="datetime-local"

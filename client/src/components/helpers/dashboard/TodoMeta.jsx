@@ -4,7 +4,7 @@ import Wrapper from "../../../styles/dashboard/TodoMetaStyle";
 import DeadlineIcon from "../icons/DeadlineIcon";
 import ImportanceIcon from "../icons/ImportanceIcon";
 import ProgressIcon from "../icons/ProgressIcon";
-import { THREE_DAYS_IN_MS } from "../../../utilities/constants";
+import { THREE_DAYS_IN_MS } from "../../../utils/constants";
 import { TODO_MODEL_PROGRESS } from "../../../../../server/utils/constants";
 
 const TodoMeta = ({ isInTodoCard, importance, progress, deadline }) => {
@@ -24,16 +24,25 @@ const TodoMeta = ({ isInTodoCard, importance, progress, deadline }) => {
     <Wrapper>
       <div className="todo--meta-container">
         <div>
-          <ImportanceIcon fill="yellow" isInTodoCard={isInTodoCard} />
+          <ImportanceIcon
+            fill="yellow"
+            isInTodoCard={isInTodoCard}
+          />
           <p className={!isInTodoCard ? "non-todo" : ""}>{importance} priority</p>
         </div>
         <div>
-          <ProgressIcon fill="azure" isInTodoCard={isInTodoCard} />
+          <ProgressIcon
+            fill="azure"
+            isInTodoCard={isInTodoCard}
+          />
           <p className={!isInTodoCard ? "non-todo" : ""}>{progress}</p>
         </div>
         {deadline && (
           <div>
-            <DeadlineIcon fill="tomato" isInTodoCard={isInTodoCard} />
+            <DeadlineIcon
+              fill="tomato"
+              isInTodoCard={isInTodoCard}
+            />
             <p className={!isInTodoCard ? "non-todo" : ""}>{format(new Date(deadline), "MMM d, yyyy @ h:mmaaa")}</p>
             {isInTodoCard && isDeadlineSoon && (
               <div className="todo--deadline-marker todo--deadline-soon">Deadline soon</div>
