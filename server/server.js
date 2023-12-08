@@ -15,17 +15,17 @@ import adminRouter from "./routers/adminRouter.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import { validateUser } from "./middleware/validationMiddleware.js";
 
-// ============================================================================
+// ==============================================
 // Initialization
-// ============================================================================
+// ==============================================
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 5100;
 
-// ============================================================================
+// ==============================================
 // Middleware
-// ============================================================================
+// ==============================================
 
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 app.use(express.json());
@@ -33,16 +33,15 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(mongoSanitize());
 
-// ============================================================================
+// ==============================================
 // Routes
-// ============================================================================
+// ==============================================
 
 app.get("/", (req, res) => {
   res.status(StatusCodes.OK).send("Home route");
 });
 
 app.use("/api/v1/auth", authRouter);
-``;
 app.use("/api/v1/todos", validateUser, todoRouter);
 app.use("/api/v1/user", validateUser, userRouter);
 app.use("/api/v1/admin", validateUser, adminRouter);
@@ -53,9 +52,9 @@ app.use("*", (req, res) => {
 
 app.use(errorMiddleware);
 
-// ============================================================================
+// ==============================================
 // Server initialization
-// ============================================================================
+// ==============================================
 
 try {
   await mongoose.connect(process.env.MONGO_CS);

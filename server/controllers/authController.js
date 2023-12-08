@@ -19,9 +19,9 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   const user = await userModel.findOne({ email: req.body.email });
 
-  if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
-    throw new UnauthenticatedError("Invalid credentials.");
-  }
+  if (!user) throw new UnauthenticatedError("Email doesn't exist");
+  else if (!(await bcrypt.compare(req.body.password, user.password)))
+    throw new UnauthenticatedError("Password is incorrect");
 
   // Creates a JSON web token
   const token = jwt.sign({ userId: user._id, userRole: user.role }, process.env.JWT_SECRET, {

@@ -30,9 +30,9 @@ const validate = (validationValues) => {
   ];
 };
 
-// ============================================================================
+// ==============================================
 // General validation
-// ============================================================================
+// ==============================================
 
 export const validateUser = validate([
   cookie("token").custom((token, { req, res }) => {
@@ -55,44 +55,43 @@ export const validateUser = validate([
 export const validateIdParam = validate([
   param("id")
     .custom((id) => mongoose.Types.ObjectId.isValid(id))
-    .withMessage("(from validateIdParam) Please provide a valid MongoDB id in the query parameter."),
+    .withMessage("Id is invalid"),
 ]);
 
-// ============================================================================
-// Authentication routes validation
-// ============================================================================
+// ==============================================
+// Authentication routes
+// ==============================================
 
 export const validateRegisterInput = validate([
-  body("firstName").notEmpty().withMessage("(from validateRegisterInput) Please provide a first name."),
-  body("lastName").notEmpty().withMessage("(from validateRegisterInput) Please provide a last name."),
+  body("firstName").notEmpty().withMessage("First name is required"),
+  body("lastName").notEmpty().withMessage("Last name is required"),
   body("email")
     .notEmpty()
-    .withMessage("(from validateRegisterInput) Please provide an email.")
+    .withMessage("Email is required")
+    .bail()
     .isEmail()
-    .withMessage("(from validateRegisterInput) Please provide a valid email.")
+    .withMessage("Email is invalid")
+    .bail()
     .custom(async (email) => {
-      const userWithInputEmail = await userModel.findOne({ email });
-      if (userWithInputEmail) throw new BadRequestError("(from validateRegisterInput) Email already exists.");
+      const isEmailUsed = await userModel.findOne({ email });
+      if (isEmailUsed) throw new BadRequestError("Email already exists.");
     }),
   body("password")
     .notEmpty()
-    .withMessage("(from validateRegisterInput) Please provide a password.")
+    .withMessage("Password is required")
+    .bail()
     .isLength({ min: 10 })
-    .withMessage("(from validateRegisterInput) Please provide a password at least 10 characters long."),
+    .withMessage("Password must be minimum 10 characters"),
 ]);
 
 export const validateLoginInput = validate([
-  body("email")
-    .notEmpty()
-    .withMessage("(from validateLoginInput) Please provide an email.")
-    .isEmail()
-    .withMessage("(from validateLoginInput) Please provide a valid email."),
-  body("password").notEmpty().withMessage("(from validateLoginInput) Please provide a password."),
+  body("email").notEmpty().withMessage("Email is required").bail().isEmail().withMessage("Email is invalid"),
+  body("password").notEmpty().withMessage("Password is required"),
 ]);
 
-// ============================================================================
+// ==============================================
 // Todo routes validation
-// ============================================================================
+// ==============================================
 
 export const validateTodoInput = validate([
   body("title")
@@ -125,9 +124,9 @@ export const validateTodoInput = validate([
     .withMessage("(from validateTodoInput) Progress level not supported."),
 ]);
 
-// ============================================================================
+// ==============================================
 // Admin routes validation
-// ============================================================================
+// ==============================================
 
 export const validateAdminRole = validate([
   cookie("token").custom((_, { req }) => {

@@ -1,3 +1,7 @@
+/* ============================================== */
+/* ====== DEFAULT STYLINGS */
+/* ============================================== */
+
 :root {
   --color-primary: #186297;
   --color-primary-200: #4681ac;
@@ -6,10 +10,86 @@
 
   --color-white: #faf9f6;
   --color-white-drk: #e1e0dd;
-  --color-black: #222;
 
   --color-deadline-soon: #ffbf00;
   --color-deadline-passed: #ee4b2b;
+
+  /* PRIMARY */
+  /*
+      [<  425px] SMALL (SMS)
+           Heading: var(--font-subheading-4);
+        Subheading: var(--font-md-2);
+         Font size: var(--font-sm-2);
+      [>= 425px] MEDIUM (MDS)
+           Heading: ;
+        Subheading: ;
+         Font size: ;
+      [>= 768px] LARGE (LGS)
+           Heading: var(--font-heading-4);
+        Subheading: var(--font-md-4);
+         Font size: var(--font-sm-3);
+      
+  */
+
+  --font-heading-lgs: var(--font-heading-4);
+  --font-heading-mds: var(--font-heading-2);
+  --font-heading-sms: var(--font-subheading-3);
+
+  --font-subheading-lgs: var(--font-md-4);
+  --font-subheading-mds: var(--font-md-2);
+  --font-subheading-sms: var(--font-md-1);
+
+  --font-text-lgs: var(--font-sm-3);
+  --font-text-mds: var(--font-sm-2);
+  --font-text-sms: var(--font-sm-1);
+  --font-text-xsms: var(--font-sm-0);
+
+  --font-error-lgs: var(--font-md-4);
+  --font-error-mds: 1;
+  --font-error-sms: var(--font-subheading-sms);
+
+  --color-border-outline: #e1e0dd;
+
+  --button-height-lgs: 3.7rem;
+  --button-height-mds: 3.5rem;
+  --button-height-sms: 3.3rem;
+
+  /* DEFAULT */
+
+  --color-shaded-bg: #000000b3;
+  --color-error: #ec5e63;
+
+  --color-black: #222;
+  --color-white: #f5f5f5;
+  --color-blue: #0095f6;
+  --color-red: #ff3a40;
+  --color-yellow: #ffbf00;
+
+  --font-heading-lg-3: 7.6rem;
+  --font-heading-lg-2: 7.3rem;
+  --font-heading-lg-1: 7rem;
+  --font-heading-4: 5.6rem;
+  --font-heading-3: 5.4rem;
+  --font-heading-2: 5.2rem;
+  --font-heading-1: 5rem;
+  --font-subheading-4: 4.6rem;
+  --font-subheading-3: 4.4rem;
+  --font-subheading-2: 4.2rem;
+  --font-subheading-1: 4rem;
+
+  --font-lg-4: 3.8rem;
+  --font-lg-3: 3.6rem;
+  --font-lg-2: 3.4rem;
+  --font-lg-1: 3.2rem;
+  --font-md-4: 2.8rem;
+  --font-md-3: 2.6rem;
+  --font-md-2: 2.4rem;
+  --font-md-1: 2.2rem;
+  --font-sm-4: 1.8rem;
+  --font-sm-3: 1.6rem;
+  --font-sm-2: 1.4rem;
+  --font-sm-1: 1.2rem;
+  --font-sm-0: 1rem;
 }
 
 * {
@@ -28,9 +108,71 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-#root {
-  max-width: 180rem;
-  height: 100vh;
+/* ============================================== */
+/* ====== INPUTS */
+/* ============================================== */
 
-  margin: 0 auto;
+input {
+  font-family: inherit;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* ============================================== */
+/* ====== LINKS */
+/* ============================================== */
+
+a {
+  font-family: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+/* ============================================== */
+/* ====== BUTTONS */
+/* ============================================== */
+
+button {
+  font-family: inherit;
+  font-weight: 500;
+  background: none;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+::file-selector-button {
+  font-family: inherit;
+  border: none;
+}
+
+button:hover,
+::file-selector-button:hover {
+  cursor: pointer;
+}
+
+/* ============================================== */
+/* ====== SCROLL STYLINGS */
+/* ============================================== */
+
+::-webkit-scrollbar {
+  width: 1.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* background-color: var(--color-btn-hover); */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* background: var(--color-border); */
 }

@@ -2,9 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import Landing from "./components/pages/welcome/Landing";
-import Register from "./components/pages/welcome/Register";
-import Login from "./components/pages/welcome/Login";
+import Landing from "./components/pages/auth/Landing";
+import Register from "./components/pages/auth/Register";
+import Login from "./components/pages/auth/Login";
 import Dashboard from "./components/pages/dashboard/Dashboard";
 import Home from "./components/pages/dashboard/Home";
 import Todo from "./components/pages/dashboard/Todo";
