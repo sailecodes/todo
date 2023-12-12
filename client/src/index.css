@@ -32,6 +32,8 @@
 
   --color-primary: #186297;
   --color-bg: var(--color-white);
+  --color-border: rgba(24, 98, 151, 0.2);
+
   --color-border-outline: #e1e0dd;
 
   --font-heading-auth-lgs: var(--font-heading-4);
@@ -112,6 +114,12 @@ body {
   background-color: var(--color-white);
 
   font-family: "Poppins", sans-serif;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ============================================== */

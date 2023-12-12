@@ -1,11 +1,9 @@
 import { useQueries } from "@tanstack/react-query";
 
-import Wrapper from "../../../styles/dashboard/HomeStyle";
 import axiosFetch from "../../../utils/axiosFetch";
 import styled from "styled-components";
 import ProgressIcon from "../../custom/icons/ProgressIcon";
 import ImportanceIcon from "../../custom/icons/ImportanceIcon";
-import DeadlineIcon from "../../custom/icons/DeadlineIcon";
 
 const Home = () => {
   const resultsArr = useQueries({
@@ -72,20 +70,22 @@ const Home = () => {
 export default Home;
 
 const HomeWrapper = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-
   padding: 2rem;
 
   overflow: hidden auto;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  width: 100%;
+
   @media (min-width: 600px) {
     display: grid;
-    grid-template-columns: 27rem 27rem;
-    grid-template-rows: 20rem 20rem;
+    grid-template-columns: repeat(2, 27rem);
+    grid-template-rows: repeat(2, 20rem);
+    justify-content: center;
   }
 
   @media (min-width: 768px) {
@@ -141,8 +141,8 @@ const ProductivityCardWrapper = styled.div`
   .productivity-card--square-icon {
     background-color: var(--color-white);
 
-    width: 2.1rem;
-    height: 2.1rem;
+    width: 1.8rem;
+    height: 1.8rem;
 
     border-radius: 5px;
   }
@@ -153,7 +153,7 @@ const ProductivityCardWrapper = styled.div`
   }
 
   .productivity-card--stat {
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
 
   > div {
@@ -183,11 +183,11 @@ const ProductivityCardWrapper = styled.div`
     }
 
     .productivity-card--title {
-      font-size: 2.1rem;
+      font-size: 2.3rem;
     }
 
     .productivity-card--stat {
-      font-size: 3.4rem;
+      font-size: 3.2rem;
     }
 
     > div {
@@ -205,12 +205,9 @@ const ProductivityCardWrapper = styled.div`
   }
 
   @media (min-width: 600px) {
-    width: auto;
-
     align-self: flex-end;
-  }
 
-  @media (min-width: 1024px) {
+    width: auto;
   }
 `;
 
@@ -258,7 +255,7 @@ const ComingCardWrapper = styled.div`
     }
 
     .coming-card--title {
-      font-size: 2.1rem;
+      font-size: 2.3rem;
       font-weight: 500;
     }
   }
@@ -289,13 +286,6 @@ const TodoCard = ({ title, data }) => {
             stroke="var(--color-black)"
           />
           <p className="todo-card-meta-text">Halfway there</p>
-        </div>
-        <div>
-          <DeadlineIcon
-            fill="var(--color-red)"
-            stroke="var(--color-black)"
-          />
-          <p className="todo-card-meta-text">Jan 28, 2023</p>
         </div>
       </div>
     </TodoCardWrapper>
@@ -365,7 +355,7 @@ const TodoCardWrapper = styled.div`
   }
 
   .todo-card-meta-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   @media (min-width: 425px) {

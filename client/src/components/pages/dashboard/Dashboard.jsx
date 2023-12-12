@@ -15,13 +15,36 @@ const DashboardWrapper = styled.div`
   background-color: var(--color-bg);
 
   height: 100vh;
+  width: 100%;
 
-  .dashboard--tagline {
+  overflow: hidden;
+
+  > header {
     display: none;
   }
 
   @media (min-width: 768px) {
     grid-template-columns: 14rem 1fr;
+
+    > header {
+      grid-column: 1 / -1;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: var(--color-primary);
+      gap: 5rem;
+
+      border-bottom: 1px solid var(--color-border);
+      padding: 2rem;
+    }
+
+    .dashboard--logo {
+      font-size: var(--font-heading-main-lgs);
+      font-weight: 500;
+      letter-spacing: -1px;
+    }
 
     .dashboard--tagline {
       grid-column: 2;
@@ -30,12 +53,8 @@ const DashboardWrapper = styled.div`
       display: flex;
       align-items: center;
 
-      color: var(--color-primary);
-
       font-size: 2.3rem;
       font-weight: 500;
-
-      padding: 0 2rem;
     }
   }
 `;
@@ -43,43 +62,15 @@ const DashboardWrapper = styled.div`
 const Dashboard = () => {
   return (
     <DashboardWrapper>
-      <p className="dashboard--tagline">Procrastinating, what&apos;s that?</p>
+      <header>
+        <p className="dashboard--logo">TodoIV</p>
+        <p className="dashboard--tagline">Procrastinating, what&apos;s that?</p>
+      </header>
       <DashboardSideNav />
       <DashboardTopNav />
       <Outlet />
     </DashboardWrapper>
   );
-
-  // return (
-  //   <Wrapper>
-  //     <nav className="dashboard--side-nav">
-  //       <p className="dashboard--side-nav-logo">IV</p>
-  //       <div>
-  //         <DashboardSideNavLink
-  //           path=""
-  //           end={true}
-  //           linkName="Home"
-  //         />
-  //         <DashboardSideNavLink
-  //           path="/todos"
-  //           end={false}
-  //           linkName="Todos"
-  //         />
-  //       </div>
-  //     </nav>
-  //     <nav className="dashboard--top-nav">
-  //       <p>Procrastinating...what&apos;s that?</p>
-  //       <div>
-  //         <button
-  //           className="dashboard--logout-btn"
-  //           onClick={mutate}>
-  //           Logout
-  //         </button>
-  //       </div>
-  //     </nav>
-  //     <Outlet />
-  //   </Wrapper>
-  // );
 };
 
 const DashboardSideNavWrapper = styled.nav`
@@ -91,21 +82,14 @@ const DashboardSideNavWrapper = styled.nav`
     align-items: center;
     gap: 5rem;
 
-    grid-row: 1 / -1;
+    grid-row: 2 / -1;
     grid-column: 1;
 
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    color: var(--color-primary);
 
     height: 100vh;
 
-    padding: 1rem;
-
-    .dashboard-side-nav--logo {
-      font-size: var(--font-heading-main-lgs);
-      font-weight: 500;
-      letter-spacing: -1px;
-    }
+    padding: 2rem;
 
     .dashboard-side-nav--links {
       display: flex;
@@ -119,7 +103,7 @@ const DashboardSideNavWrapper = styled.nav`
       display: grid;
       place-items: center;
 
-      color: var(--color-white);
+      color: var(--color-primary);
 
       height: 3.2rem;
       width: 9.5rem;
@@ -131,19 +115,17 @@ const DashboardSideNavWrapper = styled.nav`
     }
 
     .dashboard-side-nav--links a.active {
-      background-color: var(--color-white);
+      background-color: var(--color-border-outline);
       color: var(--color-primary);
     }
 
     .dashboard-side-nav--logout-btn {
-      color: var(--color-white);
+      color: var(--color-primary);
 
       height: 3rem;
       width: 10rem;
 
       font-size: var(--font-text-lgs);
-
-      margin-top: auto;
     }
   }
 `;
@@ -162,7 +144,6 @@ const DashboardSideNav = () => {
 
   return (
     <DashboardSideNavWrapper>
-      <p className="dashboard-side-nav--logo">TodoIV</p>
       <div className="dashboard-side-nav--links">
         <NavLink
           to="/dashboard"
@@ -191,10 +172,10 @@ const DashboardTopNavWrapper = styled.nav`
 
   grid-row: 1;
 
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-primary);
 
-  padding: 0 2rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--color-border);
 
   .dashboard-top-nav--logo {
     font-size: var(--font-heading-main-sms);
@@ -236,7 +217,7 @@ const DashboardTopNav = () => {
     <DashboardTopNavWrapper>
       <p className="dashboard-top-nav--logo">TodoIV</p>
       <button onClick={handlePopupToggle}>
-        <PopupIcon fill="var(--color-white)" />
+        <PopupIcon fill="var(--color-primary)" />
       </button>
       {/* <DashboardTopNavPopup isPopupToggled={isPopupToggled} /> */}
     </DashboardTopNavWrapper>
