@@ -10,7 +10,7 @@ const AuthInputWrapper = styled.div`
     width: 25.7rem;
 
     padding: 0 1rem;
-    border: 1px solid var(--color-border-outline);
+    border: 1px solid var(--color-auth-border);
     border-radius: 7.5px;
   }
 
@@ -25,7 +25,7 @@ const AuthInputWrapper = styled.div`
 
   @media (min-width: 425px) {
     input {
-      font-size: var(--font-text-lgs);
+      font-size: var(--font-auth-text-lg);
 
       height: 4rem;
       width: 34.5rem;

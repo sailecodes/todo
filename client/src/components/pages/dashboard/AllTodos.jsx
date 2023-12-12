@@ -1,9 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 
-import Wrapper from "../../../styles/dashboard/TodoPageContentStyle";
 import axiosFetch from "../../../utils/axiosFetch";
 import Loading from "../../helpers/dashboard/Loading";
 import TodoCard from "../../helpers/dashboard/TodoCard";
+
+import styled from "styled-components";
+const AllTodosWrapper = styled.main`
+  max-width: 89rem;
+
+  padding: 2rem;
+`;
 
 const AllTodos = () => {
   const { data, isPending, isError } = useQuery({
@@ -20,26 +26,28 @@ const AllTodos = () => {
 
   if (isError) return <div>error...</div>;
 
-  return (
-    <Wrapper>
-      {data.map((todo) => {
-        return (
-          <TodoCard
-            key={todo._id}
-            cardTitle="Todo"
-            reminder={todo.reminder}
-            todoId={todo._id}
-            title={todo.title}
-            description={todo.description}
-            importance={todo.importance}
-            progress={todo.progress}
-            deadline={todo.deadline}
-            isPending={false}
-            isModifiable={true}
-          />
-        );
-      })}
-    </Wrapper>
-  );
+  return <AllTodosWrapper>Hello</AllTodosWrapper>;
+
+  // return (
+  //   <Wrapper>
+  //     {data.map((todo) => {
+  //       return (
+  //         <TodoCard
+  //           key={todo._id}
+  //           cardTitle="Todo"
+  //           reminder={todo.reminder}
+  //           todoId={todo._id}
+  //           title={todo.title}
+  //           description={todo.description}
+  //           importance={todo.importance}
+  //           progress={todo.progress}
+  //           deadline={todo.deadline}
+  //           isPending={false}
+  //           isModifiable={true}
+  //         />
+  //       );
+  //     })}
+  //   </Wrapper>
+  // );
 };
 export default AllTodos;

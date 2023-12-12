@@ -39,27 +39,20 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "todos",
-        element: <Todo />,
-        children: [
-          {
-            index: true,
-            element: <DailyTodos />,
-          },
-          {
-            path: "all",
-            element: <AllTodos />,
-          },
-          {
-            path: "create",
-            element: <CreateTodo />,
-          },
-          {
-            path: "edit/:id",
-            element: <EditTodo />,
-            loader: editTodoLoader,
-          },
-        ],
+        path: "All",
+        element: <AllTodos />,
+      },
+      {
+        path: "Daily",
+        element: <DailyTodos />,
+      },
+      {
+        path: "Create",
+        element: <CreateTodo />,
+      },
+      {
+        path: "Edit",
+        element: <EditTodo />,
       },
     ],
   },

@@ -12,14 +12,14 @@ const AuthErrorsWrapper = styled.div`
   p {
     color: var(--color-error);
 
-    font-size: var(--font-text-xsms);
+    font-size: var(--font-auth-error-sm);
   }
 
   @media (min-width: 425px) {
     height: 10rem;
 
     p {
-      font-size: var(--font-text-mds);
+      font-size: var(--font-auth-error-lg);
     }
   }
 `;

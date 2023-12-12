@@ -9,9 +9,6 @@
 
   --color-white-drk: #e1e0dd;
 
-  --color-deadline-soon: #ffbf00;
-  --color-deadline-passed: #ee4b2b;
-
   /* PRIMARY */
   /*
     [<  425px] SMALL (SMS)
@@ -28,12 +25,6 @@
       Font size: var(--font-sm-3);
     [>= 1268px] X-LARGE
   */
-
-  --color-primary: #186297;
-  --color-bg: var(--color-white);
-  --color-border: rgba(24, 98, 151, 0.2);
-
-  --color-border-outline: #e1e0dd;
 
   --font-heading-auth-lgs: var(--font-heading-4);
   --font-heading-auth-mds: var(--font-heading-2);
@@ -52,15 +43,29 @@
   --font-text-sms: var(--font-sm-1);
   --font-text-xsms: var(--font-sm-0);
 
-  --button-height-lgs: 3.7rem;
-  --button-height-mds: 3.5rem;
-  --button-height-sms: 3.3rem;
-
   --svg-dim-lgs: 3rem;
   --svg-dim-mds: 0;
   --svg-dim-sms: 2.5rem;
 
   /*  -----------  */
+
+  --color-primary: #186297;
+  --color-bg: var(--color-white);
+  --color-border: rgba(24, 98, 151, 0.2);
+  --color-auth-border: #e1e0dd;
+  --color-error: #ec5e63;
+
+  --font-auth-heading-lg: 5.6rem;
+  --font-auth-heading-sm: 4.4rem;
+
+  --font-auth-subheading-lg: 2.8rem;
+  --font-auth-subheading-sm: 2.2rem;
+
+  --font-auth-text-lg: 1.6rem;
+  --font-auth-text-sm: 1.2rem;
+
+  --font-auth-error-lg: 1.4rem;
+  --font-auth-error-sm: 1rem;
 
   --font-heading-lg: 3.2rem;
   --font-heading-sm: 2.6rem;
@@ -80,10 +85,13 @@
   --size-svg-lg: 2.4rem;
   --size-svg-sm: 2.2rem;
 
+  --button-height-lgs: 3.7rem;
+  --button-height-mds: 3.5rem;
+  --button-height-sms: 3.3rem;
+
   /* DEFAULT */
 
   --color-popup-bg: #000000b3;
-  --color-error: #ec5e63;
 
   --color-gray: #a8a8a8;
   --color-black: #222;

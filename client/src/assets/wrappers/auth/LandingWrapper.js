@@ -11,18 +11,17 @@ const LandingWrapper = styled.section`
 
   padding: 2rem;
 
-  .landing--container {
-  }
-
   .landing--title {
-    font-size: var(--font-heading-auth-sms);
+    font-size: var(--font-auth-heading-sm);
     font-weight: 600;
     text-align: center;
     letter-spacing: -2px;
   }
 
   .landing--tag {
-    font-size: var(--font-subheading-sms);
+    width: 30rem;
+
+    font-size: var(--font-auth-subheading-sm);
     text-align: center;
 
     margin-bottom: 4rem;
@@ -46,7 +45,7 @@ const LandingWrapper = styled.section`
     height: var(--button-height-sms);
     width: 8rem;
 
-    font-size: var(--font-text-sms);
+    font-size: var(--font-auth-text-sm);
     font-weight: 500;
 
     border-radius: 7.5px;
@@ -55,7 +54,7 @@ const LandingWrapper = styled.section`
   .landing--link-container a:nth-child(1) {
     color: var(--color-black);
 
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-black);
   }
 
   .landing--link-container a:nth-child(2) {
@@ -65,11 +64,13 @@ const LandingWrapper = styled.section`
 
   @media (min-width: 570px) {
     .landing--title {
-      font-size: var(--font-heading-auth-lgs);
+      font-size: var(--font-auth-heading-lg);
     }
 
     .landing--tag {
-      font-size: var(--font-subheading-lgs);
+      width: auto;
+
+      font-size: var(--font-auth-subheading-lg);
     }
 
     .landing--link-container a {

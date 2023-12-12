@@ -22,7 +22,7 @@ const AuthWrapper = styled.section`
   }
 
   .auth--logo {
-    font-size: var(--font-heading-auth-sms);
+    font-size: var(--font-auth-heading-sm);
     font-weight: 600;
     text-align: center;
     letter-spacing: -2px;
@@ -35,7 +35,7 @@ const AuthWrapper = styled.section`
   .auth--redirect {
     width: 25.7rem;
 
-    font-size: var(--font-text-sms);
+    font-size: var(--font-auth-text-sm);
     text-align: center;
   }
 
@@ -45,7 +45,7 @@ const AuthWrapper = styled.section`
 
   @media (min-width: 425px) {
     .auth--logo {
-      font-size: var(--font-heading-auth-lgs);
+      font-size: var(--font-auth-heading-lg);
       letter-spacing: -2px;
     }
 
@@ -56,7 +56,7 @@ const AuthWrapper = styled.section`
     .auth--redirect {
       width: 34.5rem;
 
-      font-size: var(--font-text-lgs);
+      font-size: var(--font-auth-text-lg);
     }
   }
 `;

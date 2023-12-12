@@ -28,7 +28,7 @@ const DashboardWrapper = styled.div`
     display: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     grid-template-columns: 19rem 1fr;
 
     > header {
@@ -86,7 +86,7 @@ const Dashboard = () => {
 const DashboardSideNavWrapper = styled.nav`
   display: none;
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -94,8 +94,6 @@ const DashboardSideNavWrapper = styled.nav`
 
     grid-row: 2 / -1;
     grid-column: 1;
-
-    color: var(--color-primary);
 
     height: 100vh;
 
@@ -132,7 +130,7 @@ const DashboardSideNavWrapper = styled.nav`
     }
 
     .dashboard-side-nav--links a.active {
-      background-color: var(--color-border-outline);
+      background-color: var(--color-auth-border);
       color: var(--color-primary);
     }
 
@@ -234,7 +232,7 @@ const DashboardTopNavWrapper = styled.nav`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     display: none;
   }
 `;
