@@ -7,7 +7,6 @@
   --color-primary-300: #74a1c1;
   --color-primary-400: #8cb1cb;
 
-  --color-white: #faf9f6;
   --color-white-drk: #e1e0dd;
 
   --color-deadline-soon: #ffbf00;
@@ -61,11 +60,32 @@
   --svg-dim-mds: 0;
   --svg-dim-sms: 2.5rem;
 
+  /*  -----------  */
+
+  --font-heading-lg: 3.2rem;
+  --font-heading-sm: 2.6rem;
+
+  --font-subheading-lg: 2.3rem;
+  --font-subheading-sm: 1.8rem;
+
+  --font-nav-lg: 1.8rem;
+  --font-nav-sm: 0;
+
+  --font-text-lg: 1.2rem;
+  --font-text-sm: 1.1rem;
+
+  --size-icon-lg: 3.6rem;
+  --size-icon-sm: 3.3rem;
+
+  --size-svg-lg: 2.4rem;
+  --size-svg-sm: 2.2rem;
+
   /* DEFAULT */
 
   --color-popup-bg: #000000b3;
   --color-error: #ec5e63;
 
+  --color-gray: #a8a8a8;
   --color-black: #222;
   --color-white: #f5f5f5;
   --color-blue: #0095f6;
@@ -116,10 +136,15 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-#root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media (min-width: 1078px) {
+  #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 130rem;
+    margin: 0 auto;
+  }
 }
 
 /* ============================================== */

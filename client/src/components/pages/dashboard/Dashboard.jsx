@@ -7,6 +7,12 @@ import PopupIcon from "../../custom/icons/PopupIcon";
 import ReturnIcon from "../../custom/icons/ReturnIcon";
 
 import styled from "styled-components";
+import HomeIcon from "../../custom/icons/HomeIcon";
+import CreateIcon from "../../custom/icons/CreateIcon";
+import LogoutIcon from "../../custom/icons/LogoutIcon";
+import AllIcon from "../../custom/icons/AllIcon";
+import DailyIcon from "../../custom/icons/DailyIcon";
+import Footer from "../../custom/dashboard/Footer";
 
 const DashboardWrapper = styled.div`
   display: grid;
@@ -15,7 +21,6 @@ const DashboardWrapper = styled.div`
   background-color: var(--color-bg);
 
   height: 100vh;
-  width: 100%;
 
   overflow: hidden;
 
@@ -24,7 +29,7 @@ const DashboardWrapper = styled.div`
   }
 
   @media (min-width: 768px) {
-    grid-template-columns: 14rem 1fr;
+    grid-template-columns: 19rem 1fr;
 
     > header {
       grid-column: 1 / -1;
@@ -57,6 +62,10 @@ const DashboardWrapper = styled.div`
       font-weight: 500;
     }
   }
+
+  @media (min-width: 1440px) {
+    grid-template-columns: 19rem 1fr 21rem;
+  }
 `;
 
 const Dashboard = () => {
@@ -69,6 +78,7 @@ const Dashboard = () => {
       <DashboardSideNav />
       <DashboardTopNav />
       <Outlet />
+      <Footer />
     </DashboardWrapper>
   );
 };
@@ -79,7 +89,7 @@ const DashboardSideNavWrapper = styled.nav`
   @media (min-width: 768px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 5rem;
 
     grid-row: 2 / -1;
@@ -99,19 +109,26 @@ const DashboardSideNavWrapper = styled.nav`
       height: 100%;
     }
 
+    .dashboard-side-nav--links svg {
+      width: 3rem;
+      height: auto;
+    }
+
     .dashboard-side-nav--links a {
-      display: grid;
-      place-items: center;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
 
       color: var(--color-primary);
 
-      height: 3.2rem;
-      width: 9.5rem;
+      height: 4rem;
+      width: 15rem;
 
-      font-size: var(--font-text-lgs);
+      font-size: 1.8rem;
       font-weight: 500;
 
-      border-radius: 4px;
+      padding: 0 1rem;
+      border-radius: 5px;
     }
 
     .dashboard-side-nav--links a.active {
@@ -120,12 +137,18 @@ const DashboardSideNavWrapper = styled.nav`
     }
 
     .dashboard-side-nav--logout-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
       color: var(--color-primary);
 
-      height: 3rem;
-      width: 10rem;
+      height: 4rem;
+      width: 15rem;
 
-      font-size: var(--font-text-lgs);
+      font-size: 1.8rem;
+
+      padding: 0 1rem;
     }
   }
 `;
@@ -148,14 +171,21 @@ const DashboardSideNav = () => {
         <NavLink
           to="/dashboard"
           end>
-          Home
+          <HomeIcon fill="var(--color-primary)" /> Home
         </NavLink>
-        <NavLink to="/dashboard/all">All</NavLink>
-        <NavLink to="/dashboard/daily">Daily</NavLink>
-        <NavLink to="/dashboard/create">Create</NavLink>
+        <NavLink to="/dashboard/all">
+          <AllIcon fill="var(--color-primary)" /> All
+        </NavLink>
+        <NavLink to="/dashboard/daily">
+          <DailyIcon fill="var(--color-primary)" /> Daily
+        </NavLink>
+        <NavLink to="/dashboard/create">
+          <CreateIcon fill="var(--color-primary)" /> Create
+        </NavLink>
         <button
           className="dashboard-side-nav--logout-btn"
           onClick={() => logout.mutate()}>
+          <LogoutIcon fill="var(--color-primary)" />
           Logout
         </button>
       </div>

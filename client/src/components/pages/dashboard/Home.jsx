@@ -6,7 +6,7 @@ import ProgressIcon from "../../custom/icons/ProgressIcon";
 import ImportanceIcon from "../../custom/icons/ImportanceIcon";
 
 const Home = () => {
-  const resultsArr = useQueries({
+  const todosResults = useQueries({
     queries: [
       {
         queryKey: ["todos", "finished"],
@@ -93,7 +93,7 @@ const HomeWrapper = styled.main`
     grid-row: 2 / -1;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1055px) {
     grid-template-columns: repeat(3, 27rem);
   }
 `;
@@ -141,19 +141,19 @@ const ProductivityCardWrapper = styled.div`
   .productivity-card--square-icon {
     background-color: var(--color-white);
 
-    width: 1.8rem;
-    height: 1.8rem;
+    width: var(--font-subheading-sm);
+    height: var(--font-subheading-sm);
 
     border-radius: 5px;
   }
 
   .productivity-card--title {
-    font-size: 1.8rem;
+    font-size: var(--font-subheading-sm);
     font-weight: 500;
   }
 
   .productivity-card--stat {
-    font-size: 2.6rem;
+    font-size: var(--font-heading-sm);
   }
 
   > div {
@@ -162,11 +162,11 @@ const ProductivityCardWrapper = styled.div`
   }
 
   .productivity-card--total {
-    font-size: 1.1rem;
+    font-size: var(--font-text-sm);
   }
 
   .productivity-card--icon {
-    font-size: 3.3rem;
+    font-size: var(--size-icon-sm);
 
     margin-left: auto;
   }
@@ -178,16 +178,16 @@ const ProductivityCardWrapper = styled.div`
     height: 20rem;
 
     .productivity-card--square-icon {
-      width: 2.3rem;
-      height: 2.3rem;
+      width: var(--font-subheading-lg);
+      height: var(--font-subheading-lg);
     }
 
     .productivity-card--title {
-      font-size: 2.3rem;
+      font-size: var(--font-subheading-lg);
     }
 
     .productivity-card--stat {
-      font-size: 3.2rem;
+      font-size: var(--font-heading-lg);
     }
 
     > div {
@@ -196,11 +196,11 @@ const ProductivityCardWrapper = styled.div`
     }
 
     .productivity-card--total {
-      font-size: 1.2rem;
+      font-size: var(--font-text-lg);
     }
 
     .productivity-card--icon {
-      font-size: 3.6rem;
+      font-size: var(--size-icon-lg);
     }
   }
 
@@ -225,7 +225,7 @@ const ComingCard = ({ data }) => {
 const ComingCardWrapper = styled.div`
   display: none;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1055px) {
     display: unset;
 
     height: 100%;
@@ -248,14 +248,14 @@ const ComingCardWrapper = styled.div`
     .coming-card--square-icon {
       background-color: var(--color-white);
 
-      width: 2.3rem;
-      height: 2.3rem;
+      width: var(--font-subheading-lg);
+      height: var(--font-subheading-lg);
 
       border-radius: 5px;
     }
 
     .coming-card--title {
-      font-size: 2.3rem;
+      font-size: var(--font-subheading-lg);
       font-weight: 500;
     }
   }
@@ -316,25 +316,25 @@ const TodoCardWrapper = styled.div`
   .todo-card--square-icon {
     background-color: var(--color-white);
 
-    width: 2.1rem;
-    height: 2.1rem;
+    width: var(--font-subheading-sm);
+    height: var(--font-subheading-sm);
 
     border-radius: 5px;
   }
 
   .todo-card--title {
-    font-size: 1.8rem;
+    font-size: var(--font-subheading-sm);
     font-weight: 500;
   }
 
   .todo-card--name {
-    font-size: 2.2rem;
+    font-size: var(--font-heading-sm);
   }
 
   .todo-card--description {
     display: none;
 
-    font-size: 1.2rem;
+    font-size: var(--font-text-lg);
   }
 
   .todo-card--meta {
@@ -350,12 +350,12 @@ const TodoCardWrapper = styled.div`
   }
 
   .todo-card--meta svg {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: var(--size-svg-sm);
+    height: var(--size-svg-sm);
   }
 
   .todo-card-meta-text {
-    font-size: 1.1rem;
+    font-size: var(--font-text-sm);
   }
 
   @media (min-width: 425px) {
@@ -365,31 +365,31 @@ const TodoCardWrapper = styled.div`
     height: 20rem;
 
     .todo-card--square-icon {
-      width: 2.3rem;
-      height: 2.3rem;
+      width: var(--font-subheading-lg);
+      height: var(--font-subheading-lg);
     }
 
     .todo-card--title {
-      font-size: 2.1rem;
+      font-size: var(--font-subheading-lg);
     }
 
     .todo-card--name {
-      font-size: 2.9rem;
+      font-size: var(--font-heading-lg);
     }
 
     .todo-card--description {
       display: unset;
 
-      font-size: 1.2rem;
+      font-size: var(--font-text-lg);
     }
 
     .todo-card--meta svg {
-      width: 2.4rem;
-      height: 2.4rem;
+      width: var(--size-svg-lg);
+      height: var(--size-svg-lg);
     }
 
     .todo-card-meta-text {
-      font-size: 1.2rem;
+      font-size: var(--font-text-lg);
     }
   }
 
@@ -401,39 +401,7 @@ const TodoCardWrapper = styled.div`
     align-self: flex-start;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1055px) {
     grid-column: 1 / span 2;
   }
 `;
-
-{
-  /* <ProductivityCard
-        cardTitle="Finished todos"
-        todosCount={resultsArr[0].data}
-        isLoading={resultsArr[0].isPending}
-      />
-      <ProductivityCard
-        cardTitle="Missed todos"
-        todosCount={resultsArr[1].data}
-        isLoading={resultsArr[1].isPending}
-      />
-      <ComingCard
-        cardTitle="Coming todos"
-        comingTodos={resultsArr[2].data}
-        isLoading={resultsArr[2].isPending}
-      />
-      <TodoCard
-        cardTitle="Newest todo"
-        reminder={resultsArr[3].data?.reminder}
-        title={resultsArr[3].data?.title}
-        description={resultsArr[3].data?.description}
-        importance={resultsArr[3].data?.importance}
-        progress={resultsArr[3].data?.progress}
-        deadline={resultsArr[3].data?.deadline}
-        isPending={resultsArr[3].isPending}
-        isModifiable={false}
-      />
-      <NonDataCard cardTitle="Create todo" />
-      <NonDataCard cardTitle="See daily todos" />
-      <NonDataCard cardTitle="See all todos" /> */
-}
