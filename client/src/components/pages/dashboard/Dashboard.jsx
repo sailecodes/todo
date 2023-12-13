@@ -5,14 +5,14 @@ import { useState } from "react";
 import axiosFetch from "../../../utils/axiosFetch";
 import PopupIcon from "../../custom/icons/PopupIcon";
 import ReturnIcon from "../../custom/icons/ReturnIcon";
-
-import styled from "styled-components";
 import HomeIcon from "../../custom/icons/HomeIcon";
 import CreateIcon from "../../custom/icons/CreateIcon";
 import LogoutIcon from "../../custom/icons/LogoutIcon";
 import AllIcon from "../../custom/icons/AllIcon";
 import DailyIcon from "../../custom/icons/DailyIcon";
 import Footer from "../../custom/dashboard/Footer";
+
+import styled from "styled-components";
 
 const DashboardWrapper = styled.div`
   display: grid;

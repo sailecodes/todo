@@ -63,7 +63,10 @@ const Home = () => {
         total={12}
         statIcon={"❌"}
       />
-      <TodoCard title="Newest todo" />
+      <TodoCard
+        isHome={true}
+        title="Newest todo"
+      />
       <ComingCard />
     </HomeWrapper>
   );
@@ -81,13 +84,26 @@ const HomeWrapper = styled.main`
   align-items: center;
   gap: 2rem;
 
-  width: 100%;
-
   @media (min-width: 600px) {
     display: grid;
     grid-template-columns: repeat(2, 27rem);
     grid-template-rows: repeat(2, 20rem);
+    grid-template-areas:
+      "finished missed"
+      "newest newest";
     justify-content: center;
+
+    > div:nth-child(1) {
+      grid-area: finished;
+    }
+
+    > div:nth-child(2) {
+      grid-area: missed;
+    }
+
+    > div:nth-child(3) {
+      grid-area: newest;
+    }
   }
 
   @media (min-width: 800px) {
@@ -97,5 +113,24 @@ const HomeWrapper = styled.main`
 
   @media (min-width: 1055px) {
     grid-template-columns: repeat(3, 27rem);
+    grid-template-areas:
+      "finished missed coming"
+      "newest newest coming";
+
+    > div:nth-child(2) {
+      grid-area: finished;
+    }
+
+    > div:nth-child(1) {
+      grid-area: missed;
+    }
+
+    > div:nth-child(3) {
+      grid-area: newest;
+    }
+
+    > div:nth-child(4) {
+      grid-area: coming;
+    }
   }
 `;

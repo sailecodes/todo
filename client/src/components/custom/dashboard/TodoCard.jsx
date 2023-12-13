@@ -1,14 +1,34 @@
 import ImportanceIcon from "../icons/ImportanceIcon";
 import ProgressIcon from "../icons/ProgressIcon";
+import EditIcon from "../icons/EditIcon";
+import DeleteIcon from "../icons/DeleteIcon";
 
 import styled from "styled-components";
 
-const TodoCard = ({ title, data }) => {
+const TodoCard = ({ isHome, title, data }) => {
   return (
     <TodoCardWrapper>
       <header>
-        <div className="todo-card--square-icon"></div>
-        <p className="todo-card--title">{title}</p>
+        <div>
+          <div className="todo-card--square-icon"></div>
+          <p className="todo-card--title">{title}</p>
+        </div>
+        {!isHome && (
+          <div>
+            <button>
+              <EditIcon
+                fill="lightgreen"
+                stroke="var(--color-black)"
+              />
+            </button>
+            <button>
+              <DeleteIcon
+                fill="var(--color-red)"
+                stroke="var(--color-black)"
+              />
+            </button>
+          </div>
+        )}
       </header>
       <div>
         {/* .substring(0, 30) <-- .substring(0, 17) */}
@@ -45,15 +65,39 @@ const TodoCardWrapper = styled.div`
   color: var(--color-white);
 
   width: 30rem;
+  max-width: 56rem;
   height: 15rem;
 
   padding: 1.5rem;
   border-radius: 8px;
 
+  svg {
+    width: var(--size-svg-sm);
+    height: var(--size-svg-sm);
+  }
+
   > header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
+  }
+
+  > header > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  > header > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  > header > div:nth-child(2) button {
+    display: grid;
+    place-items: center;
   }
 
   .todo-card--square-icon {
@@ -92,11 +136,6 @@ const TodoCardWrapper = styled.div`
     gap: 0.3rem;
   }
 
-  .todo-card--meta svg {
-    width: var(--size-svg-sm);
-    height: var(--size-svg-sm);
-  }
-
   .todo-card--meta-text {
     font-size: var(--font-text-sm);
   }
@@ -106,6 +145,11 @@ const TodoCardWrapper = styled.div`
 
     width: 35rem;
     height: 20rem;
+
+    svg {
+      width: var(--size-svg-lg);
+      height: var(--size-svg-lg);
+    }
 
     .todo-card--square-icon {
       width: var(--font-subheading-lg);
@@ -128,11 +172,6 @@ const TodoCardWrapper = styled.div`
 
     .todo-card--meta {
       gap: 2rem;
-    }
-
-    .todo-card--meta svg {
-      width: var(--size-svg-lg);
-      height: var(--size-svg-lg);
     }
 
     .todo-card--meta-text {
