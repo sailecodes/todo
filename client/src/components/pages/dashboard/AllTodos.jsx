@@ -15,6 +15,8 @@ const AllTodosWrapper = styled.main`
 
   padding: 2rem;
 
+  overflow-y: auto;
+
   .error-container {
     display: grid;
     place-items: center;
@@ -85,7 +87,7 @@ const AllTodos = () => {
 
   return (
     <AllTodosWrapper>
-      {allTodos.isError && (
+      {/* {allTodos.isError && (
         <div className="error-container">
           <p>Whoops, an error occurred.</p>
         </div>
@@ -112,7 +114,25 @@ const AllTodos = () => {
             />
           </div>
         </>
-      )}
+      )} */}
+      <div className="all-todos--todo-container">
+        <TodoCard
+          isHome={false}
+          title="Todo"
+        />
+      </div>
+      <div className="all-todos--todo-container">
+        <TodoCard
+          isHome={false}
+          title="Todo"
+        />
+      </div>
+      <div className="all-todos--todo-container">
+        <TodoCard
+          isHome={false}
+          title="Todo"
+        />
+      </div>
     </AllTodosWrapper>
   );
 };
