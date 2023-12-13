@@ -1,4 +1,4 @@
-const AllIcon = ({ fill, stroke }) => {
+const AllIcon = ({ fill = "none", stroke = "none" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

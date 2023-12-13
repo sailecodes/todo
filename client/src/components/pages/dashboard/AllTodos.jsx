@@ -7,7 +7,7 @@ import axiosFetch from "../../../utils/axiosFetch";
 import Loading from "../../helpers/dashboard/Loading";
 import TodoCard from "../../custom/dashboard/TodoCard";
 
-const AllTodosWrapper = styled.main`
+const TodosWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,9 +32,9 @@ const AllTodosWrapper = styled.main`
   }
 
   @media (min-width: 600px) {
-    .all-todos--todo-container {
+    .todos--todo-container {
       display: grid;
-      grid-template-columns: repeat(2, 27rem);
+      grid-template-columns: repeat(2, 28rem);
       grid-auto-rows: 20rem;
       justify-content: center;
     }
@@ -50,21 +50,20 @@ const AllTodosWrapper = styled.main`
   }
 
   @media (min-width: 1055px) {
-    .all-todos--todo-container {
+    .error-container,
+    .todos--todo-container {
       grid-template-columns: 14.5rem 56rem 14.5rem;
       grid-auto-rows: 20rem;
       grid-template-areas: ". todo .";
     }
 
-    .error-container {
-      grid-template-columns: 14.5rem 56rem 14.5rem;
-      grid-auto-rows: 100%;
-      grid-template-areas: ". todo .";
+    .error-container p,
+    .todos--todo-container > div {
+      grid-area: todo;
     }
 
-    .error-container p,
-    .all-todos--todo-container > div {
-      grid-area: todo;
+    .error-container {
+      grid-auto-rows: 100%;
     }
 
     .error-container p {
@@ -81,12 +80,12 @@ const AllTodos = () => {
       const {
         data: { data },
       } = await axiosFetch.get("/todos");
-      return data ? data : [{ reminder: "*Robot noises* No todos found beep boop. Make one!" }];
+      return data;
     },
   });
 
   return (
-    <AllTodosWrapper>
+    <TodosWrapper>
       {/* {allTodos.isError && (
         <div className="error-container">
           <p>Whoops, an error occurred.</p>
@@ -95,19 +94,19 @@ const AllTodos = () => {
       {allTodos.isPending && <PulseLoader color="var(--color-primary)" />}
       {!allTodos.isError && !allTodos.isPending && (
         <>
-          <div className="all-todos--todo-container">
+          <div className="todos--todo-container">
             <TodoCard
               isHome={false}
               title="Todo"
             />
           </div>
-          <div className="all-todos--todo-container">
+          <div className="todos--todo-container">
             <TodoCard
               isHome={false}
               title="Todo"
             />
           </div>
-          <div className="all-todos--todo-container">
+          <div className="todos--todo-container">
             <TodoCard
               isHome={false}
               title="Todo"
@@ -115,25 +114,25 @@ const AllTodos = () => {
           </div>
         </>
       )} */}
-      <div className="all-todos--todo-container">
+      <div className="todos--todo-container">
         <TodoCard
           isHome={false}
-          title="Todo"
+          title="All"
         />
       </div>
-      <div className="all-todos--todo-container">
+      <div className="todos--todo-container">
         <TodoCard
           isHome={false}
-          title="Todo"
+          title="All"
         />
       </div>
-      <div className="all-todos--todo-container">
+      <div className="todos--todo-container">
         <TodoCard
           isHome={false}
-          title="Todo"
+          title="All"
         />
       </div>
-    </AllTodosWrapper>
+    </TodosWrapper>
   );
 };
 export default AllTodos;

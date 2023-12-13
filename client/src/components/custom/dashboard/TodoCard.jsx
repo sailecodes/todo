@@ -17,7 +17,7 @@ const TodoCard = ({ isHome, title, data }) => {
           <div>
             <button>
               <EditIcon
-                fill="lightgreen"
+                fill="var(--color-gray)"
                 stroke="var(--color-black)"
               />
             </button>
